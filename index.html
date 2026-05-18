@@ -1207,7 +1207,7 @@ function recipeTileHtml(r, maxIngs, maxTime) {
   const kcal = kcalPerPortion(r);
   return `<div class="recipe-tile" onclick="openRecipe('${r.id}')">
     <div class="recipe-tile-photo ${r.image_url ? '' : 'empty'}">
-      ${r.image_url ? `<img src="${escapeAttr(r.image_url)}" alt="" loading="lazy">` : ''}
+      ${r.image_url ? `<img src="${escapeAttr(r.image_url)}" alt="" loading="lazy" onerror="this.parentElement.classList.add('empty');this.remove()">` : ''}
       <div class="recipe-tile-tags">
         ${r.is_vege ? `<span class="recipe-tile-tag vege" title="Vegetariánské">🌱</span>` : ''}
         ${r.is_sweet ? `<span class="recipe-tile-tag sweet" title="Sladké">🍰</span>` : ''}
@@ -1570,13 +1570,10 @@ function renderRecipeEdit(id) {
         ${recipe.image_url
           ? `<div class="photo-preview"><img src="${escapeAttr(recipe.image_url)}" alt=""><button type="button" class="photo-remove" onclick="removeRecipePhoto()" aria-label="Odebrat fotku">${ICON.close}</button></div>`
           : ''}
-        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;">
-          <label class="btn ghost small" style="display:inline-block;cursor:pointer;">
-            <input type="file" accept="image/*" style="display:none" onchange="uploadRecipePhoto(this)">
-            ${recipe.image_url ? 'Změnit fotku' : '＋ Nahrát fotku'}
-          </label>
-          <button type="button" class="btn ghost small" onclick="openPhotoGallery()">Vybrat z galerie</button>
-        </div>
+        <label class="btn ghost small" style="display:inline-block;cursor:pointer;margin-top:6px;">
+          <input type="file" accept="image/*" style="display:none" onchange="uploadRecipePhoto(this)">
+          ${recipe.image_url ? 'Změnit fotku' : '＋ Nahrát fotku'}
+        </label>
         <div id="photo-progress" style="display:none;font-size:12px;color:var(--text-secondary);margin-top:6px;">Nahrávám...</div>
       </div>
     </div>
