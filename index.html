@@ -1178,7 +1178,7 @@ function renderRecipesList() {
         ${[
           { v: 'name', l: 'A-Z' },
           { v: 'time', l: '⏱ Čas' },
-          { v: 'ings', l: 'Ingredience' },
+          { v: 'ings', l: '🥕 Ingredience' },
           { v: 'difficulty', l: '⚡ Náročnost' },
           { v: 'kcal', l: '🔥 Kalorie' }
         ].map(o => `<button class="sort-chip ${state.recipeSort === o.v ? 'active' : ''}" onclick="setRecipeSort('${o.v}')">${o.l}</button>`).join('')}
@@ -1375,7 +1375,15 @@ window.selectNoneIng = () => {
   state.view.overrides = {};
   render();
 };
-window.openRecipeEdit = (id) => { state.view = { type: 'recipe-edit', id }; render(); };
+window.openRecipeEdit = (id) => {
+  // Init editingRecipe once per edit session; renderRecipeEdit just reads it.
+  const isNew = !id;
+  state.editingRecipe = isNew
+    ? { id: 'tmp-' + uid(), _isNew: true, name: '', portions: 4, notes: '', instructions: '', image_url: '', prep_time: null, is_vege: false, is_sweet: false, ingredients: [{ id: uid(), name: '', amount: '', unit: 'g' }] }
+    : JSON.parse(JSON.stringify(state.recipes.find(r => r.id === id)));
+  state.view = { type: 'recipe-edit', id };
+  render();
+};
 
 // === RECIPE DETAIL ===
 function renderRecipeDetail(id) {
@@ -1534,10 +1542,13 @@ window.addRecipeToCart = async (id) => {
 // === RECIPE EDIT ===
 function renderRecipeEdit(id) {
   const isNew = !id;
-  const recipe = isNew
-    ? { id: 'tmp-' + uid(), _isNew: true, name: '', portions: 4, notes: '', ingredients: [{ id: uid(), name: '', amount: '', unit: 'g' }] }
-    : JSON.parse(JSON.stringify(state.recipes.find(r => r.id === id)));
-  state.editingRecipe = recipe;
+  // Use existing editingRecipe (init in openRecipeEdit) — DO NOT recreate, would wipe in-progress edits like photo upload
+  if (!state.editingRecipe) {
+    state.editingRecipe = isNew
+      ? { id: 'tmp-' + uid(), _isNew: true, name: '', portions: 4, notes: '', instructions: '', image_url: '', prep_time: null, is_vege: false, is_sweet: false, ingredients: [{ id: uid(), name: '', amount: '', unit: 'g' }] }
+      : JSON.parse(JSON.stringify(state.recipes.find(r => r.id === id)));
+  }
+  const recipe = state.editingRecipe;
 
   setHeader(isNew ? 'Nový recept' : 'Upravit', {
     back: () => {
@@ -1612,6 +1623,19 @@ window.cancelRecipeEdit = (id) => {
   render();
 };
 
+function captureRecipeEditForm() {
+  if (!state.editingRecipe) return;
+  const r = state.editingRecipe;
+  const get = id => document.getElementById(id);
+  if (get('rec-name')) r.name = get('rec-name').value;
+  if (get('rec-portions')) r.portions = Math.max(1, parseInt(get('rec-portions').value) || 1);
+  if (get('rec-preptime')) { const v = parseInt(get('rec-preptime').value); r.prep_time = (v && v > 0) ? v : null; }
+  if (get('rec-vege')) r.is_vege = get('rec-vege').checked;
+  if (get('rec-sweet')) r.is_sweet = get('rec-sweet').checked;
+  if (get('rec-instructions')) r.instructions = get('rec-instructions').value;
+  if (get('rec-notes')) r.notes = get('rec-notes').value;
+}
+
 async function resizeImageToBlob(file, maxDim = 1400) {
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -1657,6 +1681,7 @@ window.uploadRecipePhoto = async (input) => {
     } catch (verifyErr) {
       throw new Error('Nahrané, ale ' + (verifyErr.message || verifyErr));
     }
+    captureRecipeEditForm(); // preserve user's typed text before re-render
     state.editingRecipe.image_url = publicUrl;
     render();
     toast('Fotka nahrána ✓');
@@ -1672,6 +1697,7 @@ window.uploadRecipePhoto = async (input) => {
 
 window.removeRecipePhoto = () => {
   if (!state.editingRecipe) return;
+  captureRecipeEditForm();
   state.editingRecipe.image_url = '';
   render();
 };
