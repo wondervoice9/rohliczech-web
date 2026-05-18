@@ -516,9 +516,14 @@ async function sendOtpCode() {
     document.getElementById('auth-intro').innerHTML = 'Poslali jsme ověřovací kód na <b>' + escapeHtml(email) + '</b>. Zadej ho níže.';
     setTimeout(() => document.getElementById('auth-code').focus(), 100);
   } catch (e) {
-    const raw = (e && (e.message || e.error_description || JSON.stringify(e))) || 'unknown error';
-    const status = e && (e.status || e.code) ? ` [${e.status || e.code}]` : '';
-    msg.innerHTML = `<b>Chyba${status}:</b> ${escapeHtml(raw)}`;
+    const txt = (e && e.message) || '';
+    if (txt.toLowerCase().includes('rate') || (e && e.status === 429)) {
+      msg.textContent = 'Příliš mnoho pokusů. Počkej hodinu a zkus znovu.';
+    } else if (txt.toLowerCase().includes('timeout')) {
+      msg.textContent = 'Server neodpovídá. Zkus to za chvíli znovu.';
+    } else {
+      msg.textContent = 'Chyba: ' + (txt || 'neznámá');
+    }
     msg.className = 'auth-msg error';
     console.error('signInWithOtp error:', e);
     btn.textContent = 'Poslat ověřovací kód';
@@ -554,9 +559,14 @@ async function verifyOtpCode() {
     msg.textContent = '✓ Přihlášeno';
     msg.className = 'auth-msg success';
   } catch (e) {
-    const raw = (e && (e.message || e.error_description || JSON.stringify(e))) || 'unknown error';
-    const status = e && (e.status || e.code) ? ` [${e.status || e.code}]` : '';
-    msg.innerHTML = `<b>Chyba${status}:</b> ${escapeHtml(raw)}`;
+    const txt = (e && e.message) || '';
+    if (txt.toLowerCase().includes('expired')) {
+      msg.textContent = 'Kód vypršel. Vrať se a vyžádej nový.';
+    } else if (txt.toLowerCase().includes('invalid')) {
+      msg.textContent = 'Špatný kód. Zkontroluj číslice v e-mailu.';
+    } else {
+      msg.textContent = 'Chyba: ' + (txt || 'neznámá');
+    }
     msg.className = 'auth-msg error';
     console.error('verifyOtp error:', e);
     btn.textContent = 'Přihlásit se';
