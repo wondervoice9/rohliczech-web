@@ -199,6 +199,24 @@
   .gallery-item img{width:100%;height:100%;object-fit:cover;display:block}
   .sort-bar{display:flex;gap:6px;padding:10px 12px 6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .sort-bar::-webkit-scrollbar{display:none}
+  .chips-row{display:flex;align-items:center;gap:8px;padding:6px 12px;min-height:38px}
+  .chips-row:first-child{padding-top:10px}
+  .chips-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-secondary);flex-shrink:0;width:44px}
+  .chips-scroll{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex:1;min-width:0}
+  .chips-scroll::-webkit-scrollbar{display:none}
+  /* Recipe tile grid (2 cols mobile) */
+  .recipes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:10px 12px 8px}
+  @media (min-width:640px){.recipes-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}}
+  .recipe-tile{background:var(--bg-card);border:0.5px solid var(--border-card);border-radius:14px;overflow:hidden;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,0.04);transition:transform 0.1s,box-shadow 0.2s;display:flex;flex-direction:column}
+  .recipe-tile:active{transform:scale(0.98);box-shadow:0 4px 14px rgba(0,0,0,0.1)}
+  .recipe-tile-photo{aspect-ratio:4/3;background:linear-gradient(135deg,var(--check-bg) 0%,var(--accent-soft) 100%);position:relative;overflow:hidden}
+  .recipe-tile-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .recipe-tile-photo.empty::before{content:'🍽️';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:36px;opacity:0.35}
+  .recipe-tile-vege{position:absolute;top:6px;right:6px;background:var(--success);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 2px 6px rgba(0,0,0,0.25)}
+  .recipe-tile-body{padding:10px 12px 12px;display:flex;flex-direction:column;gap:5px;flex:1}
+  .recipe-tile h3{font-size:14px;font-weight:700;line-height:1.25;margin:0;color:var(--text);letter-spacing:-0.01em}
+  .recipe-tile-meta{font-size:11px;color:var(--text-secondary);display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:auto}
+  .recipe-tile-meta .dot{width:2px;height:2px;background:var(--dot);border-radius:50%}
   .sort-chip{background:var(--bg-card);border:0.5px solid var(--border-card);color:var(--text-secondary);font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;font-family:inherit;transition:background 0.15s,color 0.15s,border-color 0.15s}
   .sort-chip:active{transform:scale(0.96)}
   .sort-chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
@@ -1131,37 +1149,52 @@ function renderRecipesList() {
     ]
   });
   const main = document.getElementById('main');
-  const sortBar = `<div class="sort-bar">
-    ${[
-      { v: 'name', l: 'A-Z' },
-      { v: 'time', l: '⏱ Čas' },
-      { v: 'ings', l: 'Ingredience' },
-      { v: 'difficulty', l: '⚡ Náročnost' }
-    ].map(o => `<button class="sort-chip ${state.recipeSort === o.v ? 'active' : ''}" onclick="setRecipeSort('${o.v}')">${o.l}</button>`).join('')}
-    <div class="sort-sep"></div>
-    <button class="sort-chip filter ${state.recipeFilterVege ? 'active' : ''}" onclick="toggleRecipeFilterVege()">🌱 Vege</button>
-  </div>`;
+  const sortBar = `
+    <div class="chips-row">
+      <span class="chips-label">Řadit</span>
+      <div class="chips-scroll">
+        ${[
+          { v: 'name', l: 'A-Z' },
+          { v: 'time', l: '⏱ Čas' },
+          { v: 'ings', l: 'Ingredience' },
+          { v: 'difficulty', l: '⚡ Náročnost' }
+        ].map(o => `<button class="sort-chip ${state.recipeSort === o.v ? 'active' : ''}" onclick="setRecipeSort('${o.v}')">${o.l}</button>`).join('')}
+      </div>
+    </div>
+    <div class="chips-row">
+      <span class="chips-label">Filtr</span>
+      <div class="chips-scroll">
+        <button class="sort-chip filter ${state.recipeFilterVege ? 'active' : ''}" onclick="toggleRecipeFilterVege()">🌱 Vege</button>
+      </div>
+    </div>
+  `;
   const search = `<div class="search-bar"><input type="text" placeholder="Hledat recept..." oninput="filterRecipes(this.value)"></div>`;
   if (state.recipes.length === 0) {
     main.innerHTML = sortBar + search + `<div class="empty"><div class="big">🍽️</div><h3>Žádné recepty</h3><p>Začni přidáním receptu pomocí tlačítka ＋ vpravo nahoře.</p></div>`;
     return;
   }
   const { maxIngs, maxTime } = computeMaxRecipeStats();
-  const cards = sortedRecipes(maxIngs, maxTime).map(r => {
-    const diff = difficultyScore(r, maxIngs, maxTime);
-    return `<div class="card" onclick="openRecipe('${r.id}')">
-      <h3>${escapeHtml(r.name)}${r.is_vege ? ' <span class="vege-badge">🌱 vege</span>' : ''}</h3>
-      <div class="meta">
-        <span>${r.portions} ${r.portions === 1 ? 'porce' : (r.portions < 5 ? 'porce' : 'porcí')}</span>
-        <span class="dot"></span>
-        <span>${r.ingredients.length} ingrediencí</span>
+  const tiles = sortedRecipes(maxIngs, maxTime).map(r => recipeTileHtml(r, maxIngs, maxTime)).join('');
+  main.innerHTML = sortBar + search + `<div class="recipes-grid" id="recipes-list">${tiles}</div>`;
+}
+
+function recipeTileHtml(r, maxIngs, maxTime) {
+  const diff = difficultyScore(r, maxIngs, maxTime);
+  return `<div class="recipe-tile" onclick="openRecipe('${r.id}')">
+    <div class="recipe-tile-photo ${r.image_url ? '' : 'empty'}">
+      ${r.image_url ? `<img src="${escapeAttr(r.image_url)}" alt="" loading="lazy">` : ''}
+      ${r.is_vege ? `<span class="recipe-tile-vege" title="Vegetariánské">🌱</span>` : ''}
+    </div>
+    <div class="recipe-tile-body">
+      <h3>${escapeHtml(r.name)}</h3>
+      <div class="recipe-tile-meta">
+        <span>${r.ingredients.length} ingr.</span>
         ${r.prep_time ? `<span class="dot"></span><span>⏱ ${fmtTime(r.prep_time)}</span>` : ''}
         <span class="dot"></span>
         <span class="difficulty-pill">⚡ ${diff}/10</span>
       </div>
-    </div>`;
-  }).join('');
-  main.innerHTML = sortBar + search + `<div class="list" id="recipes-list">${cards}</div>`;
+    </div>
+  </div>`;
 }
 
 window.filterRecipes = function(q) {
@@ -1174,20 +1207,8 @@ window.filterRecipes = function(q) {
   const list = document.getElementById('recipes-list');
   if (!list) return;
   if (filtered.length === 0) { list.innerHTML = '<div class="empty"><p>Nic nenalezeno</p></div>'; return; }
-  list.innerHTML = filtered.map(r => {
-    const diff = difficultyScore(r, maxIngs, maxTime);
-    return `<div class="card" onclick="openRecipe('${r.id}')">
-      <h3>${escapeHtml(r.name)}${r.is_vege ? ' <span class="vege-badge">🌱 vege</span>' : ''}</h3>
-      <div class="meta">
-        <span>${r.portions} porcí</span>
-        <span class="dot"></span>
-        <span>${r.ingredients.length} ingrediencí</span>
-        ${r.prep_time ? `<span class="dot"></span><span>⏱ ${fmtTime(r.prep_time)}</span>` : ''}
-        <span class="dot"></span>
-        <span class="difficulty-pill">⚡ ${diff}/10</span>
-      </div>
-    </div>`;
-  }).join('');
+  list.className = 'recipes-grid';
+  list.innerHTML = filtered.map(r => recipeTileHtml(r, maxIngs, maxTime)).join('');
 };
 
 window.openRecipe = (id) => {
