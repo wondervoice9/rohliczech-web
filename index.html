@@ -185,12 +185,11 @@
   /* Staples — tile grid (tap=+1, long press=−1) */
   .staples-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 12px 4px}
   @media (min-width:520px){.staples-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
-  .staple-tile{position:relative;background:var(--bg-card);border:0.5px solid var(--border-card);border-radius:12px;padding:12px 8px 10px;display:flex;flex-direction:column;align-items:stretch;gap:4px;opacity:0.55;transition:opacity 0.2s,border-color 0.2s,box-shadow 0.2s,transform 0.08s;min-width:0;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+  .staple-tile{position:relative;background:var(--bg-card);border:0.5px solid var(--border-card);border-radius:12px;padding:12px 8px;min-height:72px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;opacity:0.55;transition:opacity 0.2s,border-color 0.2s,box-shadow 0.2s,transform 0.08s;min-width:0;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:manipulation}
   .staple-tile:active{transform:scale(0.97)}
   .staple-tile.has-qty{opacity:1;border-color:var(--accent);background:var(--accent-bg);outline:2px solid var(--accent);outline-offset:-2px;box-shadow:0 4px 14px rgba(216,90,48,0.22)}
-  .staple-tile .tile-name{font-size:13px;font-weight:600;color:var(--text);line-height:1.2;word-break:break-word;text-align:center;padding:2px 2px 0;min-height:34px;display:flex;align-items:center;justify-content:center;hyphens:auto}
-  .staple-tile .tile-qty-display{font-size:24px;font-weight:800;color:var(--accent);text-align:center;font-variant-numeric:tabular-nums;line-height:1;padding:4px 0 2px;letter-spacing:-0.02em}
-  .staple-tile:not(.has-qty) .tile-qty-display{color:var(--text-muted);font-weight:400;font-size:18px}
+  .staple-tile .tile-name{font-size:13px;font-weight:600;color:var(--text);line-height:1.2;word-break:break-word;text-align:center;hyphens:auto}
+  .staple-tile .tile-qty-display{font-size:22px;font-weight:800;color:var(--accent);text-align:center;font-variant-numeric:tabular-nums;line-height:1;letter-spacing:-0.02em}
   .staple-tile .tile-note-text{font-size:11px;color:var(--accent);font-style:italic;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;padding:0 2px;line-height:1.3}
   .staple-tile .tile-note-add{background:none;border:none;font-size:10px;color:var(--text-muted);cursor:pointer;padding:0;text-align:center;font-family:inherit;opacity:0;transition:opacity 0.2s;line-height:1.3}
   .staple-tile:hover .tile-note-add,.staple-tile.has-qty .tile-note-add{opacity:0.5}
@@ -1539,7 +1538,7 @@ function renderStaplesList() {
                     onpointerleave="tilePressCancel()"
                     oncontextmenu="event.preventDefault()">
         <div class="tile-name">${escapeHtml(s.name)}</div>
-        <div class="tile-qty-display">${qty > 0 ? qty : '·'}</div>
+        ${qty > 0 ? `<div class="tile-qty-display">${qty}</div>` : ''}
       </div>`;
     });
     html += '</div>';
