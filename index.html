@@ -183,7 +183,7 @@
   @media (min-width:520px){.staples-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
   .staple-tile{position:relative;background:var(--bg-card);border:0.5px solid var(--border-card);border-radius:12px;padding:12px 8px 10px;display:flex;flex-direction:column;align-items:stretch;gap:4px;opacity:0.55;transition:opacity 0.2s,border-color 0.2s,box-shadow 0.2s,transform 0.08s;min-width:0;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:manipulation}
   .staple-tile:active{transform:scale(0.97)}
-  .staple-tile.has-qty{opacity:1;border-color:var(--accent);box-shadow:0 1px 6px rgba(216,90,48,0.12)}
+  .staple-tile.has-qty{opacity:1;border-color:var(--accent);background:var(--accent-bg);outline:2px solid var(--accent);outline-offset:-2px;box-shadow:0 4px 14px rgba(216,90,48,0.22)}
   .staple-tile .tile-name{font-size:13px;font-weight:600;color:var(--text);line-height:1.2;word-break:break-word;text-align:center;padding:2px 2px 0;min-height:34px;display:flex;align-items:center;justify-content:center;hyphens:auto}
   .staple-tile .tile-qty-display{font-size:24px;font-weight:800;color:var(--accent);text-align:center;font-variant-numeric:tabular-nums;line-height:1;padding:4px 0 2px;letter-spacing:-0.02em}
   .staple-tile:not(.has-qty) .tile-qty-display{color:var(--text-muted);font-weight:400;font-size:18px}
