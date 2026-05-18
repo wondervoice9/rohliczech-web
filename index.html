@@ -221,6 +221,7 @@
   .sort-chip:active{transform:scale(0.96)}
   .sort-chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
   .difficulty-pill{font-weight:600;color:var(--accent)}
+  .kcal-pill{font-weight:600;color:var(--text)}
   .vege-badge{display:inline-block;background:rgba(63,207,142,0.15);color:var(--success);font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;margin-left:6px;letter-spacing:0.3px;vertical-align:middle;text-transform:lowercase}
   .sort-sep{width:1px;background:var(--border);align-self:stretch;margin:4px 4px;flex-shrink:0}
   .sort-chip.filter{background:transparent}
@@ -387,6 +388,12 @@ const state = {
   recipeFilterVege: false
 };
 
+function kcalPerPortion(r) {
+  if (!r || !r.ingredients || !r.portions) return 0;
+  const n = calcRecipeNutrition(r, r.portions);
+  return Math.round(n.kcal / r.portions);
+}
+
 function sortedRecipes(maxIngs, maxTime) {
   let list = [...state.recipes];
   if (state.recipeFilterVege) list = list.filter(r => r.is_vege);
@@ -399,6 +406,9 @@ function sortedRecipes(maxIngs, maxTime) {
       break;
     case 'difficulty':
       list.sort((a, b) => difficultyScore(a, maxIngs, maxTime) - difficultyScore(b, maxIngs, maxTime) || a.name.localeCompare(b.name, 'cs'));
+      break;
+    case 'kcal':
+      list.sort((a, b) => kcalPerPortion(a) - kcalPerPortion(b) || a.name.localeCompare(b.name, 'cs'));
       break;
     case 'name':
     default:
@@ -1157,7 +1167,8 @@ function renderRecipesList() {
           { v: 'name', l: 'A-Z' },
           { v: 'time', l: '⏱ Čas' },
           { v: 'ings', l: 'Ingredience' },
-          { v: 'difficulty', l: '⚡ Náročnost' }
+          { v: 'difficulty', l: '⚡ Náročnost' },
+          { v: 'kcal', l: '🔥 Kalorie' }
         ].map(o => `<button class="sort-chip ${state.recipeSort === o.v ? 'active' : ''}" onclick="setRecipeSort('${o.v}')">${o.l}</button>`).join('')}
       </div>
     </div>
@@ -1180,6 +1191,7 @@ function renderRecipesList() {
 
 function recipeTileHtml(r, maxIngs, maxTime) {
   const diff = difficultyScore(r, maxIngs, maxTime);
+  const kcal = kcalPerPortion(r);
   return `<div class="recipe-tile" onclick="openRecipe('${r.id}')">
     <div class="recipe-tile-photo ${r.image_url ? '' : 'empty'}">
       ${r.image_url ? `<img src="${escapeAttr(r.image_url)}" alt="" loading="lazy">` : ''}
@@ -1190,6 +1202,7 @@ function recipeTileHtml(r, maxIngs, maxTime) {
       <div class="recipe-tile-meta">
         <span>${r.ingredients.length} ingr.</span>
         ${r.prep_time ? `<span class="dot"></span><span>⏱ ${fmtTime(r.prep_time)}</span>` : ''}
+        ${kcal > 0 ? `<span class="dot"></span><span class="kcal-pill">🔥 ${kcal} kcal</span>` : ''}
         <span class="dot"></span>
         <span class="difficulty-pill">⚡ ${diff}/10</span>
       </div>
