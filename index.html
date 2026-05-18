@@ -196,6 +196,21 @@
   .staple-tile .tile-note-add:active{opacity:1;color:var(--accent)}
   .staple-tile .tile-name-input{font-size:13px;font-weight:600;color:var(--text);text-align:center;background:var(--bg-input);border:1px solid var(--accent);border-radius:6px;padding:4px 6px;width:100%;font-family:inherit;outline:none;min-height:36px}
   .staple-tile .tile-note-input{font-size:11px;color:var(--accent);font-style:italic;text-align:center;background:var(--bg-input);border:1px solid var(--accent);border-radius:6px;padding:3px 6px;width:100%;font-family:inherit;outline:none}
+  /* Manage staples screen */
+  .manage-add{background:var(--bg-card);border-bottom:0.5px solid var(--border-soft);padding:12px;display:flex;flex-direction:column;gap:8px;position:sticky;top:0;z-index:5}
+  .manage-add input,.manage-add select{padding:10px 12px;background:var(--bg-input);border:1px solid var(--border-input);border-radius:8px;font-size:14px;font-family:inherit;color:var(--text);outline:none}
+  .manage-add input:focus,.manage-add select:focus{border-color:var(--accent)}
+  .manage-add .row{display:flex;gap:6px}
+  .manage-add .row select{flex:2;min-width:0}
+  .manage-add .row input{flex:1;min-width:0;max-width:80px}
+  .manage-add .row .btn{flex:0 0 auto;padding:10px 18px;white-space:nowrap}
+  .manage-row{display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bg-card);border-radius:10px;margin-bottom:5px;border:0.5px solid var(--border-soft)}
+  .manage-row .manage-name{flex:1;font-size:14px;color:var(--text);cursor:pointer;padding:4px 2px;min-width:0;word-break:break-word}
+  .manage-row .manage-name:active{opacity:0.6}
+  .manage-row .manage-name-input{flex:1;font-size:14px;color:var(--text);background:var(--bg-input);border:1px solid var(--accent);border-radius:6px;padding:4px 8px;font-family:inherit;outline:none;min-width:0}
+  .manage-row .manage-del{background:none;border:none;color:var(--danger);cursor:pointer;padding:6px;border-radius:6px;line-height:0;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.15s}
+  .manage-row .manage-del svg{width:18px;height:18px}
+  .manage-row .manage-del:active{background:rgba(192,57,43,0.12)}
   /* Legacy staple-row (no longer used in staples tab, but kept for safety) */
   .staple-row{display:flex;align-items:center;gap:8px;background:var(--bg-card);border-radius:14px;padding:12px 14px;border:0.5px solid var(--border-card);margin-bottom:6px;box-shadow:0 1px 2px rgba(0,0,0,0.04)}
   .staple-row .info{flex:1;min-width:0}
@@ -339,7 +354,8 @@ const ICON = {
   check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
   close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
   back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>',
-  search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16.65" y2="16.65"/></svg>'
+  search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16.65" y2="16.65"/></svg>',
+  settings: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>'
 };
 
 const CATEGORY_ICON = {
@@ -962,6 +978,7 @@ async function render() {
     if (state.view.type === 'recipe') return renderRecipeDetail(state.view.id);
     if (state.view.type === 'recipe-edit') return renderRecipeEdit(state.view.id);
     if (state.view.type === 'staple-edit') return renderStapleEdit(state.view.id);
+    if (state.view.type === 'manage-staples') return renderManageStaples();
   }
   if (state.tab === 'recipes') return renderRecipesList();
   if (state.tab === 'staples') return renderStaplesList();
@@ -1508,7 +1525,10 @@ window.exportData = () => {
 // === STAPLES LIST ===
 function renderStaplesList() {
   setHeader('Ostatní položky', {
-    actions: [{ icon: ICON.plus, title: 'Přidat', onclick: () => openStapleEdit(null) }]
+    actions: [
+      { icon: ICON.settings, title: 'Spravovat položky', onclick: () => { state.view = { type: 'manage-staples' }; render(); } },
+      { icon: ICON.plus, title: 'Přidat', onclick: () => openStapleEdit(null) }
+    ]
   });
   const main = document.getElementById('main');
   if (state.staples.length === 0) {
@@ -1649,6 +1669,91 @@ window.stapleDec = (id) => {
 };
 
 window.openStapleEdit = (id) => { state.view = { type: 'staple-edit', id }; render(); };
+
+// === MANAGE STAPLES (quick add/remove) ===
+function renderManageStaples() {
+  setHeader('Spravovat položky', { back: () => { state.view = null; render(); } });
+  const main = document.getElementById('main');
+  const groups = {};
+  state.staples.forEach(s => {
+    const cat = s.category || 'Ostatní';
+    if (!groups[cat]) groups[cat] = [];
+    groups[cat].push(s);
+  });
+  const catOptions = getCategoryOptions()
+    .map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+  let html = `
+    <div class="manage-add">
+      <input id="mng-name" type="text" placeholder="Název nové položky" autocomplete="off">
+      <div class="row">
+        <select id="mng-cat">${catOptions}</select>
+        <input id="mng-unit" type="text" placeholder="ks" value="ks">
+        <button class="btn small" onclick="addStapleQuick()">Přidat</button>
+      </div>
+    </div>
+  `;
+  if (Object.keys(groups).length === 0) {
+    html += `<div class="empty"><div class="big">📋</div><h3>Žádné položky</h3><p>Začni přidávat nahoře.</p></div>`;
+  } else {
+    Object.keys(groups).sort().forEach(cat => {
+      html += `<div class="section-title">${escapeHtml(cat)} <span style="opacity:0.6;font-weight:500;">(${groups[cat].length})</span></div>`;
+      html += `<div style="padding:0 12px;">`;
+      groups[cat].forEach(s => {
+        const editing = state.editingStapleName === s.id;
+        const nameHtml = editing
+          ? `<input class="manage-name-input" type="text" value="${escapeAttr(s.name)}" onblur="commitStapleName('${s.id}', this.value)" onkeydown="if(event.key==='Enter')this.blur();else if(event.key==='Escape'){state.editingStapleName=null;render();}" autofocus>`
+          : `<div class="manage-name" onclick="startEditStapleName('${s.id}')">${escapeHtml(s.name)}</div>`;
+        html += `<div class="manage-row">
+          ${nameHtml}
+          <button class="manage-del" onclick="deleteStapleQuick('${s.id}', ${JSON.stringify(s.name).replace(/"/g,'&quot;')})" aria-label="Smazat">${ICON.trash}</button>
+        </div>`;
+      });
+      html += `</div>`;
+    });
+  }
+  main.innerHTML = html;
+  setTimeout(() => {
+    const nameEl = document.getElementById('mng-name');
+    if (nameEl && !state.editingStapleName) nameEl.focus();
+  }, 50);
+}
+
+window.addStapleQuick = async () => {
+  const name = document.getElementById('mng-name').value.trim();
+  if (!name) { document.getElementById('mng-name').focus(); return; }
+  const staple = {
+    _isNew: true, name,
+    category: document.getElementById('mng-cat').value || 'Ostatní',
+    defaultQty: 1,
+    unit: document.getElementById('mng-unit').value.trim() || 'ks'
+  };
+  const saved = await saveStaple(staple);
+  if (!saved) return;
+  state.staples.push(saved);
+  toast('Přidáno: ' + saved.name);
+  // Reset form, refocus name
+  document.getElementById('mng-name').value = '';
+  render();
+};
+
+window.deleteStapleQuick = async (id, name) => {
+  const idx = state.staples.findIndex(s => s.id === id);
+  if (idx < 0) return;
+  const removed = state.staples[idx];
+  state.staples.splice(idx, 1);
+  // Also remove from cart if present
+  const cartIdx = state.cart.staples.findIndex(s => s.id === id);
+  if (cartIdx >= 0) { state.cart.staples.splice(cartIdx, 1); saveCart(); }
+  render();
+  const ok = await deleteStapleDb(id);
+  if (!ok) {
+    // restore on failure
+    state.staples.push(removed);
+    render();
+    return;
+  }
+  toast('Smazáno: ' + (name || removed.name));
+};
 
 function renderStapleEdit(id) {
   const isNew = !id;
