@@ -203,6 +203,17 @@
   .sort-chip:active{transform:scale(0.96)}
   .sort-chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
   .difficulty-pill{font-weight:600;color:var(--accent)}
+  .vege-badge{display:inline-block;background:rgba(63,207,142,0.15);color:var(--success);font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;margin-left:6px;letter-spacing:0.3px;vertical-align:middle;text-transform:lowercase}
+  .sort-sep{width:1px;background:var(--border);align-self:stretch;margin:4px 4px;flex-shrink:0}
+  .sort-chip.filter{background:transparent}
+  .sort-chip.filter.active{background:var(--success);border-color:var(--success);color:#fff}
+  /* iOS-style toggle switch */
+  .switch{position:relative;display:inline-block;width:46px;height:26px;flex-shrink:0}
+  .switch input{opacity:0;width:0;height:0}
+  .slider-toggle{position:absolute;cursor:pointer;inset:0;background:var(--check-bg);border:1px solid var(--border);border-radius:999px;transition:background 0.2s,border-color 0.2s}
+  .slider-toggle::before{content:'';position:absolute;height:20px;width:20px;left:2px;top:2px;background:#fff;border-radius:50%;transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.25)}
+  .switch input:checked + .slider-toggle{background:var(--success);border-color:var(--success)}
+  .switch input:checked + .slider-toggle::before{transform:translateX(20px)}
   /* Staples — tile grid (tap=+1, long press=−1) */
   .staples-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 12px 4px}
   @media (min-width:520px){.staples-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
@@ -354,11 +365,13 @@ const state = {
   expandedStaple: null,
   editingStapleName: null,
   editingCartNote: null,
-  recipeSort: 'name'
+  recipeSort: 'name',
+  recipeFilterVege: false
 };
 
 function sortedRecipes(maxIngs, maxTime) {
-  const list = [...state.recipes];
+  let list = [...state.recipes];
+  if (state.recipeFilterVege) list = list.filter(r => r.is_vege);
   switch (state.recipeSort) {
     case 'time':
       list.sort((a, b) => (a.prep_time || 9999) - (b.prep_time || 9999) || a.name.localeCompare(b.name, 'cs'));
@@ -377,6 +390,7 @@ function sortedRecipes(maxIngs, maxTime) {
 }
 
 window.setRecipeSort = (s) => { state.recipeSort = s; render(); };
+window.toggleRecipeFilterVege = () => { state.recipeFilterVege = !state.recipeFilterVege; render(); };
 
 const DEFAULT_PORTIONS = 4;
 
@@ -754,6 +768,7 @@ async function loadAll() {
     instructions: r.instructions || '',
     image_url: r.image_url || '',
     prep_time: r.prep_time || null,
+    is_vege: !!r.is_vege,
     ingredients: r.ingredients || []
   }));
   state.staples = (staplesRes.data || []).map(s => ({
@@ -817,7 +832,7 @@ function setupRealtime() {
 async function reloadRecipes() {
   const { data } = await supabase.from('recipes').select('*').order('created_at', { ascending: true });
   if (data) {
-    state.recipes = data.map(r => ({ id: r.id, name: r.name, portions: r.portions, notes: r.notes || '', instructions: r.instructions || '', image_url: r.image_url || '', prep_time: r.prep_time || null, ingredients: r.ingredients || [] }));
+    state.recipes = data.map(r => ({ id: r.id, name: r.name, portions: r.portions, notes: r.notes || '', instructions: r.instructions || '', image_url: r.image_url || '', prep_time: r.prep_time || null, is_vege: !!r.is_vege, ingredients: r.ingredients || [] }));
     render();
   }
 }
@@ -853,7 +868,7 @@ async function seedSampleData() {
       supabase.from('staples').insert(staplesToInsert).select()
     ]);
     if (r1.data) state.recipes = r1.data.map(r => ({
-      id: r.id, name: r.name, portions: r.portions, notes: r.notes || '', instructions: r.instructions || '', image_url: r.image_url || '', prep_time: r.prep_time || null, ingredients: r.ingredients || []
+      id: r.id, name: r.name, portions: r.portions, notes: r.notes || '', instructions: r.instructions || '', image_url: r.image_url || '', prep_time: r.prep_time || null, is_vege: !!r.is_vege, ingredients: r.ingredients || []
     }));
     if (r2.data) state.staples = r2.data.map(s => ({
       id: s.id, name: s.name, category: s.category, defaultQty: parseFloat(s.default_qty), unit: s.unit
@@ -993,16 +1008,17 @@ async function saveRecipe(recipe) {
     instructions: recipe.instructions || '',
     image_url: recipe.image_url || '',
     prep_time: recipe.prep_time || null,
+    is_vege: !!recipe.is_vege,
     ingredients: recipe.ingredients
   };
   if (recipe._isNew) {
     const { data, error } = await supabase.from('recipes').insert(payload).select().single();
     if (error) { console.error(error); toast('Chyba při ukládání'); return null; }
-    return { id: data.id, name: data.name, portions: data.portions, notes: data.notes || '', instructions: data.instructions || '', image_url: data.image_url || '', prep_time: data.prep_time || null, ingredients: data.ingredients || [] };
+    return { id: data.id, name: data.name, portions: data.portions, notes: data.notes || '', instructions: data.instructions || '', image_url: data.image_url || '', prep_time: data.prep_time || null, is_vege: !!data.is_vege, ingredients: data.ingredients || [] };
   } else {
     const { data, error } = await supabase.from('recipes').update(payload).eq('id', recipe.id).select().single();
     if (error) { console.error(error); toast('Chyba při ukládání'); return null; }
-    return { id: data.id, name: data.name, portions: data.portions, notes: data.notes || '', instructions: data.instructions || '', image_url: data.image_url || '', prep_time: data.prep_time || null, ingredients: data.ingredients || [] };
+    return { id: data.id, name: data.name, portions: data.portions, notes: data.notes || '', instructions: data.instructions || '', image_url: data.image_url || '', prep_time: data.prep_time || null, is_vege: !!data.is_vege, ingredients: data.ingredients || [] };
   }
 }
 
@@ -1122,6 +1138,8 @@ function renderRecipesList() {
       { v: 'ings', l: 'Ingredience' },
       { v: 'difficulty', l: '⚡ Náročnost' }
     ].map(o => `<button class="sort-chip ${state.recipeSort === o.v ? 'active' : ''}" onclick="setRecipeSort('${o.v}')">${o.l}</button>`).join('')}
+    <div class="sort-sep"></div>
+    <button class="sort-chip filter ${state.recipeFilterVege ? 'active' : ''}" onclick="toggleRecipeFilterVege()">🌱 Vege</button>
   </div>`;
   const search = `<div class="search-bar"><input type="text" placeholder="Hledat recept..." oninput="filterRecipes(this.value)"></div>`;
   if (state.recipes.length === 0) {
@@ -1132,7 +1150,7 @@ function renderRecipesList() {
   const cards = sortedRecipes(maxIngs, maxTime).map(r => {
     const diff = difficultyScore(r, maxIngs, maxTime);
     return `<div class="card" onclick="openRecipe('${r.id}')">
-      <h3>${escapeHtml(r.name)}</h3>
+      <h3>${escapeHtml(r.name)}${r.is_vege ? ' <span class="vege-badge">🌱 vege</span>' : ''}</h3>
       <div class="meta">
         <span>${r.portions} ${r.portions === 1 ? 'porce' : (r.portions < 5 ? 'porce' : 'porcí')}</span>
         <span class="dot"></span>
@@ -1159,7 +1177,7 @@ window.filterRecipes = function(q) {
   list.innerHTML = filtered.map(r => {
     const diff = difficultyScore(r, maxIngs, maxTime);
     return `<div class="card" onclick="openRecipe('${r.id}')">
-      <h3>${escapeHtml(r.name)}</h3>
+      <h3>${escapeHtml(r.name)}${r.is_vege ? ' <span class="vege-badge">🌱 vege</span>' : ''}</h3>
       <div class="meta">
         <span>${r.portions} porcí</span>
         <span class="dot"></span>
@@ -1483,6 +1501,10 @@ function renderRecipeEdit(id) {
     <div class="form-group"><label>Název jídla</label><input type="text" id="rec-name" value="${escapeHtml(recipe.name)}" placeholder="Např. Špagety bolognese"></div>
     <div class="form-group"><label>Počet porcí (základní)</label><input type="number" id="rec-portions" value="${recipe.portions}" min="1" step="1" inputmode="numeric"></div>
     <div class="form-group"><label>Čas přípravy (minut)</label><input type="number" id="rec-preptime" value="${recipe.prep_time || ''}" min="1" step="1" inputmode="numeric" placeholder="např. 45"></div>
+    <div class="form-group" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+      <label for="rec-vege" style="margin:0;cursor:pointer;flex:1;">🌱 Vegetariánské</label>
+      <label class="switch"><input type="checkbox" id="rec-vege" ${recipe.is_vege ? 'checked' : ''}><span class="slider-toggle"></span></label>
+    </div>
     <div class="form-group">
       <label>Ingredience</label>
       <div id="ing-list">${recipe.ingredients.map((ing, idx) => ingredientRowHtml(ing, idx)).join('')}</div>
@@ -1636,6 +1658,7 @@ window.saveRecipeEdit = async (id, isNew) => {
   rec.instructions = document.getElementById('rec-instructions').value;
   const pt = parseInt(document.getElementById('rec-preptime').value);
   rec.prep_time = (pt && pt > 0) ? pt : null;
+  rec.is_vege = document.getElementById('rec-vege').checked;
   rec.ingredients = rec.ingredients.filter(i => i.name.trim() !== '');
   if (!rec.name) { alert('Zadej název receptu'); return; }
   if (rec.ingredients.length === 0) { alert('Přidej alespoň jednu ingredienci'); return; }
@@ -1734,24 +1757,120 @@ function showSettingsMenu() {
 }
 window.showSettingsMenu = showSettingsMenu;
 
-window.exportData = () => {
-  const data = {
-    exportedAt: new Date().toISOString(),
-    user: state.user.email,
-    recipes: state.recipes,
-    staples: state.staples,
-    cart: state.cart
-  };
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+function downloadJson(filename, obj) {
+  const blob = new Blob([JSON.stringify(obj, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `rohliczech-export-${new Date().toISOString().slice(0,10)}.json`;
+  a.download = filename;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  toast('Data exportována');
+}
+
+window.exportData = () => {
+  downloadJson(
+    `rohliczech-export-${new Date().toISOString().slice(0,10)}.json`,
+    { exportedAt: new Date().toISOString(), user: state.user.email, recipes: state.recipes, staples: state.staples, cart: state.cart }
+  );
+  toast('Vše exportováno');
+};
+
+window.exportRecipes = () => {
+  downloadJson(
+    `rohliczech-recipes-${new Date().toISOString().slice(0,10)}.json`,
+    { exportedAt: new Date().toISOString(), recipes: state.recipes }
+  );
+  toast(`${state.recipes.length} receptů exportováno`);
+};
+
+window.exportStaples = () => {
+  downloadJson(
+    `rohliczech-polozky-${new Date().toISOString().slice(0,10)}.json`,
+    { exportedAt: new Date().toISOString(), staples: state.staples }
+  );
+  toast(`${state.staples.length} položek exportováno`);
+};
+
+window.importRecipesFile = async (input) => {
+  const file = input.files && input.files[0];
+  if (!file) return;
+  try {
+    const text = await file.text();
+    const parsed = JSON.parse(text);
+    const list = Array.isArray(parsed) ? parsed : (parsed.recipes || []);
+    if (!list.length) { toast('V souboru nejsou žádné recepty'); return; }
+    const existing = new Set(state.recipes.map(r => r.name.toLowerCase().trim()));
+    const toInsert = list
+      .filter(r => r && r.name && !existing.has(r.name.toLowerCase().trim()))
+      .map(r => ({
+        user_id: state.user.id,
+        name: r.name,
+        portions: r.portions || 4,
+        notes: r.notes || '',
+        instructions: r.instructions || '',
+        image_url: r.image_url || '',
+        prep_time: r.prep_time || null,
+        is_vege: !!r.is_vege,
+        ingredients: (r.ingredients || []).map(i => ({ id: uid(), name: i.name, amount: i.amount, unit: i.unit }))
+      }));
+    const skipped = list.length - toInsert.length;
+    if (!toInsert.length) { toast('Všechny recepty už máš (podle názvu)'); return; }
+    if (!confirm(`Přidat ${toInsert.length} ${toInsert.length === 1 ? 'recept' : (toInsert.length < 5 ? 'recepty' : 'receptů')}? (${skipped} už existuje)`)) return;
+    const { data, error } = await supabase.from('recipes').insert(toInsert).select();
+    if (error) throw error;
+    (data || []).forEach(r => state.recipes.push({
+      id: r.id, name: r.name, portions: r.portions, notes: r.notes || '',
+      instructions: r.instructions || '', image_url: r.image_url || '',
+      prep_time: r.prep_time || null, is_vege: !!r.is_vege,
+      ingredients: r.ingredients || []
+    }));
+    toast(`Importováno ${data.length} receptů`);
+    render();
+  } catch (e) {
+    toast('Chyba importu: ' + (e.message || e));
+    console.error(e);
+  } finally {
+    input.value = '';
+  }
+};
+
+window.importStaplesFile = async (input) => {
+  const file = input.files && input.files[0];
+  if (!file) return;
+  try {
+    const text = await file.text();
+    const parsed = JSON.parse(text);
+    const list = Array.isArray(parsed) ? parsed : (parsed.staples || []);
+    if (!list.length) { toast('V souboru nejsou žádné položky'); return; }
+    const existing = new Set(state.staples.map(s => s.name.toLowerCase().trim()));
+    const toInsert = list
+      .filter(s => s && s.name && !existing.has(s.name.toLowerCase().trim()))
+      .map(s => ({
+        user_id: state.user.id,
+        name: s.name,
+        category: s.category || 'Ostatní',
+        default_qty: s.defaultQty || s.default_qty || 1,
+        unit: s.unit || 'ks'
+      }));
+    const skipped = list.length - toInsert.length;
+    if (!toInsert.length) { toast('Všechny položky už máš (podle názvu)'); return; }
+    if (!confirm(`Přidat ${toInsert.length} ${toInsert.length === 1 ? 'položku' : (toInsert.length < 5 ? 'položky' : 'položek')}? (${skipped} už existuje)`)) return;
+    const { data, error } = await supabase.from('staples').insert(toInsert).select();
+    if (error) throw error;
+    (data || []).forEach(s => state.staples.push({
+      id: s.id, name: s.name, category: s.category,
+      defaultQty: parseFloat(s.default_qty), unit: s.unit
+    }));
+    toast(`Importováno ${data.length} položek`);
+    render();
+  } catch (e) {
+    toast('Chyba importu: ' + (e.message || e));
+    console.error(e);
+  } finally {
+    input.value = '';
+  }
 };
 
 // === STAPLES LIST ===
@@ -2094,10 +2213,28 @@ function renderSettings() {
       <button class="btn small secondary" onclick="manualRefresh()" style="width:auto;">Obnovit</button>
     </div>
 
-    <div class="section-title">Data</div>
-    <div style="padding:12px;display:flex;flex-direction:column;gap:8px;">
+    <div class="section-title">Recepty</div>
+    <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:8px;">
       <button class="btn secondary" onclick="importMissingRecipes()">Načíst doporučené recepty</button>
-      <button class="btn secondary" onclick="exportData()">Exportovat všechna data</button>
+      <button class="btn secondary" onclick="exportRecipes()">📤 Exportovat recepty (záloha)</button>
+      <label class="btn secondary" style="cursor:pointer;text-align:center;">
+        📥 Importovat recepty (z JSON)
+        <input type="file" accept="application/json,.json" style="display:none" onchange="importRecipesFile(this)">
+      </label>
+    </div>
+
+    <div class="section-title">Ostatní položky</div>
+    <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:8px;">
+      <button class="btn secondary" onclick="exportStaples()">📤 Exportovat položky (záloha)</button>
+      <label class="btn secondary" style="cursor:pointer;text-align:center;">
+        📥 Importovat položky (z JSON)
+        <input type="file" accept="application/json,.json" style="display:none" onchange="importStaplesFile(this)">
+      </label>
+    </div>
+
+    <div class="section-title">Vše</div>
+    <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:8px;">
+      <button class="btn secondary" onclick="exportData()">Exportovat vše (recepty + položky + košík)</button>
       <button class="btn danger" onclick="signOut()">Odhlásit se</button>
     </div>
   `;
