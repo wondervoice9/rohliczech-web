@@ -514,6 +514,14 @@ function calcRecipeNutrition(recipe, portions) {
 
 // === HELPERS ===
 function uid(){ return Math.random().toString(36).slice(2,10); }
+function fmtTime(mins) {
+  const m = parseInt(mins);
+  if (!m || m < 1) return '';
+  if (m < 60) return m + ' min';
+  const h = Math.floor(m / 60);
+  const rem = m % 60;
+  return rem === 0 ? h + ' h' : h + ' h ' + rem + ' min';
+}
 
 function fmtNum(n) {
   if (n == null || isNaN(n)) return '0';
@@ -695,6 +703,7 @@ async function loadAll() {
     id: r.id, name: r.name, portions: r.portions, notes: r.notes || '',
     instructions: r.instructions || '',
     image_url: r.image_url || '',
+    prep_time: r.prep_time || null,
     ingredients: r.ingredients || []
   }));
   state.staples = (staplesRes.data || []).map(s => ({
@@ -758,7 +767,7 @@ function setupRealtime() {
 async function reloadRecipes() {
   const { data } = await supabase.from('recipes').select('*').order('created_at', { ascending: true });
   if (data) {
-    state.recipes = data.map(r => ({ id: r.id, name: r.name, portions: r.portions, notes: r.notes || '', instructions: r.instructions || '', image_url: r.image_url || '', ingredients: r.ingredients || [] }));
+    state.recipes = data.map(r => ({ id: r.id, name: r.name, portions: r.portions, notes: r.notes || '', instructions: r.instructions || '', image_url: r.image_url || '', prep_time: r.prep_time || null, ingredients: r.ingredients || [] }));
     render();
   }
 }
@@ -794,7 +803,7 @@ async function seedSampleData() {
       supabase.from('staples').insert(staplesToInsert).select()
     ]);
     if (r1.data) state.recipes = r1.data.map(r => ({
-      id: r.id, name: r.name, portions: r.portions, notes: r.notes || '', instructions: r.instructions || '', image_url: r.image_url || '', ingredients: r.ingredients || []
+      id: r.id, name: r.name, portions: r.portions, notes: r.notes || '', instructions: r.instructions || '', image_url: r.image_url || '', prep_time: r.prep_time || null, ingredients: r.ingredients || []
     }));
     if (r2.data) state.staples = r2.data.map(s => ({
       id: s.id, name: s.name, category: s.category, defaultQty: parseFloat(s.default_qty), unit: s.unit
@@ -933,16 +942,17 @@ async function saveRecipe(recipe) {
     notes: recipe.notes || '',
     instructions: recipe.instructions || '',
     image_url: recipe.image_url || '',
+    prep_time: recipe.prep_time || null,
     ingredients: recipe.ingredients
   };
   if (recipe._isNew) {
     const { data, error } = await supabase.from('recipes').insert(payload).select().single();
     if (error) { console.error(error); toast('Chyba při ukládání'); return null; }
-    return { id: data.id, name: data.name, portions: data.portions, notes: data.notes || '', instructions: data.instructions || '', image_url: data.image_url || '', ingredients: data.ingredients || [] };
+    return { id: data.id, name: data.name, portions: data.portions, notes: data.notes || '', instructions: data.instructions || '', image_url: data.image_url || '', prep_time: data.prep_time || null, ingredients: data.ingredients || [] };
   } else {
     const { data, error } = await supabase.from('recipes').update(payload).eq('id', recipe.id).select().single();
     if (error) { console.error(error); toast('Chyba při ukládání'); return null; }
-    return { id: data.id, name: data.name, portions: data.portions, notes: data.notes || '', instructions: data.instructions || '', image_url: data.image_url || '', ingredients: data.ingredients || [] };
+    return { id: data.id, name: data.name, portions: data.portions, notes: data.notes || '', instructions: data.instructions || '', image_url: data.image_url || '', prep_time: data.prep_time || null, ingredients: data.ingredients || [] };
   }
 }
 
@@ -1067,6 +1077,7 @@ function renderRecipesList() {
         <span>${r.portions} ${r.portions === 1 ? 'porce' : (r.portions < 5 ? 'porce' : 'porcí')}</span>
         <span class="dot"></span>
         <span>${r.ingredients.length} ingrediencí</span>
+        ${r.prep_time ? `<span class="dot"></span><span>⏱ ${fmtTime(r.prep_time)}</span>` : ''}
       </div>
     </div>`).join('');
   main.innerHTML = search + `<div class="list" id="recipes-list">${cards}</div>`;
@@ -1084,7 +1095,12 @@ window.filterRecipes = function(q) {
   list.innerHTML = filtered.map(r => `
     <div class="card" onclick="openRecipe('${r.id}')">
       <h3>${escapeHtml(r.name)}</h3>
-      <div class="meta"><span>${r.portions} porcí</span><span class="dot"></span><span>${r.ingredients.length} ingrediencí</span></div>
+      <div class="meta">
+        <span>${r.portions} porcí</span>
+        <span class="dot"></span>
+        <span>${r.ingredients.length} ingrediencí</span>
+        ${r.prep_time ? `<span class="dot"></span><span>⏱ ${fmtTime(r.prep_time)}</span>` : ''}
+      </div>
     </div>`).join('');
 };
 
@@ -1324,7 +1340,7 @@ function renderRecipeDetail(id) {
       <div class="nutri-card"><div class="v">${fmtNum(perPortion.carbs)}g</div><div class="l">sach.</div></div>
       <div class="nutri-card"><div class="v">${fmtNum(perPortion.fat)}g</div><div class="l">tuky</div></div>
     </div>
-    <div class="nutri-source">${nutri.missing.length > 0 ? 'Chybí data pro: ' + nutri.missing.join(', ') + '. Hodnoty jsou odhad.' : 'Celkem za ' + portions + ' porcí: ' + fmtNum(nutri.kcal) + ' kcal'}</div>
+    <div class="nutri-source">${nutri.missing.length > 0 ? 'Chybí data pro: ' + nutri.missing.join(', ') + '. Hodnoty jsou odhad.' : 'Celkem za ' + portions + ' porcí: ' + fmtNum(nutri.kcal) + ' kcal'}${recipe.prep_time ? ' · ⏱ ' + fmtTime(recipe.prep_time) : ''}</div>
     <div class="ing-header">
       <div class="section-title" style="padding:0;">Ingredience (${selectedCount}/${totalCount})</div>
       <div class="ing-actions">
@@ -1398,6 +1414,7 @@ function renderRecipeEdit(id) {
   main.innerHTML = `
     <div class="form-group"><label>Název jídla</label><input type="text" id="rec-name" value="${escapeHtml(recipe.name)}" placeholder="Např. Špagety bolognese"></div>
     <div class="form-group"><label>Počet porcí (základní)</label><input type="number" id="rec-portions" value="${recipe.portions}" min="1" step="1" inputmode="numeric"></div>
+    <div class="form-group"><label>Čas přípravy (minut)</label><input type="number" id="rec-preptime" value="${recipe.prep_time || ''}" min="1" step="1" inputmode="numeric" placeholder="např. 45"></div>
     <div class="form-group">
       <label>Ingredience</label>
       <div id="ing-list">${recipe.ingredients.map((ing, idx) => ingredientRowHtml(ing, idx)).join('')}</div>
@@ -1549,6 +1566,8 @@ window.saveRecipeEdit = async (id, isNew) => {
   rec.portions = Math.max(1, parseInt(document.getElementById('rec-portions').value) || 4);
   rec.notes = document.getElementById('rec-notes').value;
   rec.instructions = document.getElementById('rec-instructions').value;
+  const pt = parseInt(document.getElementById('rec-preptime').value);
+  rec.prep_time = (pt && pt > 0) ? pt : null;
   rec.ingredients = rec.ingredients.filter(i => i.name.trim() !== '');
   if (!rec.name) { alert('Zadej název receptu'); return; }
   if (rec.ingredients.length === 0) { alert('Přidej alespoň jednu ingredienci'); return; }
