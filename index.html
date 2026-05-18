@@ -1657,12 +1657,6 @@ function renderSettings() {
       <button class="btn small secondary" onclick="manualRefresh()" style="width:auto;">Obnovit</button>
     </div>
 
-    <div class="section-title">Diagnostika přihlášení</div>
-    <div style="padding:0 12px 12px;">
-      <div id="auth-log-list" style="background:var(--bg-card);border:0.5px solid var(--border-card);border-radius:10px;padding:10px 12px;font-size:12px;font-family:ui-monospace,Menlo,monospace;color:var(--text-secondary);max-height:240px;overflow-y:auto;white-space:pre-wrap;line-height:1.5;"></div>
-      <button class="btn ghost small" onclick="clearAuthLog()" style="margin-top:6px;">Vymazat log</button>
-    </div>
-
     <div class="section-title">Data</div>
     <div style="padding:12px;display:flex;flex-direction:column;gap:8px;">
       <button class="btn secondary" onclick="importMissingRecipes()">Načíst doporučené recepty</button>
@@ -1671,19 +1665,6 @@ function renderSettings() {
     </div>
   `;
   updateSessionInfo();
-  updateAuthLog();
-}
-
-function updateAuthLog() {
-  const el = document.getElementById('auth-log-list');
-  if (!el) return;
-  const log = JSON.parse(localStorage.getItem(AUTH_LOG_KEY) || '[]');
-  if (log.length === 0) { el.textContent = '(žádné události)'; return; }
-  el.textContent = log.map(e => {
-    const d = new Date(e.t);
-    const time = d.toLocaleString('cs-CZ');
-    return `${time}  ${e.event}${e.extra ? '  — ' + e.extra : ''}`;
-  }).join('\n');
 }
 
 async function updateSessionInfo() {
