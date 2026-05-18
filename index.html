@@ -204,6 +204,11 @@
   .chips-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-secondary);flex-shrink:0;width:44px}
   .chips-scroll{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex:1;min-width:0}
   .chips-scroll::-webkit-scrollbar{display:none}
+  /* Compact one-row chips bar (mobile-friendly, icon-only filters) */
+  .chips-row-compact{display:flex;align-items:center;gap:4px;padding:10px 12px 6px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .chips-row-compact::-webkit-scrollbar{display:none}
+  .sort-chip.mini{padding:6px 10px;font-size:14px;min-width:36px;text-align:center;flex-shrink:0}
+  .chip-sep{width:1px;background:var(--border);align-self:stretch;margin:6px 4px;flex-shrink:0}
   /* Recipe tile grid (2 cols mobile) */
   .recipes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:10px 12px 8px}
   @media (min-width:640px){.recipes-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}}
@@ -1172,24 +1177,17 @@ function renderRecipesList() {
   });
   const main = document.getElementById('main');
   const sortBar = `
-    <div class="chips-row">
-      <span class="chips-label">Řadit</span>
-      <div class="chips-scroll">
-        ${[
-          { v: 'name', l: 'A-Z' },
-          { v: 'time', l: '⏱ Čas' },
-          { v: 'ings', l: '🥕 Ingredience' },
-          { v: 'difficulty', l: '⚡ Náročnost' },
-          { v: 'kcal', l: '🔥 Kalorie' }
-        ].map(o => `<button class="sort-chip ${state.recipeSort === o.v ? 'active' : ''}" onclick="setRecipeSort('${o.v}')">${o.l}</button>`).join('')}
-      </div>
-    </div>
-    <div class="chips-row">
-      <span class="chips-label">Filtr</span>
-      <div class="chips-scroll">
-        <button class="sort-chip filter ${state.recipeFilterVege ? 'active' : ''}" onclick="toggleRecipeFilterVege()">🌱 Vege</button>
-        <button class="sort-chip filter-sweet ${state.recipeFilterSweet ? 'active' : ''}" onclick="toggleRecipeFilterSweet()">🍰 Sladké</button>
-      </div>
+    <div class="chips-row-compact">
+      ${[
+        { v: 'name', l: 'A-Z', t: 'Abecedně' },
+        { v: 'time', l: '⏱', t: 'Čas přípravy' },
+        { v: 'ings', l: '🥕', t: 'Počet ingrediencí' },
+        { v: 'difficulty', l: '⚡', t: 'Náročnost' },
+        { v: 'kcal', l: '🔥', t: 'Kalorie' }
+      ].map(o => `<button class="sort-chip mini ${state.recipeSort === o.v ? 'active' : ''}" onclick="setRecipeSort('${o.v}')" title="${o.t}">${o.l}</button>`).join('')}
+      <span class="chip-sep"></span>
+      <button class="sort-chip mini filter ${state.recipeFilterVege ? 'active' : ''}" onclick="toggleRecipeFilterVege()" title="Pouze vegetariánské">🌱</button>
+      <button class="sort-chip mini filter-sweet ${state.recipeFilterSweet ? 'active' : ''}" onclick="toggleRecipeFilterSweet()" title="Pouze sladké">🍰</button>
     </div>
   `;
   const search = `<div class="search-bar"><input type="text" placeholder="Hledat recept..." oninput="filterRecipes(this.value)"></div>`;
