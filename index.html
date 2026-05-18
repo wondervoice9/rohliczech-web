@@ -611,12 +611,13 @@ async function loadAll() {
   const [recipesRes, staplesRes, cartRes] = await Promise.all([
     supabase.from('recipes').select('*').order('created_at', { ascending: true }),
     supabase.from('staples').select('*').order('created_at', { ascending: true }),
-    supabase.from('cart').select('*').maybeSingle()
+    // Shared cart: take the oldest row as the single shared cart
+    supabase.from('cart').select('*').order('created_at', { ascending: true }).limit(1)
   ]);
 
   if (recipesRes.error) console.error('recipes load:', recipesRes.error);
   if (staplesRes.error) console.error('staples load:', staplesRes.error);
-  if (cartRes.error && cartRes.error.code !== 'PGRST116') console.error('cart load:', cartRes.error);
+  if (cartRes.error) console.error('cart load:', cartRes.error);
 
   state.recipes = (recipesRes.data || []).map(r => ({
     id: r.id, name: r.name, portions: r.portions, notes: r.notes || '',
@@ -626,11 +627,12 @@ async function loadAll() {
     id: s.id, name: s.name, category: s.category, defaultQty: parseFloat(s.default_qty), unit: s.unit
   }));
 
-  if (cartRes.data) {
-    state.cartId = cartRes.data.id;
-    state.cart = cartRes.data.data || { recipes: [], staples: [], extras: [], checked: {} };
+  const cartRow = (cartRes.data && cartRes.data[0]) || null;
+  if (cartRow) {
+    state.cartId = cartRow.id;
+    state.cart = cartRow.data || { recipes: [], staples: [], extras: [], checked: {} };
   } else {
-    // create empty cart
+    // create the global shared cart (first-time setup)
     const { data: newCart, error } = await supabase
       .from('cart')
       .insert({ user_id: state.user.id, data: { recipes: [], staples: [], extras: [], checked: {} } })
@@ -642,7 +644,7 @@ async function loadAll() {
     }
   }
 
-  // Seed sample data if first-time user
+  // Seed sample data if globally empty (no recipes from anyone)
   if (state.recipes.length === 0 && state.staples.length === 0) {
     await seedSampleData();
   }
@@ -659,11 +661,13 @@ function setupRealtime() {
     try { supabase.removeChannel(realtimeChannel); } catch {}
     realtimeChannel = null;
   }
-  realtimeChannel = supabase.channel('user-' + state.user.id)
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'cart', filter: `user_id=eq.${state.user.id}` }, (payload) => {
+  realtimeChannel = supabase.channel('shared-data')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'cart' }, (payload) => {
+      // Only react to changes on the shared cart row
+      if (!payload.new || payload.new.id !== state.cartId) return;
       // Ignore echoes of changes we just made (within 2s of our own save)
       if (Date.now() - lastLocalCartSave < 2000) return;
-      if (payload.new && payload.new.data) {
+      if (payload.new.data) {
         state.cart = payload.new.data;
         render();
       }
