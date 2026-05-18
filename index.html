@@ -178,29 +178,23 @@
   .search-bar input{width:100%;padding:9px 14px;background:var(--bg-search);border:none;border-radius:8px;font-size:14px;font-family:inherit;color:var(--text)}
   .search-bar input:focus{outline:none;background:var(--bg-search-focus)}
   .nutri-source{font-size:11px;color:var(--text-muted);padding:0 12px 12px;text-align:center;font-style:italic}
-  /* Staples — tile grid */
-  .staples-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;padding:0 12px 4px}
-  .staple-tile{position:relative;background:var(--bg-card);border:0.5px solid var(--border-card);border-radius:14px;padding:14px 10px;min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;opacity:0.5;transition:opacity 0.2s,transform 0.18s,box-shadow 0.2s,border-color 0.2s;text-align:center}
-  .staple-tile:active{transform:scale(0.97)}
-  .staple-tile.has-qty{opacity:1;border-color:var(--accent);box-shadow:0 2px 10px rgba(216,90,48,0.12)}
-  .staple-tile.expanded{opacity:1;border-color:var(--accent);box-shadow:0 8px 28px rgba(0,0,0,0.18);transform:scale(1.03);z-index:2;grid-column:span 2;min-height:160px;padding:14px}
-  .staple-tile .tile-icon{font-size:30px;line-height:1;filter:grayscale(0.4)}
-  .staple-tile.has-qty .tile-icon,.staple-tile.expanded .tile-icon{filter:none}
-  .staple-tile .tile-name{font-size:12px;font-weight:600;color:var(--text);line-height:1.25;word-break:break-word;max-width:100%}
-  .staple-tile .tile-qty-badge{position:absolute;top:6px;right:6px;background:var(--accent);color:#fff;font-size:11px;font-weight:700;min-width:22px;padding:2px 6px;border-radius:999px;line-height:1.3;text-align:center}
-  .staple-tile .tile-note-dot{position:absolute;top:8px;left:8px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
-  .staple-tile .tile-counter{display:flex;align-items:center;justify-content:space-between;background:var(--check-bg);border:1px solid var(--border);border-radius:999px;padding:3px;margin-top:6px;width:100%;max-width:160px;animation:fadeInCounter 0.18s ease-out}
-  .staple-tile .tile-counter button{width:30px;height:30px;border-radius:50%;background:transparent;border:none;cursor:pointer;color:var(--accent);padding:0;display:flex;align-items:center;justify-content:center;transition:transform 0.08s,background 0.12s;flex-shrink:0}
-  .staple-tile .tile-counter button:active:not(:disabled){transform:scale(0.9);background:var(--accent-soft)}
+  /* Staples — dense tile grid (5+ per row) */
+  .staples-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;padding:0 10px 4px}
+  @media (min-width:520px){.staples-grid{grid-template-columns:repeat(auto-fill,minmax(95px,1fr))}}
+  .staple-tile{position:relative;background:var(--bg-card);border:0.5px solid var(--border-card);border-radius:10px;padding:6px 4px;display:flex;flex-direction:column;align-items:stretch;gap:4px;opacity:0.55;transition:opacity 0.2s,border-color 0.2s,box-shadow 0.2s;min-width:0}
+  .staple-tile.has-qty{opacity:1;border-color:var(--accent);box-shadow:0 1px 6px rgba(216,90,48,0.1)}
+  .staple-tile .tile-name{font-size:11px;font-weight:600;color:var(--text);line-height:1.15;word-break:break-word;text-align:center;cursor:pointer;padding:2px 2px 0;min-height:28px;display:flex;align-items:center;justify-content:center;hyphens:auto}
+  .staple-tile .tile-name:active{opacity:0.6}
+  .staple-tile .tile-counter{display:flex;align-items:center;justify-content:space-between;background:var(--check-bg);border:1px solid var(--border);border-radius:999px;padding:1px;width:100%}
+  .staple-tile .tile-counter button{width:22px;height:22px;border-radius:50%;background:transparent;border:none;cursor:pointer;color:var(--accent);padding:0;display:flex;align-items:center;justify-content:center;transition:transform 0.08s,background 0.12s;flex-shrink:0}
+  .staple-tile .tile-counter button:active:not(:disabled){transform:scale(0.85);background:var(--accent-soft)}
   .staple-tile .tile-counter button:disabled{opacity:0.3;cursor:not-allowed}
-  .staple-tile .tile-counter button svg{width:14px;height:14px}
-  .staple-tile .tile-counter .val{flex:1;font-size:16px;font-weight:700;color:var(--accent);text-align:center;font-variant-numeric:tabular-nums}
-  .staple-tile .tile-actions{display:flex;gap:4px;margin-top:2px}
-  .staple-tile .tile-act-btn{background:none;border:none;cursor:pointer;color:var(--text-muted);padding:6px;border-radius:8px;line-height:0;display:flex;align-items:center;justify-content:center;transition:background 0.15s}
-  .staple-tile .tile-act-btn svg{width:18px;height:18px}
-  .staple-tile .tile-act-btn:active{background:var(--check-bg)}
-  .staple-tile .tile-act-btn.has-note{color:var(--accent)}
-  .staple-tile .tile-note-text{font-size:11px;color:var(--accent);font-style:italic;margin-top:2px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .staple-tile .tile-counter button svg{width:9px;height:9px}
+  .staple-tile .tile-counter .val{flex:1;font-size:12px;font-weight:700;color:var(--accent);text-align:center;font-variant-numeric:tabular-nums;min-width:0}
+  .staple-tile .tile-note-text{font-size:9px;color:var(--accent);font-style:italic;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;padding:0 2px;line-height:1.2}
+  .staple-tile .tile-note-add{background:none;border:none;font-size:9px;color:var(--text-muted);cursor:pointer;padding:0;text-align:center;font-family:inherit;opacity:0;transition:opacity 0.2s;line-height:1.2}
+  .staple-tile:hover .tile-note-add,.staple-tile.has-qty .tile-note-add{opacity:0.5}
+  .staple-tile .tile-note-add:active{opacity:1;color:var(--accent)}
   /* Legacy staple-row (no longer used in staples tab, but kept for safety) */
   .staple-row{display:flex;align-items:center;gap:8px;background:var(--bg-card);border-radius:14px;padding:12px 14px;border:0.5px solid var(--border-card);margin-bottom:6px;box-shadow:0 1px 2px rgba(0,0,0,0.04)}
   .staple-row .info{flex:1;min-width:0}
@@ -1529,55 +1523,26 @@ function renderStaplesList() {
   });
   let html = '';
   Object.keys(groups).sort().forEach(cat => {
-    const icon = CATEGORY_ICON[cat] || '📦';
     html += `<div class="section-title">${escapeHtml(cat)}</div><div class="staples-grid">`;
     groups[cat].forEach(s => {
       const entry = cartEntry[s.id];
       const qty = entry ? entry.qty : 0;
       const note = entry && entry.note ? entry.note : '';
-      const isExpanded = state.expandedStaple === s.id;
       const isActive = qty > 0;
-      html += `<div class="staple-tile ${isActive ? 'has-qty' : ''} ${isExpanded ? 'expanded' : ''}"
-                    onclick="toggleStapleTile('${s.id}', event)">
-        <div class="tile-icon">${icon}</div>
-        <div class="tile-name">${escapeHtml(s.name)}</div>
-        ${isActive && !isExpanded ? `<div class="tile-qty-badge">${qty}</div>` : ''}
-        ${note && !isExpanded ? `<div class="tile-note-dot" title="${escapeAttr(note)}"></div>` : ''}
-        ${isExpanded ? `
-          <div class="tile-counter" onclick="event.stopPropagation()">
-            <button onclick="stapleDec('${s.id}')" ${qty === 0 ? 'disabled' : ''} aria-label="Méně">${ICON.minus}</button>
-            <div class="val">${qty}</div>
-            <button onclick="stapleInc('${s.id}')" aria-label="Více">${ICON.plus}</button>
-          </div>
-          <div class="tile-actions" onclick="event.stopPropagation()">
-            <button class="tile-act-btn ${note ? 'has-note' : ''}" onclick="editStapleNote('${s.id}')" aria-label="Poznámka" title="Poznámka">${note ? ICON.noteFilled : ICON.note}</button>
-            <button class="tile-act-btn" onclick="openStapleEdit('${s.id}')" aria-label="Upravit" title="Upravit">${ICON.edit}</button>
-          </div>
-          ${note ? `<div class="tile-note-text">${escapeHtml(note)}</div>` : ''}
-        ` : ''}
+      html += `<div class="staple-tile ${isActive ? 'has-qty' : ''}">
+        <div class="tile-name" onclick="openStapleEdit('${s.id}')" title="Klikni pro úpravu">${escapeHtml(s.name)}</div>
+        <div class="tile-counter">
+          <button onclick="stapleDec('${s.id}')" ${qty === 0 ? 'disabled' : ''} aria-label="Méně">${ICON.minus}</button>
+          <div class="val">${qty}</div>
+          <button onclick="stapleInc('${s.id}')" aria-label="Více">${ICON.plus}</button>
+        </div>
+        ${note ? `<div class="tile-note-text" onclick="editStapleNote('${s.id}')">${escapeHtml(note)}</div>` : `<button class="tile-note-add" onclick="editStapleNote('${s.id}')" aria-label="Přidat poznámku" title="Přidat poznámku">+ poznámka</button>`}
       </div>`;
     });
     html += '</div>';
   });
   main.innerHTML = html;
 }
-
-window.toggleStapleTile = (id, evt) => {
-  if (state.expandedStaple === id) {
-    state.expandedStaple = null;
-    render();
-    return;
-  }
-  state.expandedStaple = id;
-  const existing = state.cart.staples.find(s => s.id === id);
-  // First click on a faded (qty=0) tile auto-adds 1 so user gets immediate feedback
-  if (!existing || !existing.qty || existing.qty < 1) {
-    if (existing) existing.qty = 1;
-    else state.cart.staples.push({ id, qty: 1 });
-    saveCart();
-  }
-  render();
-};
 
 window.editStapleNote = (id) => {
   const existing = state.cart.staples.find(s => s.id === id);
