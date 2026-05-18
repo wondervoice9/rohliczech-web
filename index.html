@@ -1635,21 +1635,38 @@ window.uploadRecipePhoto = async (input) => {
   const file = input.files && input.files[0];
   if (!file) return;
   const progress = document.getElementById('photo-progress');
-  if (progress) { progress.style.display = ''; progress.textContent = 'Zpracovávám...'; }
+  const showProgress = (txt, isError) => {
+    if (!progress) return;
+    progress.style.display = '';
+    progress.textContent = txt;
+    progress.style.color = isError ? 'var(--danger)' : 'var(--text-secondary)';
+    progress.style.fontWeight = isError ? '600' : '400';
+  };
+  showProgress('Zpracovávám obrázek...');
   try {
     const blob = await resizeImageToBlob(file);
-    if (progress) progress.textContent = 'Nahrávám...';
+    showProgress('Nahrávám na server...');
     const path = `${Date.now()}-${uid()}.jpg`;
     const { error: upErr } = await supabase.storage.from('recipe-photos').upload(path, blob, { contentType: 'image/jpeg', upsert: false });
     if (upErr) throw upErr;
     const { data: { publicUrl } } = supabase.storage.from('recipe-photos').getPublicUrl(path);
+    // Verify URL is reachable (catches missing public read policy)
+    try {
+      const r = await fetch(publicUrl, { method: 'HEAD' });
+      if (!r.ok) throw new Error(`URL nedostupná (HTTP ${r.status}) — public read policy chybí?`);
+    } catch (verifyErr) {
+      throw new Error('Nahrané, ale ' + (verifyErr.message || verifyErr));
+    }
     state.editingRecipe.image_url = publicUrl;
     render();
-    toast('Fotka nahrána');
+    toast('Fotka nahrána ✓');
   } catch (e) {
-    if (progress) progress.style.display = 'none';
-    toast('Chyba při nahrávání: ' + (e.message || e));
+    const msg = e.message || String(e);
+    showProgress('❌ ' + msg, true);
+    toast('Chyba: ' + msg);
     console.error('photo upload:', e);
+  } finally {
+    input.value = ''; // allow re-selecting same file
   }
 };
 
