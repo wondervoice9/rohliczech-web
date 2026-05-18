@@ -195,6 +195,8 @@
   .staple-tile .tile-note-add{background:none;border:none;font-size:9px;color:var(--text-muted);cursor:pointer;padding:0;text-align:center;font-family:inherit;opacity:0;transition:opacity 0.2s;line-height:1.2}
   .staple-tile:hover .tile-note-add,.staple-tile.has-qty .tile-note-add{opacity:0.5}
   .staple-tile .tile-note-add:active{opacity:1;color:var(--accent)}
+  .staple-tile .tile-name-input{font-size:11px;font-weight:600;color:var(--text);text-align:center;background:var(--bg-input);border:1px solid var(--accent);border-radius:6px;padding:3px 4px;width:100%;font-family:inherit;outline:none;min-height:28px}
+  .staple-tile .tile-note-input{font-size:10px;color:var(--accent);font-style:italic;text-align:center;background:var(--bg-input);border:1px solid var(--accent);border-radius:6px;padding:2px 4px;width:100%;font-family:inherit;outline:none}
   /* Legacy staple-row (no longer used in staples tab, but kept for safety) */
   .staple-row{display:flex;align-items:center;gap:8px;background:var(--bg-card);border-radius:14px;padding:12px 14px;border:0.5px solid var(--border-card);margin-bottom:6px;box-shadow:0 1px 2px rgba(0,0,0,0.04)}
   .staple-row .info{flex:1;min-width:0}
@@ -318,7 +320,9 @@ const state = {
   view: null,
   editingRecipe: null,
   syncing: false,
-  expandedStaple: null
+  expandedStaple: null,
+  editingStapleName: null,
+  editingStapleNote: null
 };
 
 const DEFAULT_PORTIONS = 4;
@@ -1529,14 +1533,24 @@ function renderStaplesList() {
       const qty = entry ? entry.qty : 0;
       const note = entry && entry.note ? entry.note : '';
       const isActive = qty > 0;
+      const editingName = state.editingStapleName === s.id;
+      const editingNote = state.editingStapleNote === s.id;
+      const nameHtml = editingName
+        ? `<input class="tile-name-input" type="text" value="${escapeAttr(s.name)}" onblur="commitStapleName('${s.id}', this.value)" onkeydown="if(event.key==='Enter')this.blur();else if(event.key==='Escape'){state.editingStapleName=null;render();}" autofocus>`
+        : `<div class="tile-name" onclick="startEditStapleName('${s.id}')">${escapeHtml(s.name)}</div>`;
+      const noteHtml = editingNote
+        ? `<input class="tile-note-input" type="text" value="${escapeAttr(note)}" placeholder="poznámka" onblur="commitStapleNote('${s.id}', this.value)" onkeydown="if(event.key==='Enter')this.blur();else if(event.key==='Escape'){state.editingStapleNote=null;render();}" autofocus>`
+        : (note
+          ? `<div class="tile-note-text" onclick="startEditStapleNote('${s.id}')">${escapeHtml(note)}</div>`
+          : `<button class="tile-note-add" onclick="startEditStapleNote('${s.id}')" aria-label="Přidat poznámku">+ poznámka</button>`);
       html += `<div class="staple-tile ${isActive ? 'has-qty' : ''}">
-        <div class="tile-name" onclick="openStapleEdit('${s.id}')" title="Klikni pro úpravu">${escapeHtml(s.name)}</div>
+        ${nameHtml}
         <div class="tile-counter">
           <button onclick="stapleDec('${s.id}')" ${qty === 0 ? 'disabled' : ''} aria-label="Méně">${ICON.minus}</button>
           <div class="val">${qty}</div>
           <button onclick="stapleInc('${s.id}')" aria-label="Více">${ICON.plus}</button>
         </div>
-        ${note ? `<div class="tile-note-text" onclick="editStapleNote('${s.id}')">${escapeHtml(note)}</div>` : `<button class="tile-note-add" onclick="editStapleNote('${s.id}')" aria-label="Přidat poznámku" title="Přidat poznámku">+ poznámka</button>`}
+        ${noteHtml}
       </div>`;
     });
     html += '</div>';
@@ -1544,20 +1558,39 @@ function renderStaplesList() {
   main.innerHTML = html;
 }
 
-window.editStapleNote = (id) => {
+window.startEditStapleName = (id) => {
+  state.editingStapleName = id;
+  render();
+};
+
+window.commitStapleName = async (id, val) => {
+  state.editingStapleName = null;
+  const newName = (val || '').trim();
+  const staple = state.staples.find(s => s.id === id);
+  if (!staple || !newName || newName === staple.name) { render(); return; }
+  const updated = { ...staple, name: newName };
+  const saved = await saveStaple(updated);
+  if (saved) {
+    const i = state.staples.findIndex(s => s.id === id);
+    state.staples[i] = saved;
+  }
+  render();
+};
+
+window.startEditStapleNote = (id) => {
+  state.editingStapleNote = id;
+  render();
+};
+
+window.commitStapleNote = (id, val) => {
+  state.editingStapleNote = null;
+  const next = (val || '').trim();
   const existing = state.cart.staples.find(s => s.id === id);
-  const current = existing && existing.note ? existing.note : '';
-  const next = window.prompt('Poznámka (např. „vezmi velký balení")', current);
-  if (next === null) return; // canceled
-  const trimmed = next.trim();
   if (existing) {
-    if (trimmed) existing.note = trimmed;
+    if (next) existing.note = next;
     else delete existing.note;
-  } else if (trimmed) {
-    // Adding a note without qty → create entry with qty 0 (visible only on row)
-    state.cart.staples.push({ id, qty: 0, note: trimmed });
-  } else {
-    return;
+  } else if (next) {
+    state.cart.staples.push({ id, qty: 0, note: next });
   }
   saveCart();
   render();
