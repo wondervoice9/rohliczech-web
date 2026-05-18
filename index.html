@@ -197,6 +197,12 @@
   .gallery-item:active{transform:scale(0.96)}
   .gallery-item:hover{border-color:var(--accent);box-shadow:0 4px 12px rgba(216,90,48,0.18)}
   .gallery-item img{width:100%;height:100%;object-fit:cover;display:block}
+  .sort-bar{display:flex;gap:6px;padding:10px 12px 6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .sort-bar::-webkit-scrollbar{display:none}
+  .sort-chip{background:var(--bg-card);border:0.5px solid var(--border-card);color:var(--text-secondary);font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;font-family:inherit;transition:background 0.15s,color 0.15s,border-color 0.15s}
+  .sort-chip:active{transform:scale(0.96)}
+  .sort-chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .difficulty-pill{font-weight:600;color:var(--accent)}
   /* Staples — tile grid (tap=+1, long press=−1) */
   .staples-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 12px 4px}
   @media (min-width:520px){.staples-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
@@ -347,8 +353,30 @@ const state = {
   syncing: false,
   expandedStaple: null,
   editingStapleName: null,
-  editingCartNote: null
+  editingCartNote: null,
+  recipeSort: 'name'
 };
+
+function sortedRecipes(maxIngs, maxTime) {
+  const list = [...state.recipes];
+  switch (state.recipeSort) {
+    case 'time':
+      list.sort((a, b) => (a.prep_time || 9999) - (b.prep_time || 9999) || a.name.localeCompare(b.name, 'cs'));
+      break;
+    case 'ings':
+      list.sort((a, b) => (a.ingredients.length - b.ingredients.length) || a.name.localeCompare(b.name, 'cs'));
+      break;
+    case 'difficulty':
+      list.sort((a, b) => difficultyScore(a, maxIngs, maxTime) - difficultyScore(b, maxIngs, maxTime) || a.name.localeCompare(b.name, 'cs'));
+      break;
+    case 'name':
+    default:
+      list.sort((a, b) => a.name.localeCompare(b.name, 'cs'));
+  }
+  return list;
+}
+
+window.setRecipeSort = (s) => { state.recipeSort = s; render(); };
 
 const DEFAULT_PORTIONS = 4;
 
@@ -521,6 +549,28 @@ function fmtTime(mins) {
   const h = Math.floor(m / 60);
   const rem = m % 60;
   return rem === 0 ? h + ' h' : h + ' h ' + rem + ' min';
+}
+
+function difficultyScore(recipe, maxIngs, maxTime) {
+  const ings = recipe.ingredients ? recipe.ingredients.length : 0;
+  const ingPart = maxIngs > 0 ? (ings / maxIngs) : 0;
+  let total;
+  if (recipe.prep_time && maxTime > 0) {
+    const timePart = recipe.prep_time / maxTime;
+    total = (ingPart * 0.5 + timePart * 0.5) * 10;
+  } else {
+    total = ingPart * 10;
+  }
+  return Math.max(1, Math.min(10, Math.round(total)));
+}
+
+function computeMaxRecipeStats() {
+  const ings = state.recipes.map(r => r.ingredients ? r.ingredients.length : 0);
+  const times = state.recipes.map(r => r.prep_time || 0);
+  return {
+    maxIngs: ings.length ? Math.max(...ings, 1) : 1,
+    maxTime: times.length ? Math.max(...times, 1) : 1
+  };
 }
 
 function fmtNum(n) {
@@ -1065,43 +1115,61 @@ function renderRecipesList() {
     ]
   });
   const main = document.getElementById('main');
+  const sortBar = `<div class="sort-bar">
+    ${[
+      { v: 'name', l: 'A-Z' },
+      { v: 'time', l: '⏱ Čas' },
+      { v: 'ings', l: 'Ingredience' },
+      { v: 'difficulty', l: '⚡ Náročnost' }
+    ].map(o => `<button class="sort-chip ${state.recipeSort === o.v ? 'active' : ''}" onclick="setRecipeSort('${o.v}')">${o.l}</button>`).join('')}
+  </div>`;
   const search = `<div class="search-bar"><input type="text" placeholder="Hledat recept..." oninput="filterRecipes(this.value)"></div>`;
   if (state.recipes.length === 0) {
-    main.innerHTML = search + `<div class="empty"><div class="big">🍽️</div><h3>Žádné recepty</h3><p>Začni přidáním receptu pomocí tlačítka ＋ vpravo nahoře.</p></div>`;
+    main.innerHTML = sortBar + search + `<div class="empty"><div class="big">🍽️</div><h3>Žádné recepty</h3><p>Začni přidáním receptu pomocí tlačítka ＋ vpravo nahoře.</p></div>`;
     return;
   }
-  const cards = state.recipes.map(r => `
-    <div class="card" onclick="openRecipe('${r.id}')">
+  const { maxIngs, maxTime } = computeMaxRecipeStats();
+  const cards = sortedRecipes(maxIngs, maxTime).map(r => {
+    const diff = difficultyScore(r, maxIngs, maxTime);
+    return `<div class="card" onclick="openRecipe('${r.id}')">
       <h3>${escapeHtml(r.name)}</h3>
       <div class="meta">
         <span>${r.portions} ${r.portions === 1 ? 'porce' : (r.portions < 5 ? 'porce' : 'porcí')}</span>
         <span class="dot"></span>
         <span>${r.ingredients.length} ingrediencí</span>
         ${r.prep_time ? `<span class="dot"></span><span>⏱ ${fmtTime(r.prep_time)}</span>` : ''}
+        <span class="dot"></span>
+        <span class="difficulty-pill">⚡ ${diff}/10</span>
       </div>
-    </div>`).join('');
-  main.innerHTML = search + `<div class="list" id="recipes-list">${cards}</div>`;
+    </div>`;
+  }).join('');
+  main.innerHTML = sortBar + search + `<div class="list" id="recipes-list">${cards}</div>`;
 }
 
 window.filterRecipes = function(q) {
   const ql = q.toLowerCase();
-  const filtered = state.recipes.filter(r =>
+  const { maxIngs, maxTime } = computeMaxRecipeStats();
+  const filtered = sortedRecipes(maxIngs, maxTime).filter(r =>
     r.name.toLowerCase().includes(ql) ||
     r.ingredients.some(i => (i.name || '').toLowerCase().includes(ql))
   );
   const list = document.getElementById('recipes-list');
   if (!list) return;
   if (filtered.length === 0) { list.innerHTML = '<div class="empty"><p>Nic nenalezeno</p></div>'; return; }
-  list.innerHTML = filtered.map(r => `
-    <div class="card" onclick="openRecipe('${r.id}')">
+  list.innerHTML = filtered.map(r => {
+    const diff = difficultyScore(r, maxIngs, maxTime);
+    return `<div class="card" onclick="openRecipe('${r.id}')">
       <h3>${escapeHtml(r.name)}</h3>
       <div class="meta">
         <span>${r.portions} porcí</span>
         <span class="dot"></span>
         <span>${r.ingredients.length} ingrediencí</span>
         ${r.prep_time ? `<span class="dot"></span><span>⏱ ${fmtTime(r.prep_time)}</span>` : ''}
+        <span class="dot"></span>
+        <span class="difficulty-pill">⚡ ${diff}/10</span>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 };
 
 window.openRecipe = (id) => {
