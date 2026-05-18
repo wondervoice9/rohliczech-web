@@ -142,8 +142,12 @@
   .cart-item .info{flex:1;min-width:0}
   .cart-item .name{font-size:14px;font-weight:500;color:var(--text)}
   .cart-item .src{font-size:11px;color:var(--text-muted);margin-top:2px}
-  .cart-item .cart-note{display:flex;align-items:center;gap:4px;color:var(--accent);font-size:12px;font-style:italic;margin-top:3px}
+  .cart-item .cart-note{display:flex;align-items:center;gap:4px;color:var(--accent);font-size:12px;font-style:italic;margin-top:3px;cursor:pointer}
   .cart-item .cart-note svg{width:13px;height:13px;flex-shrink:0}
+  .cart-item .cart-note-add{background:none;border:none;font-size:11px;color:var(--text-muted);cursor:pointer;padding:2px 0 0;text-align:left;font-family:inherit;display:block}
+  .cart-item .cart-note-add:hover{color:var(--accent)}
+  .cart-item .cart-note-row{margin-top:4px}
+  .cart-item .cart-note-input{font-size:12px;color:var(--text);background:var(--bg-input);border:1px solid var(--accent);border-radius:6px;padding:4px 8px;width:100%;font-family:inherit;outline:none;font-style:italic}
   .cart-item .qty{font-size:14px;color:var(--text-label);font-variant-numeric:tabular-nums;white-space:nowrap}
   .cart-item .del{background:none;border:none;color:var(--danger);cursor:pointer;padding:6px;flex-shrink:0;line-height:0;border-radius:6px;display:flex;align-items:center;justify-content:center}
   .cart-item .del svg{width:16px;height:16px}
@@ -318,7 +322,7 @@ const state = {
   syncing: false,
   expandedStaple: null,
   editingStapleName: null,
-  editingStapleNote: null
+  editingCartNote: null
 };
 
 const DEFAULT_PORTIONS = 4;
@@ -1527,14 +1531,7 @@ function renderStaplesList() {
     groups[cat].forEach(s => {
       const entry = cartEntry[s.id];
       const qty = entry ? entry.qty : 0;
-      const note = entry && entry.note ? entry.note : '';
       const isActive = qty > 0;
-      const editingNote = state.editingStapleNote === s.id;
-      const noteHtml = editingNote
-        ? `<input class="tile-note-input" type="text" value="${escapeAttr(note)}" placeholder="poznámka" onblur="commitStapleNote('${s.id}', this.value)" onkeydown="if(event.key==='Enter')this.blur();else if(event.key==='Escape'){state.editingStapleNote=null;render();}" autofocus onclick="event.stopPropagation()">`
-        : (note
-          ? `<div class="tile-note-text" onclick="event.stopPropagation();startEditStapleNote('${s.id}')">${escapeHtml(note)}</div>`
-          : `<button class="tile-note-add" onclick="event.stopPropagation();startEditStapleNote('${s.id}')" aria-label="Přidat poznámku">+ poznámka</button>`);
       html += `<div class="staple-tile ${isActive ? 'has-qty' : ''}"
                     onpointerdown="tilePressStart('${s.id}', event)"
                     onpointerup="tilePressEnd('${s.id}', event)"
@@ -1543,7 +1540,6 @@ function renderStaplesList() {
                     oncontextmenu="event.preventDefault()">
         <div class="tile-name">${escapeHtml(s.name)}</div>
         <div class="tile-qty-display">${qty > 0 ? qty : '·'}</div>
-        ${noteHtml}
       </div>`;
     });
     html += '</div>';
@@ -1554,28 +1550,47 @@ function renderStaplesList() {
 let tilePressTimer = null;
 let tilePressDidLong = false;
 window.tilePressStart = (id, evt) => {
-  // Ignore press starts on interactive children (note input/button)
-  const t = evt.target;
-  if (t.closest && t.closest('.tile-note-text, .tile-note-add, .tile-note-input')) return;
   tilePressDidLong = false;
   tilePressTimer = setTimeout(() => {
     tilePressDidLong = true;
-    stapleDec(id);
-    if (navigator.vibrate) try { navigator.vibrate(35); } catch {}
+    stapleReset(id);
+    if (navigator.vibrate) try { navigator.vibrate(50); } catch {}
   }, 480);
 };
 window.tilePressEnd = (id, evt) => {
   if (!tilePressTimer && !tilePressDidLong) return;
   clearTimeout(tilePressTimer);
   tilePressTimer = null;
-  if (tilePressDidLong) return; // long press already handled
-  const t = evt.target;
-  if (t.closest && t.closest('.tile-note-text, .tile-note-add, .tile-note-input')) return;
+  if (tilePressDidLong) return; // long press already handled (reset)
   stapleInc(id);
 };
 window.tilePressCancel = () => {
   clearTimeout(tilePressTimer);
   tilePressTimer = null;
+};
+
+window.stapleReset = (id) => {
+  const idx = state.cart.staples.findIndex(s => s.id === id);
+  if (idx < 0) return;
+  state.cart.staples.splice(idx, 1);
+  saveCart();
+  render();
+};
+
+window.startEditCartNote = (id) => {
+  state.editingCartNote = id;
+  render();
+};
+
+window.commitCartNote = (id, val) => {
+  state.editingCartNote = null;
+  const next = (val || '').trim();
+  const entry = state.cart.staples.find(s => s.id === id);
+  if (!entry) { render(); return; }
+  if (next) entry.note = next;
+  else delete entry.note;
+  saveCart();
+  render();
 };
 
 window.startEditStapleName = (id) => {
@@ -1871,6 +1886,7 @@ function renderCart() {
 function cartItemHtml(item) {
   const isStaple = item.type === 'staple';
   const isIngredient = item.type === 'ingredient';
+  const editingNote = isStaple && state.editingCartNote === item.id;
   const qtyHtml = isStaple
     ? `<div class="qty-ctrl">
         <button onclick="stapleDec('${item.id}')" aria-label="Méně">${ICON.minus}</button>
@@ -1883,12 +1899,24 @@ function cartItemHtml(item) {
     : isIngredient
       ? `<button class="del" onclick="excludeIngredient('${escapeAttr(item.key)}')" aria-label="Odebrat z košíku" title="Odebrat z košíku">${ICON.close}</button>`
       : '';
+  let noteHtml = '';
+  if (isStaple) {
+    if (editingNote) {
+      noteHtml = `<div class="cart-note-row"><input class="cart-note-input" type="text" value="${escapeAttr(item.note || '')}" placeholder="poznámka (např. velký balení)" onblur="commitCartNote('${item.id}', this.value)" onkeydown="if(event.key==='Enter')this.blur();else if(event.key==='Escape'){state.editingCartNote=null;render();}" autofocus></div>`;
+    } else if (item.note) {
+      noteHtml = `<div class="src cart-note" onclick="startEditCartNote('${item.id}')">${ICON.noteFilled}<span>${escapeHtml(item.note)}</span></div>`;
+    } else {
+      noteHtml = `<button class="cart-note-add" onclick="startEditCartNote('${item.id}')" aria-label="Přidat poznámku">+ poznámka</button>`;
+    }
+  } else if (item.note) {
+    noteHtml = `<div class="src cart-note">${ICON.noteFilled}<span>${escapeHtml(item.note)}</span></div>`;
+  }
   return `<div class="cart-item ${item.checked ? 'checked' : ''}">
     <div class="check ${item.checked ? 'on' : ''}" onclick="toggleCartCheck('${item.key}')">${item.checked ? ICON.check : ''}</div>
     <div class="info">
       <div class="name">${escapeHtml(item.name)}</div>
       ${item.sources ? `<div class="src">${escapeHtml(item.sources.join(', '))}</div>` : ''}
-      ${item.note ? `<div class="src cart-note">${ICON.noteFilled}<span>${escapeHtml(item.note)}</span></div>` : ''}
+      ${noteHtml}
     </div>
     ${qtyHtml}
     ${delBtn}
