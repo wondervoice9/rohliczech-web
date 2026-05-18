@@ -799,7 +799,7 @@ async function loadAll() {
     supabase.from('recipes').select('*').order('created_at', { ascending: true }),
     supabase.from('staples').select('*').order('created_at', { ascending: true }),
     // Shared cart: take the oldest row as the single shared cart
-    supabase.from('cart').select('*').order('created_at', { ascending: true }).limit(1)
+    supabase.from('cart').select('*').order('id', { ascending: true }).limit(1)
   ]);
 
   if (recipesRes.error) console.error('recipes load:', recipesRes.error);
