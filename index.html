@@ -156,6 +156,19 @@
   .cart-item .qty-ctrl button svg{width:13px;height:13px}
   .cart-item .qty-ctrl button:active{transform:scale(0.92);background:var(--accent-soft)}
   .cart-item .qty-ctrl .val{font-size:14px;font-weight:600;color:var(--text);min-width:20px;text-align:center;font-variant-numeric:tabular-nums}
+  /* Recipe subfolder groups in cart */
+  .cart-group{background:var(--bg-card);border:0.5px solid var(--border-soft);border-radius:12px;margin:0 12px 8px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,0.03)}
+  .cart-group-header{display:flex;align-items:center;gap:8px;padding:11px 12px;cursor:pointer;user-select:none}
+  .cart-group-header .twist{font-size:11px;color:var(--text-muted);width:12px;flex-shrink:0;text-align:center}
+  .cart-group-header .g-info{flex:1;min-width:0}
+  .cart-group-header .g-name{font-size:14px;font-weight:700;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .cart-group-header .g-meta{font-size:11px;color:var(--text-muted);margin-top:1px}
+  .cart-group-header .g-portions{font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:8px;padding:2px 8px;flex-shrink:0}
+  .cart-group-header .g-del{background:none;border:none;color:var(--danger);cursor:pointer;padding:6px;line-height:0;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+  .cart-group-header .g-del svg{width:16px;height:16px}
+  .cart-group-body{border-top:0.5px solid var(--border-soft)}
+  .cart-group-body .cart-item{margin:0;border:none;border-radius:0;box-shadow:none;border-bottom:0.5px solid var(--border-soft)}
+  .cart-group-body .cart-item:last-child{border-bottom:none}
   .modal-overlay{position:fixed;inset:0;background:var(--modal-overlay);z-index:100;display:none;align-items:flex-end;backdrop-filter:blur(4px)}
   .modal-overlay.show{display:flex}
   .modal{background:var(--bg-elevated);width:100%;max-height:88vh;border-radius:16px 16px 0 0;overflow-y:auto;padding-bottom:env(safe-area-inset-bottom)}
@@ -398,6 +411,7 @@ const state = {
   editingRecipe: null,
   syncing: false,
   expandedStaple: null,
+  collapsedCart: {},
   editingStapleName: null,
   editingCartNote: null,
   recipeSort: 'name',
@@ -2503,18 +2517,21 @@ function renderCart() {
   });
   const main = document.getElementById('main');
   const items = aggregateCart();
-  if (items.length === 0) {
+  const groups = recipeCartGroups();
+  const staples = items.filter(i => i.type === 'staple');
+  const extras = items.filter(i => i.type === 'extra');
+  const groupItemCount = groups.reduce((s, g) => s + g.items.length, 0);
+  const totalItems = groupItemCount + staples.length + extras.length;
+  if (totalItems === 0) {
     main.innerHTML = `<div class="empty"><div class="big">🛒</div><h3>Prázdný nákupní list</h3><p>Otevři recept a klikni „Přidat do košíku", nebo přidávej položky v záložce Ostatní položky.</p></div>`;
     return;
   }
-  const ingredients = items.filter(i => i.type === 'ingredient');
-  const staples = items.filter(i => i.type === 'staple');
-  const extras = items.filter(i => i.type === 'extra');
-  const totalChecked = items.filter(i => i.checked).length;
-  let html = `<div class="info-banner" style="display:flex;justify-content:space-between;align-items:center;"><div><b>${items.length}</b> položek • <b>${totalChecked}</b> nakoupeno</div></div>`;
-  if (ingredients.length > 0) {
+  const groupChecked = groups.reduce((s, g) => s + g.items.filter(i => i.checked).length, 0);
+  const totalChecked = groupChecked + staples.filter(i => i.checked).length + extras.filter(i => i.checked).length;
+  let html = `<div class="info-banner" style="display:flex;justify-content:space-between;align-items:center;"><div><b>${totalItems}</b> položek • <b>${totalChecked}</b> nakoupeno</div></div>`;
+  if (groups.length > 0) {
     html += `<div class="section-title">Z receptů</div>`;
-    ingredients.forEach(i => { html += cartItemHtml(i); });
+    groups.forEach(g => { html += cartRecipeGroupHtml(g); });
   }
   if (staples.length > 0) {
     staples.forEach(i => { html += cartItemHtml(i); });
@@ -2525,6 +2542,85 @@ function renderCart() {
   }
   main.innerHTML = html;
 }
+
+// Each recipe in the cart is its own expandable subfolder (group), keeping its
+// ingredients together instead of merging them into one flat list.
+function recipeCartGroups() {
+  if (!state.cart.checked) state.cart.checked = {};
+  return state.cart.recipes.map(rc => {
+    const recipe = state.recipes.find(r => r.id === rc.id);
+    if (!recipe) return null;
+    const factor = rc.portions / recipe.portions;
+    const excluded = new Set(rc.excluded || []);
+    const overrides = rc.overrides || {};
+    const groupItems = [];
+    recipe.ingredients.forEach(ing => {
+      const ident = ingIdent(ing);
+      if (excluded.has(ident)) return;
+      const amount = (ident in overrides) ? overrides[ident] : ((parseFloat(ing.amount) || 0) * factor);
+      const key = 'r:' + rc.id + ':' + ident;
+      groupItems.push({ ident, name: ing.name, unit: ing.unit, amount, key, checked: !!state.cart.checked[key] });
+    });
+    return { recipeId: rc.id, name: recipe.name, portions: rc.portions, addedBy: rc.addedBy || null, items: groupItems };
+  }).filter(g => g && g.items.length > 0);
+}
+
+function portionsWord(n) { return n >= 5 ? 'porcí' : 'porce'; }
+
+function cartRecipeGroupHtml(group) {
+  const collapsed = !!(state.collapsedCart && state.collapsedCart[group.recipeId]);
+  const count = group.items.length;
+  const checked = group.items.filter(i => i.checked).length;
+  const color = userColor(group.addedBy);
+  const stripe = color ? `style="border-left:4px solid ${color};"` : '';
+  const body = collapsed ? '' : `<div class="cart-group-body">${group.items.map(it => cartGroupItemHtml(group.recipeId, it)).join('')}</div>`;
+  return `<div class="cart-group" ${stripe}>
+    <div class="cart-group-header" onclick="toggleCartRecipe('${group.recipeId}')">
+      <span class="twist">${collapsed ? '▶' : '▼'}</span>
+      <div class="g-info">
+        <div class="g-name">${escapeHtml(group.name)}</div>
+        <div class="g-meta">${group.portions} ${portionsWord(group.portions)} · ${checked}/${count} nakoupeno</div>
+      </div>
+      <span class="g-portions">${group.portions}×</span>
+      <button class="g-del" onclick="event.stopPropagation();removeRecipeFromCart('${group.recipeId}')" aria-label="Odebrat recept z košíku" title="Odebrat recept">${ICON.trash}</button>
+    </div>
+    ${body}
+  </div>`;
+}
+
+function cartGroupItemHtml(recipeId, it) {
+  return `<div class="cart-item ${it.checked ? 'checked' : ''}">
+    <div class="check ${it.checked ? 'on' : ''}" onclick="toggleCartCheck('${escapeAttr(it.key)}')">${it.checked ? ICON.check : ''}</div>
+    <div class="info"><div class="name">${escapeHtml(it.name)}</div></div>
+    <div class="qty">${fmtNum(it.amount)} ${escapeHtml(it.unit || '')}</div>
+    <button class="del" onclick="excludeRecipeIng('${recipeId}','${escapeAttr(it.ident)}')" aria-label="Odebrat z košíku" title="Odebrat z košíku">${ICON.close}</button>
+  </div>`;
+}
+
+window.toggleCartRecipe = (recipeId) => {
+  if (!state.collapsedCart) state.collapsedCart = {};
+  state.collapsedCart[recipeId] = !state.collapsedCart[recipeId];
+  render();
+};
+
+window.removeRecipeFromCart = (recipeId) => {
+  const recipe = state.recipes.find(r => r.id === recipeId);
+  if (!confirm(`Odebrat „${recipe ? recipe.name : 'recept'}" z košíku?`)) return;
+  state.cart.recipes = state.cart.recipes.filter(r => r.id !== recipeId);
+  saveCart();
+  toast('Recept odebrán z košíku');
+  render();
+};
+
+window.excludeRecipeIng = (recipeId, ident) => {
+  const rc = state.cart.recipes.find(r => r.id === recipeId);
+  if (!rc) return;
+  if (!rc.excluded) rc.excluded = [];
+  if (!rc.excluded.includes(ident)) rc.excluded.push(ident);
+  if (rc.overrides) delete rc.overrides[ident];
+  saveCart();
+  render();
+};
 
 function cartItemHtml(item) {
   const isStaple = item.type === 'staple';
