@@ -183,8 +183,8 @@
   .search-bar input:focus{outline:none;background:var(--bg-search-focus)}
   .nutri-source{font-size:11px;color:var(--text-muted);padding:0 12px 12px;text-align:center;font-style:italic}
   .instructions-box{margin:0 12px 16px;padding:14px 16px;background:var(--bg-card);border:0.5px solid var(--border-soft);border-left:3px solid var(--accent);border-radius:10px;color:var(--text);font-size:14px;line-height:1.55;white-space:pre-wrap;word-break:break-word}
-  .recipe-photo{margin:0 12px 12px;border-radius:14px;overflow:hidden;background:var(--bg-card);border:0.5px solid var(--border-card);box-shadow:0 2px 10px rgba(0,0,0,0.08);max-height:280px}
-  .recipe-photo img{display:block;width:100%;height:100%;max-height:280px;object-fit:cover}
+  .recipe-photo{margin:0 12px 12px;border-radius:14px;overflow:hidden;background:var(--bg-card);border:0.5px solid var(--border-card);box-shadow:0 2px 10px rgba(0,0,0,0.08)}
+  .recipe-photo img{display:block;width:100%;height:auto;object-fit:contain}
   .photo-edit{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
   .photo-preview{position:relative;width:100%;max-width:240px;border-radius:10px;overflow:hidden;border:0.5px solid var(--border-card)}
   .photo-preview img{display:block;width:100%;height:auto;max-height:200px;object-fit:cover}
@@ -207,7 +207,8 @@
   /* Compact one-row chips bar (mobile-friendly, icon-only filters) */
   .chips-row-compact{display:flex;align-items:center;gap:4px;padding:10px 12px 6px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .chips-row-compact::-webkit-scrollbar{display:none}
-  .sort-chip.mini{padding:6px 10px;font-size:14px;min-width:36px;text-align:center;flex-shrink:0}
+  .sort-chip.mini{padding:5px 9px;font-size:11px;min-width:auto;flex-shrink:0;display:inline-flex;align-items:center;gap:4px;line-height:1.1}
+  .sort-chip.mini .chip-ico{font-size:13px;line-height:1}
   .chip-sep{width:1px;background:var(--border);align-self:stretch;margin:6px 4px;flex-shrink:0}
   /* Recipe tile grid (2 cols mobile) */
   .recipes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:10px 12px 8px}
@@ -221,6 +222,7 @@
   .recipe-tile-tags{position:absolute;top:6px;right:6px;display:flex;gap:4px}
   .recipe-tile-tag{color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 2px 6px rgba(0,0,0,0.25)}
   .recipe-tile-tag.vege{background:var(--success)}
+  .recipe-tile-tag.breakfast{background:#f59e0b}
   .recipe-tile-tag.sweet{background:#d946a3}
   .recipe-tile-body{padding:10px 12px 12px;display:flex;flex-direction:column;gap:5px;flex:1}
   .recipe-tile h3{font-size:14px;font-weight:700;line-height:1.25;margin:0;color:var(--text);letter-spacing:-0.01em}
@@ -237,6 +239,8 @@
   .sort-chip.filter.active{background:var(--success);border-color:var(--success);color:#fff}
   .sort-chip.filter-sweet{background:transparent}
   .sort-chip.filter-sweet.active{background:#d946a3;border-color:#d946a3;color:#fff}
+  .sort-chip.filter-breakfast{background:transparent}
+  .sort-chip.filter-breakfast.active{background:#f59e0b;border-color:#f59e0b;color:#fff}
   /* iOS-style toggle switch */
   .switch{position:relative;display:inline-block;width:46px;height:26px;flex-shrink:0}
   .switch input{opacity:0;width:0;height:0}
@@ -398,7 +402,8 @@ const state = {
   editingCartNote: null,
   recipeSort: 'name',
   recipeFilterVege: false,
-  recipeFilterSweet: false
+  recipeFilterSweet: false,
+  recipeFilterBreakfast: false
 };
 
 function kcalPerPortion(r) {
@@ -411,6 +416,7 @@ function sortedRecipes(maxIngs, maxTime) {
   let list = [...state.recipes];
   if (state.recipeFilterVege) list = list.filter(r => r.is_vege);
   if (state.recipeFilterSweet) list = list.filter(r => r.is_sweet);
+  if (state.recipeFilterBreakfast) list = list.filter(r => r.is_breakfast);
   switch (state.recipeSort) {
     case 'time':
       list.sort((a, b) => (a.prep_time || 9999) - (b.prep_time || 9999) || a.name.localeCompare(b.name, 'cs'));
@@ -434,6 +440,7 @@ function sortedRecipes(maxIngs, maxTime) {
 window.setRecipeSort = (s) => { state.recipeSort = s; render(); };
 window.toggleRecipeFilterVege = () => { state.recipeFilterVege = !state.recipeFilterVege; render(); };
 window.toggleRecipeFilterSweet = () => { state.recipeFilterSweet = !state.recipeFilterSweet; render(); };
+window.toggleRecipeFilterBreakfast = () => { state.recipeFilterBreakfast = !state.recipeFilterBreakfast; render(); };
 
 const DEFAULT_PORTIONS = 4;
 
@@ -813,6 +820,7 @@ async function loadAll() {
     prep_time: r.prep_time || null,
     is_vege: !!r.is_vege,
     is_sweet: !!r.is_sweet,
+    is_breakfast: !!r.is_breakfast,
     ingredients: r.ingredients || []
   }));
   state.staples = (staplesRes.data || []).map(s => ({
@@ -876,7 +884,7 @@ function setupRealtime() {
 async function reloadRecipes() {
   const { data } = await supabase.from('recipes').select('*').order('created_at', { ascending: true });
   if (data) {
-    state.recipes = data.map(r => ({ id: r.id, name: r.name, portions: r.portions, notes: r.notes || '', instructions: r.instructions || '', image_url: r.image_url || '', prep_time: r.prep_time || null, is_vege: !!r.is_vege, is_sweet: !!r.is_sweet, ingredients: r.ingredients || [] }));
+    state.recipes = data.map(r => ({ id: r.id, name: r.name, portions: r.portions, notes: r.notes || '', instructions: r.instructions || '', image_url: r.image_url || '', prep_time: r.prep_time || null, is_vege: !!r.is_vege, is_sweet: !!r.is_sweet, is_breakfast: !!r.is_breakfast, ingredients: r.ingredients || [] }));
     render();
   }
 }
@@ -912,7 +920,7 @@ async function seedSampleData() {
       supabase.from('staples').insert(staplesToInsert).select()
     ]);
     if (r1.data) state.recipes = r1.data.map(r => ({
-      id: r.id, name: r.name, portions: r.portions, notes: r.notes || '', instructions: r.instructions || '', image_url: r.image_url || '', prep_time: r.prep_time || null, is_vege: !!r.is_vege, is_sweet: !!r.is_sweet, ingredients: r.ingredients || []
+      id: r.id, name: r.name, portions: r.portions, notes: r.notes || '', instructions: r.instructions || '', image_url: r.image_url || '', prep_time: r.prep_time || null, is_vege: !!r.is_vege, is_sweet: !!r.is_sweet, is_breakfast: !!r.is_breakfast, ingredients: r.ingredients || []
     }));
     if (r2.data) state.staples = r2.data.map(s => ({
       id: s.id, name: s.name, category: s.category, defaultQty: parseFloat(s.default_qty), unit: s.unit
@@ -1054,16 +1062,17 @@ async function saveRecipe(recipe) {
     prep_time: recipe.prep_time || null,
     is_vege: !!recipe.is_vege,
     is_sweet: !!recipe.is_sweet,
+    is_breakfast: !!recipe.is_breakfast,
     ingredients: recipe.ingredients
   };
   if (recipe._isNew) {
     const { data, error } = await supabase.from('recipes').insert(payload).select().single();
     if (error) { console.error(error); toast('Chyba při ukládání'); return null; }
-    return { id: data.id, name: data.name, portions: data.portions, notes: data.notes || '', instructions: data.instructions || '', image_url: data.image_url || '', prep_time: data.prep_time || null, is_vege: !!data.is_vege, is_sweet: !!data.is_sweet, ingredients: data.ingredients || [] };
+    return { id: data.id, name: data.name, portions: data.portions, notes: data.notes || '', instructions: data.instructions || '', image_url: data.image_url || '', prep_time: data.prep_time || null, is_vege: !!data.is_vege, is_sweet: !!data.is_sweet, is_breakfast: !!data.is_breakfast, ingredients: data.ingredients || [] };
   } else {
     const { data, error } = await supabase.from('recipes').update(payload).eq('id', recipe.id).select().single();
     if (error) { console.error(error); toast('Chyba při ukládání'); return null; }
-    return { id: data.id, name: data.name, portions: data.portions, notes: data.notes || '', instructions: data.instructions || '', image_url: data.image_url || '', prep_time: data.prep_time || null, is_vege: !!data.is_vege, is_sweet: !!data.is_sweet, ingredients: data.ingredients || [] };
+    return { id: data.id, name: data.name, portions: data.portions, notes: data.notes || '', instructions: data.instructions || '', image_url: data.image_url || '', prep_time: data.prep_time || null, is_vege: !!data.is_vege, is_sweet: !!data.is_sweet, is_breakfast: !!data.is_breakfast, ingredients: data.ingredients || [] };
   }
 }
 
@@ -1111,7 +1120,7 @@ async function saveCart() {
 }
 
 // === RENDER ROUTER ===
-async function render() {
+async function renderView() {
   document.querySelectorAll('nav.tabs button').forEach(b => {
     b.classList.toggle('active', b.dataset.tab === state.tab);
   });
@@ -1130,6 +1139,47 @@ async function render() {
   if (state.tab === 'staples') return renderStaplesList();
   if (state.tab === 'cart') return renderCart();
   if (state.tab === 'settings') return renderSettings();
+}
+
+// === BROWSER BACK / HISTORY INTEGRATION ===
+// Map in-app navigation (tab + drill-down view) onto the browser history stack
+// so the device back gesture steps back through views instead of leaving the PWA.
+function navSnapshot() {
+  return JSON.stringify({ tab: state.tab, view: state.view });
+}
+let _navCurrent = null; // snapshot last synced to history
+const _navStack = [];   // previous snapshots, restored on back
+let _navPopping = false; // true while restoring from a popstate event
+
+function syncHistory() {
+  const snap = navSnapshot();
+  if (_navPopping) { _navCurrent = snap; return; } // restoring: don't push
+  if (snap === _navCurrent) return;                // no navigation change
+  if (_navCurrent !== null) {
+    _navStack.push(_navCurrent);
+    history.pushState({ depth: _navStack.length }, '');
+  }
+  _navCurrent = snap;
+}
+
+window.addEventListener('popstate', async () => {
+  if (_navStack.length === 0) {
+    // At root: nothing to go back to in-app — let the browser leave the app.
+    history.back();
+    return;
+  }
+  const { tab, view } = JSON.parse(_navStack.pop());
+  state.tab = tab;
+  state.view = view;
+  _navPopping = true;
+  await render(); // await so syncHistory() runs while the popping flag is set
+  _navPopping = false;
+});
+
+// Thin wrapper: render the view, then keep browser history in sync.
+async function render() {
+  await renderView();
+  syncHistory();
 }
 window.render = render;
 
@@ -1171,7 +1221,7 @@ function setHeader(title, opts = {}) {
 function renderRecipesList() {
   setHeader('Recepty', {
     actions: [
-      { icon: ICON.download, title: 'Import', onclick: () => showImportHelp() },
+      { icon: ICON.upload, title: 'Import', onclick: () => showImportHelp() },
       { icon: ICON.plus, title: 'Nový', onclick: () => openRecipeEdit(null) }
     ]
   });
@@ -1179,15 +1229,16 @@ function renderRecipesList() {
   const sortBar = `
     <div class="chips-row-compact">
       ${[
-        { v: 'name', l: 'A-Z', t: 'Abecedně' },
-        { v: 'time', l: '⏱', t: 'Čas přípravy' },
-        { v: 'ings', l: '🥕', t: 'Počet ingrediencí' },
-        { v: 'difficulty', l: '⚡', t: 'Náročnost' },
-        { v: 'kcal', l: '🔥', t: 'Kalorie' }
-      ].map(o => `<button class="sort-chip mini ${state.recipeSort === o.v ? 'active' : ''}" onclick="setRecipeSort('${o.v}')" title="${o.t}">${o.l}</button>`).join('')}
+        { v: 'name', i: '🔤', l: 'A-Z', t: 'Abecedně' },
+        { v: 'time', i: '⏱', l: 'Čas', t: 'Čas přípravy' },
+        { v: 'ings', i: '🥕', l: 'Ingr.', t: 'Počet ingrediencí' },
+        { v: 'difficulty', i: '⚡', l: 'Obtíž.', t: 'Náročnost' },
+        { v: 'kcal', i: '🔥', l: 'Kcal', t: 'Kalorie' }
+      ].map(o => `<button class="sort-chip mini ${state.recipeSort === o.v ? 'active' : ''}" onclick="setRecipeSort('${o.v}')" title="${o.t}"><span class="chip-ico">${o.i}</span><span>${o.l}</span></button>`).join('')}
       <span class="chip-sep"></span>
-      <button class="sort-chip mini filter ${state.recipeFilterVege ? 'active' : ''}" onclick="toggleRecipeFilterVege()" title="Pouze vegetariánské">🌱</button>
-      <button class="sort-chip mini filter-sweet ${state.recipeFilterSweet ? 'active' : ''}" onclick="toggleRecipeFilterSweet()" title="Pouze sladké">🍰</button>
+      <button class="sort-chip mini filter ${state.recipeFilterVege ? 'active' : ''}" onclick="toggleRecipeFilterVege()" title="Pouze vegetariánské"><span class="chip-ico">🌱</span><span>Vege</span></button>
+      <button class="sort-chip mini filter-breakfast ${state.recipeFilterBreakfast ? 'active' : ''}" onclick="toggleRecipeFilterBreakfast()" title="Pouze snídaně"><span class="chip-ico">🍳</span><span>Snídaně</span></button>
+      <button class="sort-chip mini filter-sweet ${state.recipeFilterSweet ? 'active' : ''}" onclick="toggleRecipeFilterSweet()" title="Pouze sladké"><span class="chip-ico">🍰</span><span>Sladké</span></button>
     </div>
   `;
   const search = `<div class="search-bar"><input type="text" placeholder="Hledat recept..." oninput="filterRecipes(this.value)"></div>`;
@@ -1208,6 +1259,7 @@ function recipeTileHtml(r, maxIngs, maxTime) {
       ${r.image_url ? `<img src="${escapeAttr(r.image_url)}" alt="" loading="lazy" onerror="this.parentElement.classList.add('empty');this.remove()">` : ''}
       <div class="recipe-tile-tags">
         ${r.is_vege ? `<span class="recipe-tile-tag vege" title="Vegetariánské">🌱</span>` : ''}
+        ${r.is_breakfast ? `<span class="recipe-tile-tag breakfast" title="Snídaně">🍳</span>` : ''}
         ${r.is_sweet ? `<span class="recipe-tile-tag sweet" title="Sladké">🍰</span>` : ''}
       </div>
     </div>
@@ -1215,7 +1267,7 @@ function recipeTileHtml(r, maxIngs, maxTime) {
       <h3>${escapeHtml(r.name)}</h3>
       <div class="recipe-tile-meta">
         <span>${r.ingredients.length} ingr.</span>
-        ${r.prep_time ? `<span class="dot"></span><span>⏱ ${fmtTime(r.prep_time)}</span>` : ''}
+        ${r.prep_time ? `<span class="dot"></span><span>⏱ ${fmtTime(r.prep_time)}</span>` : `<span class="dot"></span><span style="color:#c2410c;font-weight:600;" title="Chybí čas přípravy">⏱ doplnit</span>`}
         ${kcal > 0 ? `<span class="dot"></span><span class="kcal-pill">🔥 ${kcal} kcal</span>` : ''}
         <span class="dot"></span>
         <span class="difficulty-pill">⚡ ${diff}/10</span>
@@ -1377,7 +1429,7 @@ window.openRecipeEdit = (id) => {
   // Init editingRecipe once per edit session; renderRecipeEdit just reads it.
   const isNew = !id;
   state.editingRecipe = isNew
-    ? { id: 'tmp-' + uid(), _isNew: true, name: '', portions: 4, notes: '', instructions: '', image_url: '', prep_time: null, is_vege: false, is_sweet: false, ingredients: [{ id: uid(), name: '', amount: '', unit: 'g' }] }
+    ? { id: 'tmp-' + uid(), _isNew: true, name: '', portions: 4, notes: '', instructions: '', image_url: '', prep_time: null, is_vege: false, is_sweet: false, is_breakfast: false, ingredients: [{ id: uid(), name: '', amount: '', unit: 'g' }] }
     : JSON.parse(JSON.stringify(state.recipes.find(r => r.id === id)));
   state.view = { type: 'recipe-edit', id };
   render();
@@ -1543,7 +1595,7 @@ function renderRecipeEdit(id) {
   // Use existing editingRecipe (init in openRecipeEdit) — DO NOT recreate, would wipe in-progress edits like photo upload
   if (!state.editingRecipe) {
     state.editingRecipe = isNew
-      ? { id: 'tmp-' + uid(), _isNew: true, name: '', portions: 4, notes: '', instructions: '', image_url: '', prep_time: null, is_vege: false, is_sweet: false, ingredients: [{ id: uid(), name: '', amount: '', unit: 'g' }] }
+      ? { id: 'tmp-' + uid(), _isNew: true, name: '', portions: 4, notes: '', instructions: '', image_url: '', prep_time: null, is_vege: false, is_sweet: false, is_breakfast: false, ingredients: [{ id: uid(), name: '', amount: '', unit: 'g' }] }
       : JSON.parse(JSON.stringify(state.recipes.find(r => r.id === id)));
   }
   const recipe = state.editingRecipe;
@@ -1563,6 +1615,10 @@ function renderRecipeEdit(id) {
     <div class="form-group" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
       <label for="rec-vege" style="margin:0;cursor:pointer;flex:1;">🌱 Vegetariánské</label>
       <label class="switch"><input type="checkbox" id="rec-vege" ${recipe.is_vege ? 'checked' : ''}><span class="slider-toggle"></span></label>
+    </div>
+    <div class="form-group" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+      <label for="rec-breakfast" style="margin:0;cursor:pointer;flex:1;">🍳 Snídaně</label>
+      <label class="switch"><input type="checkbox" id="rec-breakfast" ${recipe.is_breakfast ? 'checked' : ''}><span class="slider-toggle"></span></label>
     </div>
     <div class="form-group" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
       <label for="rec-sweet" style="margin:0;cursor:pointer;flex:1;">🍰 Sladké</label>
@@ -1630,6 +1686,7 @@ function captureRecipeEditForm() {
   if (get('rec-preptime')) { const v = parseInt(get('rec-preptime').value); r.prep_time = (v && v > 0) ? v : null; }
   if (get('rec-vege')) r.is_vege = get('rec-vege').checked;
   if (get('rec-sweet')) r.is_sweet = get('rec-sweet').checked;
+  if (get('rec-breakfast')) r.is_breakfast = get('rec-breakfast').checked;
   if (get('rec-instructions')) r.instructions = get('rec-instructions').value;
   if (get('rec-notes')) r.notes = get('rec-notes').value;
 }
@@ -1752,6 +1809,7 @@ window.saveRecipeEdit = async (id, isNew) => {
   rec.prep_time = (pt && pt > 0) ? pt : null;
   rec.is_vege = document.getElementById('rec-vege').checked;
   rec.is_sweet = document.getElementById('rec-sweet').checked;
+  rec.is_breakfast = document.getElementById('rec-breakfast').checked;
   rec.ingredients = rec.ingredients.filter(i => i.name.trim() !== '');
   if (!rec.name) { alert('Zadej název receptu'); return; }
   if (rec.ingredients.length === 0) { alert('Přidej alespoň jednu ingredienci'); return; }
@@ -1795,9 +1853,20 @@ function showImportHelp() {
   `);
 }
 
+// Vytáhne čas přípravy z importovaného JSONu. Bere prep_time (i aliasy),
+// a kdyby chyběl jako klíč, zkusí ho najít v notes ("Doba přípravy 35 min").
+function parseImportPrepTime(data) {
+  const cand = data.prep_time ?? data.prepTime ?? data.prep_time_minutes ?? data.doba_pripravy_min;
+  let n = parseInt(cand, 10);
+  if (n && n > 0) return n;
+  const m = (data.notes || '').match(/(\d+)\s*min/i);
+  if (m) { n = parseInt(m[1], 10); if (n > 0) return n; }
+  return null;
+}
+
 window.showJsonExample = () => {
   const example = {
-    name: "Bramboračka", portions: 4, notes: "Klasická česká polévka",
+    name: "Bramboračka", portions: 4, prep_time: 35, notes: "Doba přípravy 35 min. Klasická česká polévka — brambory a kořenovou zeleninu uvař, zjemně rozmačkej, zahusti jíškou.",
     ingredients: [
       { name: "brambory", amount: 500, unit: "g" },
       { name: "mrkev", amount: 100, unit: "g" },
@@ -1818,13 +1887,14 @@ window.importRecipeJson = async () => {
       name: data.name,
       portions: data.portions || 4,
       notes: data.notes || '',
+      prep_time: parseImportPrepTime(data),
       ingredients: data.ingredients.map(i => ({ id: uid(), name: i.name || '', amount: i.amount || '', unit: i.unit || '' })).filter(i => i.name)
     };
     const saved = await saveRecipe(recipe);
     if (saved) {
       state.recipes.push(saved);
       closeModal();
-      toast('Recept importován');
+      toast(recipe.prep_time ? 'Recept importován' : '⏱ Recept importován — doplň čas přípravy');
       render();
     }
   } catch (e) {
@@ -1907,6 +1977,7 @@ window.importRecipesFile = async (input) => {
         prep_time: r.prep_time || null,
         is_vege: !!r.is_vege,
         is_sweet: !!r.is_sweet,
+        is_breakfast: !!r.is_breakfast,
         ingredients: (r.ingredients || []).map(i => ({ id: uid(), name: i.name, amount: i.amount, unit: i.unit }))
       }));
     const skipped = list.length - toInsert.length;
@@ -1917,7 +1988,7 @@ window.importRecipesFile = async (input) => {
     (data || []).forEach(r => state.recipes.push({
       id: r.id, name: r.name, portions: r.portions, notes: r.notes || '',
       instructions: r.instructions || '', image_url: r.image_url || '',
-      prep_time: r.prep_time || null, is_vege: !!r.is_vege, is_sweet: !!r.is_sweet,
+      prep_time: r.prep_time || null, is_vege: !!r.is_vege, is_sweet: !!r.is_sweet, is_breakfast: !!r.is_breakfast,
       ingredients: r.ingredients || []
     }));
     toast(`Importováno ${data.length} receptů`);
