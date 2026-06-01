@@ -1867,14 +1867,15 @@ function showImportHelp() {
   `);
 }
 
-// Vytáhne čas přípravy z importovaného JSONu. Bere prep_time (i aliasy),
-// a kdyby chyběl jako klíč, zkusí ho najít v notes ("Doba přípravy 35 min").
+// Vytáhne čas přípravy z importovaného JSONu. Přednost má klíč prep_time (i aliasy).
+// Kdyby chyběl, hledá v notes jen ČAS U ŠTÍTKU ("Doba přípravy / Celkem / Celkový čas 40 min"),
+// NIKDY ne první "N min" v textu — to bývá doba jednoho kroku ("smažte 8 min") a dávalo špatný čas.
 function parseImportPrepTime(data) {
   const cand = data.prep_time ?? data.prepTime ?? data.prep_time_minutes ?? data.doba_pripravy_min;
   let n = parseInt(cand, 10);
   if (n && n > 0) return n;
-  const m = (data.notes || '').match(/(\d+)\s*min/i);
-  if (m) { n = parseInt(m[1], 10); if (n > 0) return n; }
+  const labelled = (data.notes || '').match(/(?:doba\s+p[řr]ípravy|celkov[ýy]\s+[čc]as|celkem)\D{0,15}(\d+)\s*min/i);
+  if (labelled) { n = parseInt(labelled[1], 10); if (n > 0) return n; }
   return null;
 }
 
