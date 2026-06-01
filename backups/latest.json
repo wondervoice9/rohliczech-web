@@ -1,0 +1,708 @@
+{
+  "exported_at": "2026-06-01T10:25:15Z",
+  "recipes": [
+    {
+      "id": "1c11a60a-c7b0-40cf-adf5-1ee438336477",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Indické kuře z jedné pánve",
+      "portions": 4,
+      "notes": "Doba přípravy 45 min. Troubu předehřej na 210 °C. Cibuli nakrájej na tenké plátky, zázvor nastrouhej, česnek prolisuj a kuřecí maso nakrájej na menší kousky. Do hlubokého pekáče vlož maso, osol a přidej garam masala, kurkumu, kmín, papriku, skořici, pepř, kokosové mléko, rajčatový protlak, zázvor, česnek a cibuli. Vše důkladně promíchej a nech 5–10 min odležet. Peč v troubě cca 30–40 min, dokud je maso propečené. Podávej s rýží nebo naanem, posyp sezamem a koriandrem.",
+      "ingredients": [
+        {
+          "id": "en7c38un",
+          "name": "kuřecí prsa",
+          "unit": "g",
+          "amount": 600
+        },
+        {
+          "id": "lgzhm2js",
+          "name": "kokosové mléko",
+          "unit": "ml",
+          "amount": 400
+        },
+        {
+          "id": "qtru73ks",
+          "name": "rajčatový protlak",
+          "unit": "g",
+          "amount": 100
+        },
+        {
+          "id": "mpf4jr4v",
+          "name": "nastrouhaný čerstvý zázvor",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "b6p0c9ke",
+          "name": "česnek",
+          "unit": "stroužky",
+          "amount": 6
+        },
+        {
+          "id": "czqbc2gt",
+          "name": "cibule",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "ujac8rsg",
+          "name": "garam masala",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "gvzki3ir",
+          "name": "kurkuma",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "rc6ylfz4",
+          "name": "mletý kmín",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "5dvj0sbr",
+          "name": "pálivá paprika",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "jutg2tsv",
+          "name": "skořice",
+          "unit": "lžička",
+          "amount": 0.25
+        },
+        {
+          "id": "w0fcmqw7",
+          "name": "mletý pepř",
+          "unit": "lžička",
+          "amount": 0.5
+        },
+        {
+          "id": "8wzy6y6z",
+          "name": "sůl",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "gbgow6rt",
+          "name": "rýže",
+          "unit": "g",
+          "amount": 300
+        },
+        {
+          "id": "5r3ujbx8",
+          "name": "naan",
+          "unit": "ks",
+          "amount": 4
+        },
+        {
+          "id": "ypcc1q5b",
+          "name": "čerstvý koriandr",
+          "unit": "hrst",
+          "amount": 1
+        },
+        {
+          "id": "bojr14hh",
+          "name": "sezamová semínka",
+          "unit": "lžíce",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T10:16:58.380043+00:00",
+      "updated_at": "2026-06-01T10:16:58.380043+00:00",
+      "instructions": "",
+      "image_url": "",
+      "prep_time": 45,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false
+    },
+    {
+      "id": "132f5ddf-c9c6-4def-a49e-110e96655838",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Fish and chips s domácí tatarkou",
+      "portions": 6,
+      "notes": "Doba přípravy 40 min. Brambory omyj, nakrájej na klínky a namoč do studené vody, pak slij a osuš. Tresku nakrájej na kousky, osuš, osol a obal nejprve v mouce s paprikou, česnekem, cibulí a pepřem, poté ve vejcích a nakonec v panko strouhance. Brambory promíchej s lžící oleje a solí. V horkovzdušné fritéze peč brambory na 190 °C cca 25 min, po 15 min přidej rybu a dopeč 10 min dozlatova. Tatarku umíchej ze zakysané smetany, řeckého jogurtu, citronové šťávy, kopru, nastrouhaných okurek a šalotky a dochuť solí a pepřem.",
+      "ingredients": [
+        {
+          "id": "xqfmju2t",
+          "name": "brambory",
+          "unit": "g",
+          "amount": 800
+        },
+        {
+          "id": "nxqwd6oj",
+          "name": "neutrální olej",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "i9pq991n",
+          "name": "filety z tresky",
+          "unit": "g",
+          "amount": 600
+        },
+        {
+          "id": "yd42pa3j",
+          "name": "hladká mouka",
+          "unit": "g",
+          "amount": 100
+        },
+        {
+          "id": "m2jpejxf",
+          "name": "vejce",
+          "unit": "ks",
+          "amount": 3
+        },
+        {
+          "id": "94ddflt0",
+          "name": "panko strouhanka",
+          "unit": "g",
+          "amount": 100
+        },
+        {
+          "id": "tlr0p98v",
+          "name": "sladká paprika",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "qay8f130",
+          "name": "sušený česnek",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "4665rh2y",
+          "name": "sušená cibule",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "5pdrnlki",
+          "name": "mletý pepř",
+          "unit": "lžička",
+          "amount": 0.25
+        },
+        {
+          "id": "sh5sctk4",
+          "name": "sůl",
+          "unit": "lžička",
+          "amount": 2
+        },
+        {
+          "id": "9pirs6c3",
+          "name": "zakysaná smetana",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "ppn4sqsj",
+          "name": "řecký jogurt",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "a5brd3uy",
+          "name": "nakládané okurky",
+          "unit": "ks",
+          "amount": 5
+        },
+        {
+          "id": "mti9epon",
+          "name": "citron",
+          "unit": "ks",
+          "amount": 0.5
+        },
+        {
+          "id": "hfbolrbm",
+          "name": "šalotka",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "rh18pkuj",
+          "name": "čerstvý kopr",
+          "unit": "lžíce",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T10:13:49.7406+00:00",
+      "updated_at": "2026-06-01T10:13:49.7406+00:00",
+      "instructions": "",
+      "image_url": "",
+      "prep_time": 40,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false
+    },
+    {
+      "id": "04c00426-29b8-4181-9063-5d506ea2ba99",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Pikantní kuřecí nudle",
+      "portions": 4,
+      "notes": "Doba přípravy 40 min. Kuřecí maso nakrájej na tenké plátky a obal v kukuřičném škrobu se solí, pepřem, kmínem, koriandrem a chilli. Papriku a mrkev nakrájej na nudličky, brokolici rozděl na růžičky. Ingredience na omáčku smíchej dohromady. Ve woku rozehřej olej s máslem a kuře smaž 7–8 min dozlatova, pak vyndej. V téže pánvi orestuj zeleninu 6–7 min do změknutí. Nudle uvař dle návodu na obalu. Vrať kuře do pánve, přidej nudle, zalij omáčkou, promíchej a nech pár minut prohřát.",
+      "ingredients": [
+        {
+          "id": "0dwfgr9e",
+          "name": "kuřecí prsa",
+          "unit": "g",
+          "amount": 600
+        },
+        {
+          "id": "6v49sz16",
+          "name": "kukuřičný škrob",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "vkdu8qoo",
+          "name": "sezamový olej",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "3g4dclhw",
+          "name": "máslo",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "e479ojm7",
+          "name": "sůl",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "9gsbqtvt",
+          "name": "mletý pepř",
+          "unit": "lžička",
+          "amount": 0.5
+        },
+        {
+          "id": "kbulbuwf",
+          "name": "drcený kmín",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "f5hv3e5l",
+          "name": "mletý koriandr",
+          "unit": "lžička",
+          "amount": 0.5
+        },
+        {
+          "id": "74slapcq",
+          "name": "chilli",
+          "unit": "špetka",
+          "amount": 1
+        },
+        {
+          "id": "ww33zp2y",
+          "name": "červená paprika",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "r01xp2zf",
+          "name": "brokolice",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "wqi8ubls",
+          "name": "mrkev",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "psjc6k9y",
+          "name": "nudle udon",
+          "unit": "g",
+          "amount": 400
+        },
+        {
+          "id": "htzernr5",
+          "name": "sojová omáčka",
+          "unit": "lžíce",
+          "amount": 4
+        },
+        {
+          "id": "5roupjk0",
+          "name": "ústřicová omáčka",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "ln09j9dz",
+          "name": "med",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "642ffdds",
+          "name": "třtinový cukr",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "s92nxxu6",
+          "name": "rýžový ocet",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "eodz2jip",
+          "name": "chilli pasta",
+          "unit": "lžička",
+          "amount": 2
+        },
+        {
+          "id": "q64lz89t",
+          "name": "česnek",
+          "unit": "stroužky",
+          "amount": 3
+        }
+      ],
+      "created_at": "2026-06-01T10:14:48.294434+00:00",
+      "updated_at": "2026-06-01T10:14:48.294434+00:00",
+      "instructions": "",
+      "image_url": "",
+      "prep_time": 40,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false
+    },
+    {
+      "id": "c07cebad-1d74-4ad5-9ccb-f68cfaf88d6c",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Pad Thai s kuřecím masem",
+      "portions": 4,
+      "notes": "Doba přípravy 30 min. Rýžové nudle zalij horkou vodou a nech 10 min stát, pak slij a propláchni studenou vodou. Ingredience na omáčku smíchej dohromady. Česnek prolisuj a smíchej se zázvorem, mrkev a pórek nakrájej na plátky, jarní cibulku na kousky a kuře na kostičky. Ve woku rozehřej sezamový olej a orestuj kuře, pak ho odsuň, rozklepni vejce, nech ztuhnout a spoj s masem. Přidej zeleninu a výhonky, restuj 3–4 min, zalij omáčkou. Nakonec vmíchej nudle a podávej posypané arašídy, koriandrem, chilli a limetou.",
+      "ingredients": [
+        {
+          "id": "k51h2b2q",
+          "name": "rýžové nudle",
+          "unit": "g",
+          "amount": 250
+        },
+        {
+          "id": "4c1x836s",
+          "name": "kuřecí maso",
+          "unit": "g",
+          "amount": 500
+        },
+        {
+          "id": "xkdn73ee",
+          "name": "sezamový olej",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "zj52y4vv",
+          "name": "vejce",
+          "unit": "ks",
+          "amount": 3
+        },
+        {
+          "id": "aq2fvl28",
+          "name": "česnek",
+          "unit": "stroužky",
+          "amount": 6
+        },
+        {
+          "id": "jc1y39d0",
+          "name": "nastrouhaný zázvor",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "u7kf7koe",
+          "name": "jarní cibulka",
+          "unit": "svazek",
+          "amount": 1
+        },
+        {
+          "id": "sw37fe8p",
+          "name": "pórek",
+          "unit": "ks",
+          "amount": 0.5
+        },
+        {
+          "id": "e6l386b7",
+          "name": "mrkev",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "xlpu5utw",
+          "name": "mungo výhonky",
+          "unit": "g",
+          "amount": 100
+        },
+        {
+          "id": "jnyk8w6u",
+          "name": "rybí omáčka",
+          "unit": "lžíce",
+          "amount": 4
+        },
+        {
+          "id": "cnraa09v",
+          "name": "tamarindová pasta",
+          "unit": "lžíce",
+          "amount": 6
+        },
+        {
+          "id": "fzxfu3tv",
+          "name": "sojová omáčka",
+          "unit": "lžíce",
+          "amount": 3
+        },
+        {
+          "id": "wsp94no6",
+          "name": "třtinový cukr",
+          "unit": "lžíce",
+          "amount": 3
+        },
+        {
+          "id": "n67ippqu",
+          "name": "voda",
+          "unit": "lžíce",
+          "amount": 3
+        },
+        {
+          "id": "73sdljjz",
+          "name": "čerstvý koriandr",
+          "unit": "hrst",
+          "amount": 1
+        },
+        {
+          "id": "58cihs1v",
+          "name": "nasekané arašídy",
+          "unit": "hrsti",
+          "amount": 2
+        },
+        {
+          "id": "q2z6a8x1",
+          "name": "limeta",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "ildn9hru",
+          "name": "chilli paprička",
+          "unit": "ks",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T10:15:26.358613+00:00",
+      "updated_at": "2026-06-01T10:15:26.358613+00:00",
+      "instructions": "",
+      "image_url": "",
+      "prep_time": 30,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false
+    },
+    {
+      "id": "d88c2d4e-5d26-4172-9e62-132247a3be84",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Krémové orzo s kuřecím masem",
+      "portions": 4,
+      "notes": "Doba přípravy 45 min. Kuřecí stehna vyndej z lednice 20–30 min předem, osuš, osol a opepři. Na pánvi rozehřej olej s máslem a stehna opékej kůží dolů 8–10 min dozlatova, otoč a opékej dalších cca 15 min, pak vyndej. Na výpeku orestuj nakrájenou červenou cibuli 1–2 min, přidej orzo a opékej 1–2 min. Podlij bílým vínem a vař do vstřebání, pak zalij vývarem a přiveď k varu. Vrať stehna a vař cca 15 min do vstřebání. Stehna vyndej, do orza vmíchej boursin a špenát, dochuť a podávej.",
+      "ingredients": [
+        {
+          "id": "kykkm3nv",
+          "name": "horní kuřecí stehna",
+          "unit": "ks",
+          "amount": 4
+        },
+        {
+          "id": "oihw3es2",
+          "name": "olivový olej",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "qbsxsz23",
+          "name": "máslo",
+          "unit": "g",
+          "amount": 30
+        },
+        {
+          "id": "jqsk34w7",
+          "name": "červená cibule",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "bu2rb8l4",
+          "name": "orzo",
+          "unit": "g",
+          "amount": 225
+        },
+        {
+          "id": "8vqlofag",
+          "name": "suché bílé víno",
+          "unit": "ml",
+          "amount": 150
+        },
+        {
+          "id": "2ibe6toc",
+          "name": "kuřecí vývar",
+          "unit": "ml",
+          "amount": 475
+        },
+        {
+          "id": "bl4u8j7i",
+          "name": "boursin sýr",
+          "unit": "g",
+          "amount": 100
+        },
+        {
+          "id": "cgxdfeql",
+          "name": "špenát",
+          "unit": "hrst",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T10:15:58.476399+00:00",
+      "updated_at": "2026-06-01T10:15:58.476399+00:00",
+      "instructions": "",
+      "image_url": "",
+      "prep_time": 45,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false
+    }
+  ],
+  "staples": [
+    {
+      "id": "240cc240-137c-48f7-8dfc-791d627637b2",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Mýdlo",
+      "category": "Drogerie",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-05-17T18:58:13.579873+00:00",
+      "updated_at": "2026-05-17T18:58:13.579873+00:00"
+    },
+    {
+      "id": "c9c8ccde-519e-4591-bef8-ccfad7a5591e",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Čokoláda",
+      "category": "Sladkosti",
+      "default_qty": 2,
+      "unit": "ks",
+      "created_at": "2026-05-17T18:58:13.579873+00:00",
+      "updated_at": "2026-05-17T18:58:13.579873+00:00"
+    },
+    {
+      "id": "bc358004-abfd-4c8a-ae71-a8895440f652",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Sušenky",
+      "category": "Sladkosti",
+      "default_qty": 1,
+      "unit": "balení",
+      "created_at": "2026-05-17T18:58:13.579873+00:00",
+      "updated_at": "2026-05-17T18:58:13.579873+00:00"
+    },
+    {
+      "id": "070f3876-64ad-42b4-8fc3-3b74aef4e8d3",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Káva",
+      "category": "Nápoje",
+      "default_qty": 1,
+      "unit": "balení",
+      "created_at": "2026-05-17T18:58:13.579873+00:00",
+      "updated_at": "2026-05-17T18:58:13.579873+00:00"
+    },
+    {
+      "id": "6cdafdb4-c68e-4036-8d76-0964baa85e9d",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Minerální voda",
+      "category": "Nápoje",
+      "default_qty": 6,
+      "unit": "lahví",
+      "created_at": "2026-05-17T18:58:13.579873+00:00",
+      "updated_at": "2026-05-17T18:58:13.579873+00:00"
+    },
+    {
+      "id": "c537a4d6-d756-4ad9-8289-4f26227e019c",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Zubní pasta",
+      "category": "Drogerie",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-05-18T10:55:29.987052+00:00",
+      "updated_at": "2026-05-18T10:55:29.987052+00:00"
+    },
+    {
+      "id": "68157c2a-c722-4f8f-bb7c-36263607e107",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Kapesníky",
+      "category": "Drogerie",
+      "default_qty": 2,
+      "unit": "balení",
+      "created_at": "2026-05-17T18:58:13.579873+00:00",
+      "updated_at": "2026-05-18T15:01:26.378586+00:00"
+    },
+    {
+      "id": "706f3d12-a123-4169-8a2d-18ecdb93a170",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Toaletní papír",
+      "category": "Drogerie",
+      "default_qty": 1,
+      "unit": "balení",
+      "created_at": "2026-05-17T18:58:13.579873+00:00",
+      "updated_at": "2026-05-18T15:01:35.169794+00:00"
+    },
+    {
+      "id": "f5468df1-735b-4cfe-858d-c60f0adc3750",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Kuchyňské utěrky",
+      "category": "Domácnost",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-05-31T07:10:08.728307+00:00",
+      "updated_at": "2026-05-31T07:10:08.728307+00:00"
+    },
+    {
+      "id": "7dbb982e-7aad-42fa-bc8c-c2ee3af63a41",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Jar",
+      "category": "Domácnost",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-05-31T07:10:24.816672+00:00",
+      "updated_at": "2026-05-31T07:10:24.816672+00:00"
+    }
+  ],
+  "cart": [
+    {
+      "id": "b0df09ee-f008-4d4f-a626-5f546568298a",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "data": {
+        "extras": [],
+        "checked": {},
+        "recipes": [],
+        "staples": []
+      },
+      "updated_at": "2026-05-18T14:56:37.420798+00:00"
+    },
+    {
+      "id": "834efc5a-611f-4b4c-bfd0-7b1aa4f7c324",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "data": {
+        "extras": [],
+        "checked": {},
+        "recipes": [],
+        "staples": []
+      },
+      "updated_at": "2026-06-01T10:24:33.773815+00:00"
+    }
+  ]
+}
