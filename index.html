@@ -97,8 +97,13 @@
   .ing-item.off{opacity:0.55}
   .ing-item.off .name{color:var(--text-secondary)}
   .ing-main{display:flex;align-items:center;gap:10px}
-  .ing-slider-row{display:flex;align-items:center;gap:12px}
-  .ing-slider-row .slider-wrap{flex:1}
+  .ing-stepper{display:flex;align-items:center;justify-content:flex-end;gap:14px}
+  .ing-stepper .step-btn{width:34px;height:34px;border-radius:50%;background:var(--check-bg);border:1px solid var(--border);cursor:pointer;color:var(--accent);padding:0;display:flex;align-items:center;justify-content:center;transition:background 0.12s,transform 0.08s}
+  .ing-stepper .step-btn svg{width:15px;height:15px}
+  .ing-stepper .step-btn:active{transform:scale(0.92);background:var(--accent-soft)}
+  .ing-stepper .step-val{font-size:15px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;min-width:64px;text-align:center;display:inline-flex;align-items:baseline;justify-content:center;gap:3px}
+  .ing-stepper .step-val.vse{color:var(--success)}
+  .ing-stepper .step-val .u{font-size:11px;font-weight:600;color:var(--text-secondary)}
   .ing-item .info-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
   .ing-item .name{font-size:14px;font-weight:500;color:var(--text);min-width:0}
   .ing-item .amt{font-size:12px;color:var(--text-secondary);font-variant-numeric:tabular-nums;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
@@ -1359,46 +1364,19 @@ window.setIngState = (ident, st, scaled) => {
 };
 
 window.adjustIngOverride = (ident, deltaSign, unit, scaled) => {
-  if (!state.view || !state.view.overrides) return;
+  if (!state.view) return;
+  if (!state.view.selected || !state.view.selected[ident]) return; // jen u zapnuté ingredience
+  if (!state.view.overrides) state.view.overrides = {};
   const step = stepForUnit(unit, scaled);
-  const current = state.view.overrides[ident];
-  if (current === undefined) return;
+  const current = state.view.overrides[ident] !== undefined ? state.view.overrides[ident] : scaled;
   let next = current + deltaSign * step;
-  if (next < 0) next = 0;
+  if (next < step) next = step; // minimum jeden krok; pro vyloučení slouží přepínač
   // round to step granularity for clean display
   next = Math.round(next / step) * step;
   if (step < 1) next = Math.round(next * 100) / 100;
-  state.view.overrides[ident] = next;
+  if (Math.abs(next - scaled) < 0.001) delete state.view.overrides[ident]; // zpět na plné množství
+  else state.view.overrides[ident] = next;
   render();
-};
-
-window.onIngSlide = (slider, ident, scaled) => {
-  if (!state.view) return;
-  if (!state.view.overrides) state.view.overrides = {};
-  let num = parseFloat(slider.value);
-  const step = parseFloat(slider.step) || 1;
-  // Magnetic snap to the full ("Vše") amount when close
-  if (Math.abs(num - scaled) < step / 2) { num = scaled; slider.value = String(num); }
-  const isFull = Math.abs(num - scaled) < 0.001;
-  if (isFull) delete state.view.overrides[ident];
-  else state.view.overrides[ident] = num;
-  // Update DOM directly (no re-render) for smooth dragging
-  const max = parseFloat(slider.max) || 1;
-  slider.style.setProperty('--pct', Math.min(100, (num / max) * 100) + '%');
-  const row = slider.closest('.ing-item');
-  if (!row) return;
-  const unit = slider.dataset.unit || '';
-  const valEl = row.querySelector('.slider-val');
-  if (valEl) {
-    valEl.className = 'slider-val ' + (isFull ? 'vse' : 'cast');
-    valEl.innerHTML = fmtNum(num) + '<span class="u">' + escapeHtml(unit) + '</span>';
-  }
-  const sub = row.querySelector('.amt-sub');
-  if (sub) sub.textContent = isFull ? 'Vše · ' + fmtNum(scaled) + ' ' + unit : 'Část · ' + fmtNum(num) + ' ' + unit;
-};
-
-window.onIngSlideEnd = () => {
-  render(); // commit: refresh header counter + Add-to-cart button label
 };
 
 // Toggle an ingredient ON/OFF (default OFF). OFF = won't be added to the cart.
@@ -1477,12 +1455,8 @@ function renderRecipeDetail(id) {
     const hasOverride = override !== undefined;
     const unit = ing.unit || '';
     const identAttr = escapeAttr(ident);
-    const sliderStep = stepForUnit(unit, scaled);
-    const sliderMax = Math.max(scaled * 2, scaled + sliderStep * 5) || 10;
     const currentVal = hasOverride ? override : scaled;
     const isFull = Math.abs(currentVal - scaled) < 0.001;
-    const pct = Math.min(100, (currentVal / sliderMax) * 100);
-    const vsePct = Math.min(100, (scaled / sliderMax) * 100);
     const subText = isSel
       ? (isFull ? 'Vše · ' + fmtNum(scaled) + ' ' + escapeHtml(unit) : 'Část · ' + fmtNum(currentVal) + ' ' + escapeHtml(unit))
       : 'Nepřidáno · ' + fmtNum(scaled) + ' ' + escapeHtml(unit);
@@ -1495,16 +1469,10 @@ function renderRecipeDetail(id) {
         <label class="switch"><input type="checkbox" ${isSel ? 'checked' : ''} onchange="toggleIng('${identAttr}')"><span class="slider-toggle"></span></label>
       </div>
       ${isSel ? `
-      <div class="ing-slider-row">
-        <span class="slider-val ${isFull ? 'vse' : 'cast'}">${fmtNum(currentVal)}<span class="u">${escapeHtml(unit)}</span></span>
-        <div class="slider-wrap">
-          <input type="range" min="${sliderStep}" max="${sliderMax}" step="${sliderStep}" value="${currentVal}"
-            data-unit="${escapeAttr(unit)}"
-            oninput="onIngSlide(this, '${identAttr}', ${scaled})"
-            onchange="onIngSlideEnd()"
-            style="--pct:${pct}%;--vse-pct:${vsePct}%"
-            aria-label="Množství">
-        </div>
+      <div class="ing-stepper">
+        <button class="step-btn" onclick="adjustIngOverride('${identAttr}',-1,'${escapeAttr(unit)}',${scaled})" aria-label="Méně">${ICON.minus}</button>
+        <span class="step-val ${isFull ? 'vse' : 'cast'}">${fmtNum(currentVal)}<span class="u">${escapeHtml(unit)}</span></span>
+        <button class="step-btn" onclick="adjustIngOverride('${identAttr}',1,'${escapeAttr(unit)}',${scaled})" aria-label="Více">${ICON.plus}</button>
       </div>` : ''}
     </div>`;
   }).join('');
