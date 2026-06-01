@@ -2568,7 +2568,8 @@ function recipeCartGroups() {
 function portionsWord(n) { return n >= 5 ? 'porcí' : 'porce'; }
 
 function cartRecipeGroupHtml(group) {
-  const collapsed = !!(state.collapsedCart && state.collapsedCart[group.recipeId]);
+  // Default closed: a group is collapsed unless the user has explicitly opened it (value === false)
+  const collapsed = !(state.collapsedCart && state.collapsedCart[group.recipeId] === false);
   const count = group.items.length;
   const checked = group.items.filter(i => i.checked).length;
   const color = userColor(group.addedBy);
@@ -2599,7 +2600,9 @@ function cartGroupItemHtml(recipeId, it) {
 
 window.toggleCartRecipe = (recipeId) => {
   if (!state.collapsedCart) state.collapsedCart = {};
-  state.collapsedCart[recipeId] = !state.collapsedCart[recipeId];
+  // Groups default to collapsed; store false to mark "opened by user", true to re-collapse
+  const currentlyCollapsed = state.collapsedCart[recipeId] !== false;
+  state.collapsedCart[recipeId] = !currentlyCollapsed;
   render();
 };
 
