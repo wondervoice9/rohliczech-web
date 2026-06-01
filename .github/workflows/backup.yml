@@ -1,0 +1,60 @@
+name: Backup Supabase data
+
+# Denní záloha obsahu appky (recepty, suroviny, košík) ze Supabase do repa.
+# Snapshot se ukládá do backups/latest.json; historie commitů = záloha ke každému dni.
+
+on:
+  schedule:
+    - cron: '0 2 * * *'   # každý den ve 02:00 UTC (~03:00–04:00 ČR)
+  workflow_dispatch:        # ruční spuštění tlačítkem v záložce Actions
+
+permissions:
+  contents: write
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch Supabase tables and write snapshot
+        env:
+          SUPABASE_URL: https://onrpnmhrwyeupltazime.supabase.co
+          SERVICE_ROLE: ${{ secrets.SUPABASE_SERVICE_ROLE }}
+        run: |
+          set -euo pipefail
+          mkdir -p backups
+          fetch() {
+            curl -sS -f \
+              -H "apikey: $SERVICE_ROLE" \
+              -H "Authorization: Bearer $SERVICE_ROLE" \
+              "$SUPABASE_URL/rest/v1/$1?select=*"
+          }
+          RECIPES=$(fetch recipes)
+          STAPLES=$(fetch staples)
+          CART=$(fetch cart)
+          jq -n \
+            --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --argjson recipes "$RECIPES" \
+            --argjson staples "$STAPLES" \
+            --argjson cart "$CART" \
+            '{exported_at: $ts, recipes: $recipes, staples: $staples, cart: $cart}' \
+            > backups/latest.json
+          echo "Recepty: $(jq 'length' <<<"$RECIPES"), suroviny: $(jq 'length' <<<"$STAPLES")"
+
+      - name: Commit snapshot if changed
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add backups/latest.json
+          # ignoruj řádek exported_at — commituj jen když se reálně změnila data
+          if git diff --cached --quiet -- backups/latest.json; then
+            echo "Žádná změna v datech, commit se nedělá."
+          elif [ "$(git diff --cached -- backups/latest.json | grep -E '^[+-]' | grep -v '^[+-][+-]' | grep -v 'exported_at' | wc -l)" -eq 0 ]; then
+            echo "Změnil se jen časový otisk, commit se nedělá."
+            git restore --staged backups/latest.json
+          else
+            git commit -m "backup: Supabase snapshot $(date -u +%Y-%m-%d)"
+            git push
+          fi
