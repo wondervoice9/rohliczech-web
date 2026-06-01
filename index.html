@@ -1830,6 +1830,7 @@ function parseImportPrepTime(data) {
 window.showJsonExample = () => {
   const example = {
     name: "Bramboračka", portions: 4, prep_time: 35, notes: "Doba přípravy 35 min. Klasická česká polévka — brambory a kořenovou zeleninu uvař, zjemně rozmačkej, zahusti jíškou.",
+    instructions: "1. Brambory a kořenovou zeleninu nakrájej na kostičky.\n2. Vař v osolené vodě cca 20 min doměkka.\n3. Část brambor rozmačkej, zahusti jíškou a provař.",
     ingredients: [
       { name: "brambory", amount: 500, unit: "g" },
       { name: "mrkev", amount: 100, unit: "g" },
@@ -1850,6 +1851,7 @@ window.importRecipeJson = async () => {
       name: data.name,
       portions: data.portions || 4,
       notes: data.notes || '',
+      instructions: data.instructions || '',
       prep_time: parseImportPrepTime(data),
       ingredients: data.ingredients.map(i => ({ id: uid(), name: i.name || '', amount: i.amount || '', unit: i.unit || '' })).filter(i => i.name)
     };
