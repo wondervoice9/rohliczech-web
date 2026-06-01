@@ -2033,6 +2033,90 @@ window.importStaplesFile = async (input) => {
   }
 };
 
+// === RESTORE FROM GITHUB BACKUP ===
+const BACKUP_RAW_URL = 'https://raw.githubusercontent.com/wondervoice9/rohliczech-web/main/backups/latest.json';
+const BACKUP_COMMITS_API = 'https://api.github.com/repos/wondervoice9/rohliczech-web/commits?path=backups/latest.json&per_page=1';
+
+// Datum poslední změny zálohy = datum posledního commitu latest.json.
+async function fetchBackupDate() {
+  try {
+    const r = await fetch(BACKUP_COMMITS_API, { cache: 'no-store' });
+    if (!r.ok) return null;
+    const j = await r.json();
+    return (j && j[0] && j[0].commit && j[0].commit.committer) ? j[0].commit.committer.date : null;
+  } catch { return null; }
+}
+
+function backupAgeText(iso) {
+  if (!iso) return 'neznámé datum';
+  const d = new Date(iso);
+  const days = Math.floor((Date.now() - d.getTime()) / 86400000);
+  const ago = days <= 0 ? 'dnes' : days === 1 ? 'včera' : `před ${days} ${days < 5 ? 'dny' : 'dny'}`;
+  return `${d.toLocaleDateString('cs-CZ')} (${ago})`;
+}
+
+window.restoreFromGithub = async () => {
+  toast('Načítám zálohu z GitHubu…');
+  let parsed, bdate;
+  try {
+    [bdate] = await Promise.all([fetchBackupDate()]);
+    const res = await fetch(BACKUP_RAW_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    parsed = await res.json();
+  } catch (e) {
+    toast('Nepodařilo se načíst zálohu z GitHubu');
+    console.error(e);
+    return;
+  }
+  const bRecipes = Array.isArray(parsed.recipes) ? parsed.recipes : [];
+  const bStaples = Array.isArray(parsed.staples) ? parsed.staples : [];
+  const existR = new Set(state.recipes.map(r => r.name.toLowerCase().trim()));
+  const existS = new Set(state.staples.map(s => s.name.toLowerCase().trim()));
+  const recToInsert = bRecipes
+    .filter(r => r && r.name && !existR.has(r.name.toLowerCase().trim()))
+    .map(r => ({
+      user_id: state.user.id, name: r.name, portions: r.portions || 4,
+      notes: r.notes || '', instructions: r.instructions || '', image_url: r.image_url || '',
+      prep_time: r.prep_time || null, is_vege: !!r.is_vege, is_sweet: !!r.is_sweet, is_breakfast: !!r.is_breakfast,
+      ingredients: (r.ingredients || []).map(i => ({ id: i.id || uid(), name: i.name, amount: i.amount, unit: i.unit }))
+    }));
+  const stapToInsert = bStaples
+    .filter(s => s && s.name && !existS.has(s.name.toLowerCase().trim()))
+    .map(s => ({
+      user_id: state.user.id, name: s.name, category: s.category || 'Ostatní',
+      default_qty: s.default_qty ?? s.defaultQty ?? 1, unit: s.unit || 'ks'
+    }));
+  if (!recToInsert.length && !stapToInsert.length) {
+    alert(`Záloha z ${backupAgeText(bdate)}.\n\nVšechno ze zálohy už v appce máš — není co obnovovat.`);
+    return;
+  }
+  if (!confirm(`Záloha z ${backupAgeText(bdate)}.\n\nObnovit chybějící: ${recToInsert.length} receptů, ${stapToInsert.length} položek?\nExistující (podle názvu) se nepřepíšou.`)) return;
+  try {
+    if (recToInsert.length) {
+      const { data, error } = await supabase.from('recipes').insert(recToInsert).select();
+      if (error) throw error;
+      (data || []).forEach(r => state.recipes.push({
+        id: r.id, name: r.name, portions: r.portions, notes: r.notes || '',
+        instructions: r.instructions || '', image_url: r.image_url || '',
+        prep_time: r.prep_time || null, is_vege: !!r.is_vege, is_sweet: !!r.is_sweet, is_breakfast: !!r.is_breakfast,
+        ingredients: r.ingredients || []
+      }));
+    }
+    if (stapToInsert.length) {
+      const { data, error } = await supabase.from('staples').insert(stapToInsert).select();
+      if (error) throw error;
+      (data || []).forEach(s => state.staples.push({
+        id: s.id, name: s.name, category: s.category, defaultQty: parseFloat(s.default_qty), unit: s.unit
+      }));
+    }
+    toast(`Obnoveno: ${recToInsert.length} receptů, ${stapToInsert.length} položek`);
+    render();
+  } catch (e) {
+    toast('Chyba obnovy: ' + (e.message || e));
+    console.error(e);
+  }
+};
+
 // === STAPLES LIST ===
 function renderStaplesList() {
   setHeader('Ostatní položky', {
@@ -2390,6 +2474,12 @@ function renderSettings() {
         📥 Importovat položky (z JSON)
         <input type="file" accept="application/json,.json" style="display:none" onchange="importStaplesFile(this)">
       </label>
+    </div>
+
+    <div class="section-title">Záloha (GitHub)</div>
+    <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:8px;">
+      <button class="btn secondary" onclick="restoreFromGithub()">☁️ Obnovit z GitHub zálohy</button>
+      <div class="sub" style="font-size:12px;color:var(--text-muted);padding:0 2px;">Doplní recepty a položky, které v appce chybí (podle názvu). Datum zálohy se ukáže před potvrzením importu.</div>
     </div>
 
     <div class="section-title">Vše</div>
