@@ -93,9 +93,12 @@
   .nutri-card .l{font-size:10px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.3px;margin-top:2px}
   .nutri-card.kcal .v{color:var(--accent)}
   .ing-list{padding:0 12px}
-  .ing-item{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg-card);border-radius:12px;margin-bottom:5px;border:0.5px solid var(--border-soft);transition:opacity 0.15s}
-  .ing-item.unselected{opacity:0.5}
-  .ing-item.unselected .name{text-decoration:line-through;color:var(--text-secondary)}
+  .ing-item{display:flex;flex-direction:column;gap:8px;padding:10px 14px;background:var(--bg-card);border-radius:12px;margin-bottom:5px;border:0.5px solid var(--border-soft);transition:opacity 0.15s}
+  .ing-item.off{opacity:0.55}
+  .ing-item.off .name{color:var(--text-secondary)}
+  .ing-main{display:flex;align-items:center;gap:10px}
+  .ing-slider-row{display:flex;align-items:center;gap:12px}
+  .ing-slider-row .slider-wrap{flex:1}
   .ing-item .info-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
   .ing-item .name{font-size:14px;font-weight:500;color:var(--text);min-width:0}
   .ing-item .amt{font-size:12px;color:var(--text-secondary);font-variant-numeric:tabular-nums;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
@@ -1314,7 +1317,9 @@ window.openRecipe = (id) => {
   const existing = state.cart.recipes.find(r => r.id === id);
   const excluded = new Set(existing && existing.excluded ? existing.excluded : []);
   const selected = {};
-  recipe.ingredients.forEach(ing => { selected[ingIdent(ing)] = !excluded.has(ingIdent(ing)); });
+  // Default OFF: fresh open adds nothing; user toggles ingredients ON. An existing
+  // cart entry restores its previous selection (everything not excluded = ON).
+  recipe.ingredients.forEach(ing => { selected[ingIdent(ing)] = existing ? !excluded.has(ingIdent(ing)) : false; });
   const overrides = existing && existing.overrides ? { ...existing.overrides } : {};
   state.view = { type: 'recipe', id, portions: existing ? existing.portions : recipe.portions, selected, overrides };
   render();
@@ -1369,60 +1374,39 @@ window.adjustIngOverride = (ident, deltaSign, unit, scaled) => {
 
 window.onIngSlide = (slider, ident, scaled) => {
   if (!state.view) return;
-  if (!state.view.selected) state.view.selected = {};
   if (!state.view.overrides) state.view.overrides = {};
   let num = parseFloat(slider.value);
-  // Magnetic snap to scaled when very close
   const step = parseFloat(slider.step) || 1;
-  if (Math.abs(num - scaled) < step / 2) {
-    num = scaled;
-    slider.value = String(num);
-  }
-  // Update state (no re-render — DOM updated directly for smooth dragging)
-  if (num <= 0) {
-    state.view.selected[ident] = false;
-    delete state.view.overrides[ident];
-  } else if (Math.abs(num - scaled) < 0.001) {
-    state.view.selected[ident] = true;
-    delete state.view.overrides[ident];
-  } else {
-    state.view.selected[ident] = true;
-    state.view.overrides[ident] = num;
-  }
+  // Magnetic snap to the full ("Vše") amount when close
+  if (Math.abs(num - scaled) < step / 2) { num = scaled; slider.value = String(num); }
+  const isFull = Math.abs(num - scaled) < 0.001;
+  if (isFull) delete state.view.overrides[ident];
+  else state.view.overrides[ident] = num;
+  // Update DOM directly (no re-render) for smooth dragging
   const max = parseFloat(slider.max) || 1;
   slider.style.setProperty('--pct', Math.min(100, (num / max) * 100) + '%');
   const row = slider.closest('.ing-item');
   if (!row) return;
-  const state3 = num <= 0 ? 'nic' : (Math.abs(num - scaled) < 0.001 ? 'vse' : 'cast');
-  row.classList.toggle('unselected', state3 === 'nic');
   const unit = slider.dataset.unit || '';
   const valEl = row.querySelector('.slider-val');
   if (valEl) {
-    valEl.className = 'slider-val ' + state3;
-    valEl.innerHTML = state3 === 'nic'
-      ? 'Nic'
-      : fmtNum(num) + '<span class="u">' + escapeHtml(unit) + '</span>';
-  }
-  const badge = row.querySelector('.slider-badge');
-  if (badge) {
-    badge.className = 'slider-badge ' + state3;
-    badge.textContent = state3 === 'nic' ? 'Nic' : (state3 === 'vse' ? 'Vše' : 'Část');
+    valEl.className = 'slider-val ' + (isFull ? 'vse' : 'cast');
+    valEl.innerHTML = fmtNum(num) + '<span class="u">' + escapeHtml(unit) + '</span>';
   }
   const sub = row.querySelector('.amt-sub');
-  if (sub) {
-    sub.textContent = state3 === 'vse' ? 'Vše · ' + fmtNum(scaled) + ' ' + unit
-      : state3 === 'cast' ? 'Část · z ' + fmtNum(scaled) + ' ' + unit
-      : 'Vyloučeno';
-  }
+  if (sub) sub.textContent = isFull ? 'Vše · ' + fmtNum(scaled) + ' ' + unit : 'Část · ' + fmtNum(num) + ' ' + unit;
 };
 
 window.onIngSlideEnd = () => {
   render(); // commit: refresh header counter + Add-to-cart button label
 };
 
-window.toggleIngSel = (ident) => {
-  if (!state.view || !state.view.selected) return;
+// Toggle an ingredient ON/OFF (default OFF). OFF = won't be added to the cart.
+window.toggleIng = (ident) => {
+  if (!state.view) return;
+  if (!state.view.selected) state.view.selected = {};
   state.view.selected[ident] = !state.view.selected[ident];
+  if (!state.view.selected[ident] && state.view.overrides) delete state.view.overrides[ident];
   render();
 };
 
@@ -1480,7 +1464,7 @@ function renderRecipeDetail(id) {
   if (!state.view.overrides) state.view.overrides = {};
   recipe.ingredients.forEach(ing => {
     const ident = ingIdent(ing);
-    if (!(ident in state.view.selected)) state.view.selected[ident] = true;
+    if (!(ident in state.view.selected)) state.view.selected[ident] = false;
   });
   const selectedCount = recipe.ingredients.filter(ing => state.view.selected[ingIdent(ing)]).length;
   const totalCount = recipe.ingredients.length;
@@ -1492,36 +1476,36 @@ function renderRecipeDetail(id) {
     const override = state.view.overrides[ident];
     const hasOverride = override !== undefined;
     const unit = ing.unit || '';
-    const currentVal = !isSel ? 0 : (hasOverride ? override : scaled);
-    const state3 = currentVal <= 0 ? 'nic' : (Math.abs(currentVal - scaled) < 0.001 ? 'vse' : 'cast');
     const identAttr = escapeAttr(ident);
-    const sliderMax = Math.max(scaled * 2, scaled + stepForUnit(unit, scaled) * 5) || 10;
     const sliderStep = stepForUnit(unit, scaled);
+    const sliderMax = Math.max(scaled * 2, scaled + sliderStep * 5) || 10;
+    const currentVal = hasOverride ? override : scaled;
+    const isFull = Math.abs(currentVal - scaled) < 0.001;
     const pct = Math.min(100, (currentVal / sliderMax) * 100);
     const vsePct = Math.min(100, (scaled / sliderMax) * 100);
-    const badgeLabel = state3 === 'nic' ? 'Nic' : (state3 === 'vse' ? 'Vše' : 'Část');
-    const valueHtml = state3 === 'nic'
-      ? `<span class="slider-val nic">Nic</span>`
-      : `<span class="slider-val ${state3}">${fmtNum(currentVal)}<span class="u">${escapeHtml(unit)}</span></span>`;
-    return `<div class="ing-item ${state3 === 'nic' ? 'unselected' : ''}">
-      <div class="info-col">
-        <div class="name">${escapeHtml(ing.name)}</div>
-        <div class="amt-sub">${state3 === 'vse' ? 'Vše · ' + fmtNum(scaled) + ' ' + escapeHtml(unit) : (state3 === 'cast' ? 'Část · z ' + fmtNum(scaled) + ' ' + escapeHtml(unit) : 'Vyloučeno')}</div>
-      </div>
-      <div class="right-col">
-        <div class="slider-head">
-          ${valueHtml}
-          <span class="slider-badge ${state3}">${badgeLabel}</span>
+    const subText = isSel
+      ? (isFull ? 'Vše · ' + fmtNum(scaled) + ' ' + escapeHtml(unit) : 'Část · ' + fmtNum(currentVal) + ' ' + escapeHtml(unit))
+      : 'Nepřidáno · ' + fmtNum(scaled) + ' ' + escapeHtml(unit);
+    return `<div class="ing-item ${isSel ? '' : 'off'}">
+      <div class="ing-main">
+        <div class="info-col">
+          <div class="name">${escapeHtml(ing.name)}</div>
+          <div class="amt-sub">${subText}</div>
         </div>
+        <label class="switch"><input type="checkbox" ${isSel ? 'checked' : ''} onchange="toggleIng('${identAttr}')"><span class="slider-toggle"></span></label>
+      </div>
+      ${isSel ? `
+      <div class="ing-slider-row">
+        <span class="slider-val ${isFull ? 'vse' : 'cast'}">${fmtNum(currentVal)}<span class="u">${escapeHtml(unit)}</span></span>
         <div class="slider-wrap">
-          <input type="range" min="0" max="${sliderMax}" step="${sliderStep}" value="${currentVal}"
+          <input type="range" min="${sliderStep}" max="${sliderMax}" step="${sliderStep}" value="${currentVal}"
             data-unit="${escapeAttr(unit)}"
             oninput="onIngSlide(this, '${identAttr}', ${scaled})"
             onchange="onIngSlideEnd()"
             style="--pct:${pct}%;--vse-pct:${vsePct}%"
             aria-label="Množství">
         </div>
-      </div>
+      </div>` : ''}
     </div>`;
   }).join('');
 

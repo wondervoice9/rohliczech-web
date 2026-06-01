@@ -1,5 +1,5 @@
 // Rohliczech service worker — minimal app shell cache for PWA install
-const CACHE = 'rohliczech-v12';
+const CACHE = 'rohliczech-v13';
 const SHELL = ['./', './index.html', './manifest.json', './icon.svg', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (event) => {
