@@ -204,6 +204,9 @@
   .search-bar input:focus{outline:none;background:var(--bg-search-focus)}
   .nutri-source{font-size:11px;color:var(--text-muted);padding:0 12px 12px;text-align:center;font-style:italic}
   .instructions-box{margin:0 12px 16px;padding:14px 16px;background:var(--bg-card);border:0.5px solid var(--border-soft);border-left:3px solid var(--accent);border-radius:10px;color:var(--text);font-size:14px;line-height:1.55;white-space:pre-wrap;word-break:break-word}
+  .recipe-source{padding:0 16px 12px;font-size:14px;color:var(--text-secondary)}
+  .recipe-source a{color:var(--accent);text-decoration:none;word-break:break-all}
+  .recipe-source a:active{opacity:0.6}
   .recipe-photo{margin:0 12px 12px;border-radius:14px;overflow:hidden;background:var(--bg-card);border:0.5px solid var(--border-card);box-shadow:0 2px 10px rgba(0,0,0,0.08)}
   .recipe-photo img{display:block;width:100%;height:auto;object-fit:contain}
   .photo-edit{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
@@ -838,6 +841,8 @@ async function loadAll() {
   state.recipes = (recipesRes.data || []).map(r => ({
     id: r.id, name: r.name, portions: r.portions, notes: r.notes || '',
     instructions: r.instructions || '',
+    source_type: r.source_type || '',
+    source_url: r.source_url || '',
     image_url: r.image_url || '',
     prep_time: r.prep_time || null,
     is_vege: !!r.is_vege,
@@ -906,7 +911,7 @@ function setupRealtime() {
 async function reloadRecipes() {
   const { data } = await supabase.from('recipes').select('*').order('created_at', { ascending: true });
   if (data) {
-    state.recipes = data.map(r => ({ id: r.id, name: r.name, portions: r.portions, notes: r.notes || '', instructions: r.instructions || '', image_url: r.image_url || '', prep_time: r.prep_time || null, is_vege: !!r.is_vege, is_sweet: !!r.is_sweet, is_breakfast: !!r.is_breakfast, ingredients: r.ingredients || [] }));
+    state.recipes = data.map(r => ({ id: r.id, name: r.name, portions: r.portions, notes: r.notes || '', instructions: r.instructions || '', source_type: r.source_type || '', source_url: r.source_url || '', image_url: r.image_url || '', prep_time: r.prep_time || null, is_vege: !!r.is_vege, is_sweet: !!r.is_sweet, is_breakfast: !!r.is_breakfast, ingredients: r.ingredients || [] }));
     render();
   }
 }
@@ -942,7 +947,7 @@ async function seedSampleData() {
       supabase.from('staples').insert(staplesToInsert).select()
     ]);
     if (r1.data) state.recipes = r1.data.map(r => ({
-      id: r.id, name: r.name, portions: r.portions, notes: r.notes || '', instructions: r.instructions || '', image_url: r.image_url || '', prep_time: r.prep_time || null, is_vege: !!r.is_vege, is_sweet: !!r.is_sweet, is_breakfast: !!r.is_breakfast, ingredients: r.ingredients || []
+      id: r.id, name: r.name, portions: r.portions, notes: r.notes || '', instructions: r.instructions || '', source_type: r.source_type || '', source_url: r.source_url || '', image_url: r.image_url || '', prep_time: r.prep_time || null, is_vege: !!r.is_vege, is_sweet: !!r.is_sweet, is_breakfast: !!r.is_breakfast, ingredients: r.ingredients || []
     }));
     if (r2.data) state.staples = r2.data.map(s => ({
       id: s.id, name: s.name, category: s.category, defaultQty: parseFloat(s.default_qty), unit: s.unit
@@ -1080,6 +1085,8 @@ async function saveRecipe(recipe) {
     portions: recipe.portions,
     notes: recipe.notes || '',
     instructions: recipe.instructions || '',
+    source_type: recipe.source_type || 'manual',
+    source_url: recipe.source_url || '',
     image_url: recipe.image_url || '',
     prep_time: recipe.prep_time || null,
     is_vege: !!recipe.is_vege,
@@ -1090,11 +1097,11 @@ async function saveRecipe(recipe) {
   if (recipe._isNew) {
     const { data, error } = await supabase.from('recipes').insert(payload).select().single();
     if (error) { console.error(error); toast('Chyba při ukládání'); return null; }
-    return { id: data.id, name: data.name, portions: data.portions, notes: data.notes || '', instructions: data.instructions || '', image_url: data.image_url || '', prep_time: data.prep_time || null, is_vege: !!data.is_vege, is_sweet: !!data.is_sweet, is_breakfast: !!data.is_breakfast, ingredients: data.ingredients || [] };
+    return { id: data.id, name: data.name, portions: data.portions, notes: data.notes || '', instructions: data.instructions || '', source_type: data.source_type || '', source_url: data.source_url || '', image_url: data.image_url || '', prep_time: data.prep_time || null, is_vege: !!data.is_vege, is_sweet: !!data.is_sweet, is_breakfast: !!data.is_breakfast, ingredients: data.ingredients || [] };
   } else {
     const { data, error } = await supabase.from('recipes').update(payload).eq('id', recipe.id).select().single();
     if (error) { console.error(error); toast('Chyba při ukládání'); return null; }
-    return { id: data.id, name: data.name, portions: data.portions, notes: data.notes || '', instructions: data.instructions || '', image_url: data.image_url || '', prep_time: data.prep_time || null, is_vege: !!data.is_vege, is_sweet: !!data.is_sweet, is_breakfast: !!data.is_breakfast, ingredients: data.ingredients || [] };
+    return { id: data.id, name: data.name, portions: data.portions, notes: data.notes || '', instructions: data.instructions || '', source_type: data.source_type || '', source_url: data.source_url || '', image_url: data.image_url || '', prep_time: data.prep_time || null, is_vege: !!data.is_vege, is_sweet: !!data.is_sweet, is_breakfast: !!data.is_breakfast, ingredients: data.ingredients || [] };
   }
 }
 
@@ -1409,13 +1416,25 @@ window.openRecipeEdit = (id) => {
   // Init editingRecipe once per edit session; renderRecipeEdit just reads it.
   const isNew = !id;
   state.editingRecipe = isNew
-    ? { id: 'tmp-' + uid(), _isNew: true, name: '', portions: 4, notes: '', instructions: '', image_url: '', prep_time: null, is_vege: false, is_sweet: false, is_breakfast: false, ingredients: [{ id: uid(), name: '', amount: '', unit: 'g' }] }
+    ? { id: 'tmp-' + uid(), _isNew: true, name: '', portions: 4, notes: '', instructions: '', source_type: 'manual', source_url: '', image_url: '', prep_time: null, is_vege: false, is_sweet: false, is_breakfast: false, ingredients: [{ id: uid(), name: '', amount: '', unit: 'g' }] }
     : JSON.parse(JSON.stringify(state.recipes.find(r => r.id === id)));
   state.view = { type: 'recipe-edit', id };
   render();
 };
 
 // === RECIPE DETAIL ===
+function sourceRowHtml(recipe) {
+  const t = recipe.source_type || '';
+  if (t === 'web' && recipe.source_url) {
+    let label = recipe.source_url;
+    try { label = new URL(recipe.source_url).hostname.replace(/^www\./, ''); } catch (e) {}
+    return `<div class="section-title">Zdroj</div><div class="recipe-source"><a href="${escapeAttr(recipe.source_url)}" target="_blank" rel="noopener noreferrer">🌐 ${escapeHtml(label)}</a></div>`;
+  }
+  if (t === 'photo') return `<div class="section-title">Zdroj</div><div class="recipe-source">📷 Z fotky</div>`;
+  if (t === 'manual') return `<div class="section-title">Zdroj</div><div class="recipe-source">✍️ Ručně vložené</div>`;
+  return '';
+}
+
 function renderRecipeDetail(id) {
   const recipe = state.recipes.find(r => r.id === id);
   if (!recipe) { state.view = null; render(); return; }
@@ -1516,6 +1535,7 @@ function renderRecipeDetail(id) {
     <div class="ing-list">${ingHtml}</div>
     ${recipe.instructions ? `<div class="section-title">Návod na přípravu</div><div class="instructions-box">${escapeHtml(recipe.instructions)}</div>` : ''}
     ${recipe.notes ? `<div class="section-title">Poznámky</div><div style="padding:0 16px 12px;color:var(--text-secondary);font-size:14px;white-space:pre-wrap;">${escapeHtml(recipe.notes)}</div>` : ''}
+    ${sourceRowHtml(recipe)}
     <div style="padding:12px;">
       <button class="btn" ${selectedCount === 0 ? 'disabled' : ''} onclick="addRecipeToCart('${id}')">
         ${selectedCount === totalCount
@@ -1565,7 +1585,7 @@ function renderRecipeEdit(id) {
   // Use existing editingRecipe (init in openRecipeEdit) — DO NOT recreate, would wipe in-progress edits like photo upload
   if (!state.editingRecipe) {
     state.editingRecipe = isNew
-      ? { id: 'tmp-' + uid(), _isNew: true, name: '', portions: 4, notes: '', instructions: '', image_url: '', prep_time: null, is_vege: false, is_sweet: false, is_breakfast: false, ingredients: [{ id: uid(), name: '', amount: '', unit: 'g' }] }
+      ? { id: 'tmp-' + uid(), _isNew: true, name: '', portions: 4, notes: '', instructions: '', source_type: 'manual', source_url: '', image_url: '', prep_time: null, is_vege: false, is_sweet: false, is_breakfast: false, ingredients: [{ id: uid(), name: '', amount: '', unit: 'g' }] }
       : JSON.parse(JSON.stringify(state.recipes.find(r => r.id === id)));
   }
   const recipe = state.editingRecipe;
@@ -1577,6 +1597,7 @@ function renderRecipeEdit(id) {
     }
   });
 
+  const st = recipe.source_type || 'manual';
   const main = document.getElementById('main');
   main.innerHTML = `
     <div class="form-group"><label>Název jídla</label><input type="text" id="rec-name" value="${escapeHtml(recipe.name)}" placeholder="Např. Špagety bolognese"></div>
@@ -1614,6 +1635,15 @@ function renderRecipeEdit(id) {
     </div>
     <div class="form-group"><label>Návod na přípravu</label><textarea id="rec-instructions" placeholder="Krok za krokem, volitelné">${escapeHtml(recipe.instructions || '')}</textarea></div>
     <div class="form-group"><label>Poznámky (tipy, zdroj)</label><textarea id="rec-notes" placeholder="Volitelné">${escapeHtml(recipe.notes || '')}</textarea></div>
+    <div class="form-group">
+      <label>Zdroj receptu</label>
+      <select id="rec-source-type" onchange="onSourceTypeChange()">
+        <option value="manual" ${st === 'manual' ? 'selected' : ''}>✍️ Ručně vložené</option>
+        <option value="web" ${st === 'web' ? 'selected' : ''}>🌐 Web (odkaz)</option>
+        <option value="photo" ${st === 'photo' ? 'selected' : ''}>📷 Foto</option>
+      </select>
+      <input type="url" id="rec-source-url" placeholder="https://…" value="${escapeAttr(recipe.source_url || '')}" style="margin-top:8px;${st === 'web' ? '' : 'display:none;'}">
+    </div>
     <div style="padding:12px;display:flex;flex-direction:column;gap:8px;">
       <button class="btn" onclick="saveRecipeEdit('${recipe.id}', ${isNew})">Uložit recept</button>
       ${!isNew ? `<button class="btn ghost" onclick="cancelRecipeEdit('${id}')">Zrušit</button>` : ''}
@@ -1659,7 +1689,17 @@ function captureRecipeEditForm() {
   if (get('rec-breakfast')) r.is_breakfast = get('rec-breakfast').checked;
   if (get('rec-instructions')) r.instructions = get('rec-instructions').value;
   if (get('rec-notes')) r.notes = get('rec-notes').value;
+  if (get('rec-source-type')) r.source_type = get('rec-source-type').value;
+  if (get('rec-source-url')) r.source_url = r.source_type === 'web' ? get('rec-source-url').value.trim() : '';
 }
+
+window.onSourceTypeChange = () => {
+  const sel = document.getElementById('rec-source-type');
+  const url = document.getElementById('rec-source-url');
+  if (!sel || !url) return;
+  if (state.editingRecipe) state.editingRecipe.source_type = sel.value;
+  url.style.display = sel.value === 'web' ? '' : 'none';
+};
 
 async function resizeImageToBlob(file, maxDim = 1400) {
   return new Promise((resolve, reject) => {
@@ -1775,6 +1815,8 @@ window.saveRecipeEdit = async (id, isNew) => {
   rec.portions = Math.max(1, parseInt(document.getElementById('rec-portions').value) || 4);
   rec.notes = document.getElementById('rec-notes').value;
   rec.instructions = document.getElementById('rec-instructions').value;
+  rec.source_type = document.getElementById('rec-source-type').value;
+  rec.source_url = rec.source_type === 'web' ? document.getElementById('rec-source-url').value.trim() : '';
   const pt = parseInt(document.getElementById('rec-preptime').value);
   rec.prep_time = (pt && pt > 0) ? pt : null;
   rec.is_vege = document.getElementById('rec-vege').checked;
@@ -1831,6 +1873,8 @@ window.showJsonExample = () => {
   const example = {
     name: "Bramboračka", portions: 4, prep_time: 35, notes: "Doba přípravy 35 min. Klasická česká polévka — brambory a kořenovou zeleninu uvař, zjemně rozmačkej, zahusti jíškou.",
     instructions: "1. Brambory a kořenovou zeleninu nakrájej na kostičky.\n2. Vař v osolené vodě cca 20 min doměkka.\n3. Část brambor rozmačkej, zahusti jíškou a provař.",
+    source_type: "web",
+    source_url: "https://example.cz/bramboracka",
     ingredients: [
       { name: "brambory", amount: 500, unit: "g" },
       { name: "mrkev", amount: 100, unit: "g" },
@@ -1852,6 +1896,8 @@ window.importRecipeJson = async () => {
       portions: data.portions || 4,
       notes: data.notes || '',
       instructions: data.instructions || '',
+      source_type: data.source_type || (data.source_url ? 'web' : ''),
+      source_url: data.source_url || '',
       prep_time: parseImportPrepTime(data),
       ingredients: data.ingredients.map(i => ({ id: uid(), name: i.name || '', amount: i.amount || '', unit: i.unit || '' })).filter(i => i.name)
     };
@@ -1938,6 +1984,8 @@ window.importRecipesFile = async (input) => {
         portions: r.portions || 4,
         notes: r.notes || '',
         instructions: r.instructions || '',
+        source_type: r.source_type || '',
+        source_url: r.source_url || '',
         image_url: r.image_url || '',
         prep_time: r.prep_time || null,
         is_vege: !!r.is_vege,
@@ -1952,7 +2000,7 @@ window.importRecipesFile = async (input) => {
     if (error) throw error;
     (data || []).forEach(r => state.recipes.push({
       id: r.id, name: r.name, portions: r.portions, notes: r.notes || '',
-      instructions: r.instructions || '', image_url: r.image_url || '',
+      instructions: r.instructions || '', source_type: r.source_type || '', source_url: r.source_url || '', image_url: r.image_url || '',
       prep_time: r.prep_time || null, is_vege: !!r.is_vege, is_sweet: !!r.is_sweet, is_breakfast: !!r.is_breakfast,
       ingredients: r.ingredients || []
     }));
@@ -2046,7 +2094,7 @@ window.restoreFromGithub = async () => {
     .filter(r => r && r.name && !existR.has(r.name.toLowerCase().trim()))
     .map(r => ({
       user_id: state.user.id, name: r.name, portions: r.portions || 4,
-      notes: r.notes || '', instructions: r.instructions || '', image_url: r.image_url || '',
+      notes: r.notes || '', instructions: r.instructions || '', source_type: r.source_type || '', source_url: r.source_url || '', image_url: r.image_url || '',
       prep_time: r.prep_time || null, is_vege: !!r.is_vege, is_sweet: !!r.is_sweet, is_breakfast: !!r.is_breakfast,
       ingredients: (r.ingredients || []).map(i => ({ id: i.id || uid(), name: i.name, amount: i.amount, unit: i.unit }))
     }));
@@ -2067,7 +2115,7 @@ window.restoreFromGithub = async () => {
       if (error) throw error;
       (data || []).forEach(r => state.recipes.push({
         id: r.id, name: r.name, portions: r.portions, notes: r.notes || '',
-        instructions: r.instructions || '', image_url: r.image_url || '',
+        instructions: r.instructions || '', source_type: r.source_type || '', source_url: r.source_url || '', image_url: r.image_url || '',
         prep_time: r.prep_time || null, is_vege: !!r.is_vege, is_sweet: !!r.is_sweet, is_breakfast: !!r.is_breakfast,
         ingredients: r.ingredients || []
       }));
