@@ -1,242 +1,440 @@
 {
   "recipes": [
     {
-      "id": "1c11a60a-c7b0-40cf-adf5-1ee438336477",
+      "id": "6957652b-deb9-466a-a27b-b1a6d52e6d80",
       "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
-      "name": "Indické kuře z jedné pánve",
-      "portions": 4,
-      "notes": "Doba přípravy 45 min. Troubu předehřej na 210 °C. Cibuli nakrájej na tenké plátky, zázvor nastrouhej, česnek prolisuj a kuřecí maso nakrájej na menší kousky. Do hlubokého pekáče vlož maso, osol a přidej garam masala, kurkumu, kmín, papriku, skořici, pepř, kokosové mléko, rajčatový protlak, zázvor, česnek a cibuli. Vše důkladně promíchej a nech 5–10 min odležet. Peč v troubě cca 30–40 min, dokud je maso propečené. Podávej s rýží nebo naanem, posyp sezamem a koriandrem.",
+      "name": "Ovocná bublanina",
+      "portions": 12,
+      "notes": "Doba přípravy 40 min. Z bílků vyšlehej sníh. Žloutky utři s cukrem, olejem a mlékem, přidej citronovou kůru, mouku, kypřicí prášek a vanilku. Zlehka vmíchej sníh, nalij do formy, posyp ovocem a kokosem a peč 30 min při 180 °C.",
       "ingredients": [
         {
-          "id": "en7c38un",
-          "name": "kuřecí prsa",
+          "id": "gxncwy0u",
+          "name": "vejce (velikost L)",
+          "unit": "ks",
+          "amount": 4
+        },
+        {
+          "id": "8dtz0ljj",
+          "name": "moučkový cukr",
           "unit": "g",
-          "amount": 600
+          "amount": 200
         },
         {
-          "id": "lgzhm2js",
-          "name": "kokosové mléko",
-          "unit": "ml",
-          "amount": 400
+          "id": "qhqzblsj",
+          "name": "rostlinný olej",
+          "unit": "lžic",
+          "amount": 8
         },
         {
-          "id": "qtru73ks",
-          "name": "rajčatový protlak",
-          "unit": "g",
-          "amount": 100
+          "id": "t23a5pdo",
+          "name": "mléko",
+          "unit": "lžic",
+          "amount": 8
         },
         {
-          "id": "mpf4jr4v",
-          "name": "nastrouhaný čerstvý zázvor",
-          "unit": "lžíce",
-          "amount": 2
-        },
-        {
-          "id": "b6p0c9ke",
-          "name": "česnek",
-          "unit": "stroužky",
-          "amount": 6
-        },
-        {
-          "id": "czqbc2gt",
-          "name": "cibule",
+          "id": "hsqie4cu",
+          "name": "citron",
           "unit": "ks",
           "amount": 1
         },
         {
-          "id": "ujac8rsg",
-          "name": "garam masala",
-          "unit": "lžíce",
-          "amount": 2
+          "id": "2hs9kfs7",
+          "name": "polohrubá mouka",
+          "unit": "g",
+          "amount": 250
         },
         {
-          "id": "gvzki3ir",
-          "name": "kurkuma",
-          "unit": "lžička",
+          "id": "8921olh7",
+          "name": "kypřicí prášek",
+          "unit": "lžičky",
+          "amount": 1.5
+        },
+        {
+          "id": "oa366obu",
+          "name": "vanilkový extrakt",
+          "unit": "lžíce",
           "amount": 1
         },
         {
-          "id": "rc6ylfz4",
+          "id": "8771fhou",
+          "name": "sůl",
+          "unit": "lžičky",
+          "amount": 0.25
+        },
+        {
+          "id": "qhvpjq41",
+          "name": "čerstvé ovoce",
+          "unit": "g",
+          "amount": 250
+        },
+        {
+          "id": "tjsy23hd",
+          "name": "strouhaný kokos",
+          "unit": "g",
+          "amount": 50
+        },
+        {
+          "id": "noz6dizc",
+          "name": "moučkový cukr na dokončení",
+          "unit": "",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:10.925603+00:00",
+      "instructions": "Troubu si předehřejte na 180 °C na horní/dolní ohřev. Dno dortové formy vyložte pečicím papírem a boky formy vymažte máslem a vysypte moukou.\nVejce si rozdělte na bílky a žloutky. Z bílků vyšlehejte tuhý sníh a odložte stranou. Žloutky dejte do velké mísy společně s cukrem, olejem a mlékem a vyšlehejte do světlé pěny.\nDo žloutkové směsi přidejte kůru z celého citronu, mouku, kypřicí prášek, vanilkový extrakt a sůl. Opět lehce prošlehejte, ale jen tak, aby se ingredience hezky spojily.\nNakonec do těsta pomocí kuchyňské stěrky opatrně zapracujte vyšlehaný sníh z bílků. Hotové těsto nalijte do připravené dortové formy.\nNa těsto rovnoměrně rozprostřete ovoce a posypte po celé ploše strouhaným kokosem. Pečte v předehřáté troubě cca 30 minut dozlatova.\nHotovou bublaninu nechte zcela vychladnout a před podáváním ji posypte moučkovým cukrem.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337343433-m8z4fieq.jpg",
+      "prep_time": 40,
+      "is_vege": false,
+      "is_sweet": true,
+      "is_breakfast": true,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "55e2614a-d12f-4cc1-8286-82f0d2b68a44",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Maso na mrkvi",
+      "portions": 4,
+      "notes": "Doba přípravy 60 min. Maso nakrájej na kostky, osol a opepři. Orestuj cibuli dozlatova, přidej maso a nech zatáhnout. Zapraš moukou, zalij vývarem a duste 15 min. Přidej mrkev, kmín a muškát a duste dalších 10 min. Dochuť citronem a máslem, podávej s bramborami.",
+      "ingredients": [
+        {
+          "id": "8ug1w01a",
+          "name": "olej",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "pakg7a0k",
+          "name": "žlutá cibule",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "ea4aa8cf",
+          "name": "mrkev",
+          "unit": "g",
+          "amount": 650
+        },
+        {
+          "id": "ins3min4",
+          "name": "krůtí prsa",
+          "unit": "g",
+          "amount": 650
+        },
+        {
+          "id": "bwiyj4qz",
+          "name": "hladká mouka",
+          "unit": "lžíce",
+          "amount": 1.5
+        },
+        {
+          "id": "o8vilqx9",
+          "name": "kuřecí vývar",
+          "unit": "ml",
+          "amount": 550
+        },
+        {
+          "id": "jy4jzwnv",
           "name": "mletý kmín",
           "unit": "lžička",
           "amount": 1
         },
         {
-          "id": "5dvj0sbr",
-          "name": "pálivá paprika",
-          "unit": "lžička",
-          "amount": 1
-        },
-        {
-          "id": "jutg2tsv",
-          "name": "skořice",
-          "unit": "lžička",
+          "id": "2zcgya80",
+          "name": "muškátový oříšek",
+          "unit": "lžičky",
           "amount": 0.25
         },
         {
-          "id": "w0fcmqw7",
-          "name": "mletý pepř",
-          "unit": "lžička",
-          "amount": 0.5
-        },
-        {
-          "id": "8wzy6y6z",
-          "name": "sůl",
-          "unit": "lžička",
-          "amount": 1
-        },
-        {
-          "id": "gbgow6rt",
-          "name": "rýže",
-          "unit": "g",
-          "amount": 300
-        },
-        {
-          "id": "5r3ujbx8",
-          "name": "naan",
-          "unit": "ks",
-          "amount": 4
-        },
-        {
-          "id": "ypcc1q5b",
-          "name": "čerstvý koriandr",
-          "unit": "hrst",
-          "amount": 1
-        },
-        {
-          "id": "bojr14hh",
-          "name": "sezamová semínka",
-          "unit": "lžíce",
-          "amount": 1
-        }
-      ],
-      "created_at": "2026-06-01T10:16:58.380043+00:00",
-      "updated_at": "2026-06-01T10:16:58.380043+00:00",
-      "instructions": "",
-      "image_url": "",
-      "prep_time": 45,
-      "is_vege": false,
-      "is_sweet": false,
-      "is_breakfast": false
-    },
-    {
-      "id": "132f5ddf-c9c6-4def-a49e-110e96655838",
-      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
-      "name": "Fish and chips s domácí tatarkou",
-      "portions": 6,
-      "notes": "Doba přípravy 40 min. Brambory omyj, nakrájej na klínky a namoč do studené vody, pak slij a osuš. Tresku nakrájej na kousky, osuš, osol a obal nejprve v mouce s paprikou, česnekem, cibulí a pepřem, poté ve vejcích a nakonec v panko strouhance. Brambory promíchej s lžící oleje a solí. V horkovzdušné fritéze peč brambory na 190 °C cca 25 min, po 15 min přidej rybu a dopeč 10 min dozlatova. Tatarku umíchej ze zakysané smetany, řeckého jogurtu, citronové šťávy, kopru, nastrouhaných okurek a šalotky a dochuť solí a pepřem.",
-      "ingredients": [
-        {
-          "id": "xqfmju2t",
+          "id": "kt7rcwcj",
           "name": "brambory",
           "unit": "g",
-          "amount": 800
+          "amount": 750
         },
         {
-          "id": "nxqwd6oj",
-          "name": "neutrální olej",
-          "unit": "lžíce",
-          "amount": 1
-        },
-        {
-          "id": "i9pq991n",
-          "name": "filety z tresky",
+          "id": "tzmj6nwp",
+          "name": "máslo",
           "unit": "g",
-          "amount": 600
+          "amount": 50
         },
         {
-          "id": "yd42pa3j",
-          "name": "hladká mouka",
-          "unit": "g",
-          "amount": 100
-        },
-        {
-          "id": "m2jpejxf",
-          "name": "vejce",
-          "unit": "ks",
-          "amount": 3
-        },
-        {
-          "id": "94ddflt0",
-          "name": "panko strouhanka",
-          "unit": "g",
-          "amount": 100
-        },
-        {
-          "id": "tlr0p98v",
-          "name": "sladká paprika",
-          "unit": "lžička",
-          "amount": 1
-        },
-        {
-          "id": "qay8f130",
-          "name": "sušený česnek",
-          "unit": "lžička",
-          "amount": 1
-        },
-        {
-          "id": "4665rh2y",
-          "name": "sušená cibule",
-          "unit": "lžička",
-          "amount": 1
-        },
-        {
-          "id": "5pdrnlki",
-          "name": "mletý pepř",
-          "unit": "lžička",
-          "amount": 0.25
-        },
-        {
-          "id": "sh5sctk4",
-          "name": "sůl",
-          "unit": "lžička",
-          "amount": 2
-        },
-        {
-          "id": "9pirs6c3",
-          "name": "zakysaná smetana",
-          "unit": "lžíce",
-          "amount": 2
-        },
-        {
-          "id": "ppn4sqsj",
-          "name": "řecký jogurt",
-          "unit": "lžíce",
-          "amount": 2
-        },
-        {
-          "id": "a5brd3uy",
-          "name": "nakládané okurky",
-          "unit": "ks",
-          "amount": 5
-        },
-        {
-          "id": "mti9epon",
+          "id": "y1qj8hl8",
           "name": "citron",
           "unit": "ks",
           "amount": 0.5
         },
         {
-          "id": "hfbolrbm",
-          "name": "šalotka",
+          "id": "7vn1tv4v",
+          "name": "sůl a pepř na dochucení",
+          "unit": "dle chuti",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:09.308144+00:00",
+      "instructions": "Maso si nakrájejte na větší kostky a dejte do větší mísy. Osolte, opepřete, promíchejte a odložte stranou. Mrkev nakrájejte na cca 1 cm široké špalíčky a cibuli nakrájejte nadrobno.\nV pánvi s vyšším okrajem rozpalte olej a pomalu na něm orestujte nakrájenou cibuli dozlatova. Trvá to cca 3–4 minuty. Do pánve přidejte maso a nechte ho ze všech stran zatáhnout.\nMaso posypte moukou a na pánvi vše promíchejte, aby se maso moukou obalilo. Poté jej zalijte vývarem, znovu promíchejte, pánev přiklopte a nechte maso cca 15 minut dusit.\nMezitím oškrábejte brambory, nakrájejte na čtvrtiny a v osolené vodě je uvařte do měkka.\nPo 15 minutách přidejte do pánve také nakrájenou mrkev a dochuťte celou směs kmínem, muškátovým oříškem a opět na 10 minut přiklopte.\nHotovou směs dochuťte kůrou a šťávou z citronu a na kostky nakrájeným studeným máslem. Nechte poslední 1–2 minuty povařit a podávejte s vařenými bramborami.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337341806-6fhekpb2.jpg",
+      "prep_time": 60,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "1f7b23f9-7c51-4dd0-b5a7-687633b7bca7",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Enchiladas z jedné pánve",
+      "portions": 4,
+      "notes": "Doba přípravy 35 min. Kuřecí prsa ochuť uzenou paprikou, česnekem, cibulí a chipotle pastou. Orestuj s cibulí, zalij salsou a vodou a vař 15 min. Maso natrhej, zalij smetanou i zakysanou smetanou, navrch dej tortilly se sýrem a zapeč 15 min při 200 °C.",
+      "ingredients": [
+        {
+          "id": "spiipm0v",
+          "name": "kuřecí prsa",
+          "unit": "g",
+          "amount": 500
+        },
+        {
+          "id": "1mwra9hx",
+          "name": "uzená paprika",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "p7jyhm1s",
+          "name": "sušený česnek",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "0x2fa8eh",
+          "name": "sušená cibule",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "lt1xkl5l",
+          "name": "sůl",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "sfsul625",
+          "name": "chipotle pasta",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "13xsg3l9",
+          "name": "olivový olej",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "bqnsc7kc",
+          "name": "žlutá cibule",
           "unit": "ks",
           "amount": 1
         },
         {
-          "id": "rh18pkuj",
-          "name": "čerstvý kopr",
+          "id": "d38ofmct",
+          "name": "salsa omáčka",
+          "unit": "g",
+          "amount": 325
+        },
+        {
+          "id": "e45xa4pu",
+          "name": "smetana ke šlehání",
+          "unit": "ml",
+          "amount": 200
+        },
+        {
+          "id": "2p7lj1tv",
+          "name": "zakysaná smetana",
           "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "19hzlvwr",
+          "name": "tortilly Ø 20 cm",
+          "unit": "ks",
+          "amount": 6
+        },
+        {
+          "id": "ohw78d56",
+          "name": "strouhaný čedar",
+          "unit": "g",
+          "amount": 200
+        },
+        {
+          "id": "y20zdv9q",
+          "name": "zakysaná smetana k podávání",
+          "unit": "",
+          "amount": 1
+        },
+        {
+          "id": "p654iqsl",
+          "name": "avokádo k podávání",
+          "unit": "",
+          "amount": 1
+        },
+        {
+          "id": "md66beto",
+          "name": "čerstvý koriandr k podávání",
+          "unit": "",
+          "amount": 1
+        },
+        {
+          "id": "nwi0x69c",
+          "name": "limeta k podávání",
+          "unit": "",
           "amount": 1
         }
       ],
-      "created_at": "2026-06-01T10:13:49.7406+00:00",
-      "updated_at": "2026-06-01T10:13:49.7406+00:00",
-      "instructions": "",
-      "image_url": "",
-      "prep_time": 40,
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:02.599973+00:00",
+      "instructions": "Troubu si předehřejte na 200 °C, připravte si pánev vhodnou do trouby a z lednice si vyndejte smetanu ke šlehání a zakysanou smetanu.\nDo misky dejte kuřecí prsa, uzenou papriku, sušený česnek, sušenou cibuli, sůl a chipotle pastu. Promíchejte a odložte stranou.\nCibuli najemno nakrájejte a dejte ji restovat na pánvi společně se 2 lžícemi olivového oleje. Počkejte, až cibule lehce změkne a poté do pánve přidejte také ochucená kuřecí prsa.\nVše zalijte salsou, přidejte 125 ml vody a přiveďte k varu. Přiklopte a vařte cca 15 minut.\nZa pomoci dvou vidliček natrhejte kuřecí prsa na menší kousky a promíchejte s omáčkou v pánvi.\nSměs zalijte smetanou ke šlehání a zakysanou smetanou. Promíchejte a vařte dalších 4–5 minut, během kterých by měla směs lehce zhoustnout.\nNavrch rozprostřete tortilly, posypte je strouhaným sýrem a vložte pánev do předehřáté trouby na 15 minut. Podávejte s extra zakysanou smetanou, avokádem, čerstvým koriandrem a zakápněte limetou.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337335151-1rzy29p4.jpg",
+      "prep_time": 35,
       "is_vege": false,
       "is_sweet": false,
-      "is_breakfast": false
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "31937790-641a-4562-a06d-f2d8e7df0673",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Pad Thai s kuřecím masem",
+      "portions": 4,
+      "notes": "Doba přípravy 30 min. Rýžové nudle zalij horkou vodou a nech 10 min stát, poté sceď a propláchni. Smíchej omáčku z rybí omáčky, tamarindové pasty, sójové omáčky, cukru a vody. Na sezamovém oleji orestuj kuřecí maso na kostičky, přidej rozklepnutá vejce, pak zeleninu s výhonky a vše zalij omáčkou. Nakonec vmíchej nudle a podávej posypané arašídy, koriandrem, chilli a limetou.",
+      "ingredients": [
+        {
+          "id": "w04fijb0",
+          "name": "rýžové nudle",
+          "unit": "g",
+          "amount": 250
+        },
+        {
+          "id": "sz2xmytl",
+          "name": "kuřecí maso",
+          "unit": "g",
+          "amount": 500
+        },
+        {
+          "id": "cwlq7st7",
+          "name": "sezamový olej",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "heqppnjj",
+          "name": "vejce",
+          "unit": "ks",
+          "amount": 3
+        },
+        {
+          "id": "a2nue7ow",
+          "name": "česnek",
+          "unit": "stroužek",
+          "amount": 6
+        },
+        {
+          "id": "i9zyd364",
+          "name": "nastrouhaný zázvor",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "poymxjf7",
+          "name": "jarní cibulka",
+          "unit": "svazek",
+          "amount": 1
+        },
+        {
+          "id": "dendzfcu",
+          "name": "pórek",
+          "unit": "ks",
+          "amount": 0.5
+        },
+        {
+          "id": "hh16e3vg",
+          "name": "mrkev",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "owp08kke",
+          "name": "mungo nebo sojové výhonky",
+          "unit": "g",
+          "amount": 100
+        },
+        {
+          "id": "7cgprpq3",
+          "name": "rybí omáčka",
+          "unit": "lžíce",
+          "amount": 4
+        },
+        {
+          "id": "kswap9u9",
+          "name": "tamarindová pasta",
+          "unit": "lžíce",
+          "amount": 6
+        },
+        {
+          "id": "waxdxoxj",
+          "name": "sójová omáčka",
+          "unit": "lžíce",
+          "amount": 3
+        },
+        {
+          "id": "knj37ub0",
+          "name": "třtinový cukr",
+          "unit": "lžíce",
+          "amount": 3
+        },
+        {
+          "id": "z4w1mxzj",
+          "name": "voda",
+          "unit": "lžíce",
+          "amount": 2.5
+        },
+        {
+          "id": "giwy8820",
+          "name": "čerstvý koriandr",
+          "unit": "hrst",
+          "amount": 1
+        },
+        {
+          "id": "m00fpw5d",
+          "name": "nasekané arašídy",
+          "unit": "hrst",
+          "amount": 2
+        },
+        {
+          "id": "npe1obrm",
+          "name": "limeta",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "jlmfkud0",
+          "name": "chilli paprička",
+          "unit": "ks",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:13:52.616907+00:00",
+      "updated_at": "2026-06-01T16:13:52.616907+00:00",
+      "instructions": "Nudle vložte do hluboké mísy. Zalijte je horkou vodou a nechte 10 minut stát. Poté vodu slijte, nudle propláchněte studenou vodou a odložte stranou.\nVšechny ingredience na omáčku promíchejte ve vyšší nádobě a odložte stranou. Stroužky česneku prolisujte a smíchejte s nastrouhaným zazvorem. Mrkev a pórek si nakrájejte na tenké plátky, jarní cibulku na větší kousky a kuřecí maso na kostičky.\nV hlubší (ideálně wok) pánvi si rozehřejte sezamový olej a orestujte na něm kuřecí maso. Pak maso odsuňte na stranu pánve a do pánve rozklepněte všechny 3 vejce. Nechte je lehce ztuhnout a poté je rozmíchejte a spojte s kuřecím masem.\nNyní do pánve přidejte také zeleninu a výhonky a restujte další 3-4 minuty, aby zelenina lehce změkla. Poté směs zalijte připravenou omáčkou a promíchejte.\nNakonec do pánve přidejte rýžové nudle a spojte je s ostatními ingrediencemi. Nejlépe vám to půjde asi za pomoci 2 vařeček. Podávejte posypané nasekanými arašídy, čerstvým koriandrem, chilli a limetou.",
+      "image_url": "",
+      "prep_time": 30,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "web",
+      "source_url": "https://www.receptyodanicky.cz/pad-thai-s-kurecim-masem/"
     },
     {
       "id": "04c00426-29b8-4181-9063-5d506ea2ba99",
@@ -367,144 +565,136 @@
         }
       ],
       "created_at": "2026-06-01T10:14:48.294434+00:00",
-      "updated_at": "2026-06-01T10:14:48.294434+00:00",
+      "updated_at": "2026-06-01T16:33:48.64834+00:00",
       "instructions": "",
-      "image_url": "",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780327839100-i93pejkf.jpg",
       "prep_time": 40,
       "is_vege": false,
       "is_sweet": false,
-      "is_breakfast": false
+      "is_breakfast": false,
+      "source_type": "web",
+      "source_url": "https://www.receptyodanicky.cz/pikantni-kureci-nudle/"
     },
     {
-      "id": "c07cebad-1d74-4ad5-9ccb-f68cfaf88d6c",
+      "id": "132f5ddf-c9c6-4def-a49e-110e96655838",
       "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
-      "name": "Pad Thai s kuřecím masem",
-      "portions": 4,
-      "notes": "Doba přípravy 30 min. Rýžové nudle zalij horkou vodou a nech 10 min stát, pak slij a propláchni studenou vodou. Ingredience na omáčku smíchej dohromady. Česnek prolisuj a smíchej se zázvorem, mrkev a pórek nakrájej na plátky, jarní cibulku na kousky a kuře na kostičky. Ve woku rozehřej sezamový olej a orestuj kuře, pak ho odsuň, rozklepni vejce, nech ztuhnout a spoj s masem. Přidej zeleninu a výhonky, restuj 3–4 min, zalij omáčkou. Nakonec vmíchej nudle a podávej posypané arašídy, koriandrem, chilli a limetou.",
+      "name": "Fish and chips s domácí tatarkou",
+      "portions": 6,
+      "notes": "Doba přípravy 40 min. Brambory omyj, nakrájej na klínky a namoč do studené vody, pak slij a osuš. Tresku nakrájej na kousky, osuš, osol a obal nejprve v mouce s paprikou, česnekem, cibulí a pepřem, poté ve vejcích a nakonec v panko strouhance. Brambory promíchej s lžící oleje a solí. V horkovzdušné fritéze peč brambory na 190 °C cca 25 min, po 15 min přidej rybu a dopeč 10 min dozlatova. Tatarku umíchej ze zakysané smetany, řeckého jogurtu, citronové šťávy, kopru, nastrouhaných okurek a šalotky a dochuť solí a pepřem.",
       "ingredients": [
         {
-          "id": "k51h2b2q",
-          "name": "rýžové nudle",
+          "id": "xqfmju2t",
+          "name": "brambory",
           "unit": "g",
-          "amount": 250
+          "amount": 800
         },
         {
-          "id": "4c1x836s",
-          "name": "kuřecí maso",
-          "unit": "g",
-          "amount": 500
-        },
-        {
-          "id": "xkdn73ee",
-          "name": "sezamový olej",
+          "id": "nxqwd6oj",
+          "name": "neutrální olej",
           "unit": "lžíce",
-          "amount": 2
+          "amount": 1
         },
         {
-          "id": "zj52y4vv",
+          "id": "i9pq991n",
+          "name": "filety z tresky",
+          "unit": "g",
+          "amount": 600
+        },
+        {
+          "id": "yd42pa3j",
+          "name": "hladká mouka",
+          "unit": "g",
+          "amount": 100
+        },
+        {
+          "id": "m2jpejxf",
           "name": "vejce",
           "unit": "ks",
           "amount": 3
         },
         {
-          "id": "aq2fvl28",
-          "name": "česnek",
-          "unit": "stroužky",
-          "amount": 6
-        },
-        {
-          "id": "jc1y39d0",
-          "name": "nastrouhaný zázvor",
-          "unit": "lžíce",
-          "amount": 1
-        },
-        {
-          "id": "u7kf7koe",
-          "name": "jarní cibulka",
-          "unit": "svazek",
-          "amount": 1
-        },
-        {
-          "id": "sw37fe8p",
-          "name": "pórek",
-          "unit": "ks",
-          "amount": 0.5
-        },
-        {
-          "id": "e6l386b7",
-          "name": "mrkev",
-          "unit": "ks",
-          "amount": 1
-        },
-        {
-          "id": "xlpu5utw",
-          "name": "mungo výhonky",
+          "id": "94ddflt0",
+          "name": "panko strouhanka",
           "unit": "g",
           "amount": 100
         },
         {
-          "id": "jnyk8w6u",
-          "name": "rybí omáčka",
-          "unit": "lžíce",
-          "amount": 4
-        },
-        {
-          "id": "cnraa09v",
-          "name": "tamarindová pasta",
-          "unit": "lžíce",
-          "amount": 6
-        },
-        {
-          "id": "fzxfu3tv",
-          "name": "sojová omáčka",
-          "unit": "lžíce",
-          "amount": 3
-        },
-        {
-          "id": "wsp94no6",
-          "name": "třtinový cukr",
-          "unit": "lžíce",
-          "amount": 3
-        },
-        {
-          "id": "n67ippqu",
-          "name": "voda",
-          "unit": "lžíce",
-          "amount": 3
-        },
-        {
-          "id": "73sdljjz",
-          "name": "čerstvý koriandr",
-          "unit": "hrst",
+          "id": "tlr0p98v",
+          "name": "sladká paprika",
+          "unit": "lžička",
           "amount": 1
         },
         {
-          "id": "58cihs1v",
-          "name": "nasekané arašídy",
-          "unit": "hrsti",
+          "id": "qay8f130",
+          "name": "sušený česnek",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "4665rh2y",
+          "name": "sušená cibule",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "5pdrnlki",
+          "name": "mletý pepř",
+          "unit": "lžička",
+          "amount": 0.25
+        },
+        {
+          "id": "sh5sctk4",
+          "name": "sůl",
+          "unit": "lžička",
           "amount": 2
         },
         {
-          "id": "q2z6a8x1",
-          "name": "limeta",
-          "unit": "ks",
+          "id": "9pirs6c3",
+          "name": "zakysaná smetana",
+          "unit": "lžíce",
           "amount": 2
         },
         {
-          "id": "ildn9hru",
-          "name": "chilli paprička",
+          "id": "ppn4sqsj",
+          "name": "řecký jogurt",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "a5brd3uy",
+          "name": "nakládané okurky",
           "unit": "ks",
+          "amount": 5
+        },
+        {
+          "id": "mti9epon",
+          "name": "citron",
+          "unit": "ks",
+          "amount": 0.5
+        },
+        {
+          "id": "hfbolrbm",
+          "name": "šalotka",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "rh18pkuj",
+          "name": "čerstvý kopr",
+          "unit": "lžíce",
           "amount": 1
         }
       ],
-      "created_at": "2026-06-01T10:15:26.358613+00:00",
-      "updated_at": "2026-06-01T10:15:26.358613+00:00",
+      "created_at": "2026-06-01T10:13:49.7406+00:00",
+      "updated_at": "2026-06-01T16:34:04.100233+00:00",
       "instructions": "",
       "image_url": "",
-      "prep_time": 30,
+      "prep_time": 40,
       "is_vege": false,
       "is_sweet": false,
-      "is_breakfast": false
+      "is_breakfast": false,
+      "source_type": "web",
+      "source_url": "https://www.receptyodanicky.cz/fish-and-chips-s-domaci-tatarkou/"
     },
     {
       "id": "d88c2d4e-5d26-4172-9e62-132247a3be84",
@@ -569,13 +759,2877 @@
         }
       ],
       "created_at": "2026-06-01T10:15:58.476399+00:00",
-      "updated_at": "2026-06-01T10:15:58.476399+00:00",
+      "updated_at": "2026-06-01T16:34:26.403859+00:00",
       "instructions": "",
       "image_url": "",
       "prep_time": 45,
       "is_vege": false,
       "is_sweet": false,
-      "is_breakfast": false
+      "is_breakfast": false,
+      "source_type": "web",
+      "source_url": "https://www.receptyodanicky.cz/kremove-orzo-s-kurecim-masem/"
+    },
+    {
+      "id": "c7eafa58-b9d2-4cfb-81e4-44e2c4ae3a96",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Indické kuře z jedné pánve",
+      "portions": 4,
+      "notes": "Doba přípravy 45 min. Cibuli nakrájej na plátky, zázvor nastrouhej, česnek prolisuj a kuřecí maso nakrájej na menší kousky. V hlubokém pekáči smíchej maso se solí, kořením, kokosovým mlékem, zázvorem, česnekem, cibulí a rajčatovým protlakem. Nech 5-10 min odležet a peč v troubě vyhřáté na 210 °C cca 30-40 min, dokud není maso propečené. Servíruj s rýží nebo naanem, posyp sezamem a koriandrem.",
+      "ingredients": [
+        {
+          "id": "5cwqvtu2",
+          "name": "kuřecí prsa",
+          "unit": "g",
+          "amount": 600
+        },
+        {
+          "id": "uo5rdws9",
+          "name": "kokosové mléko",
+          "unit": "ml",
+          "amount": 400
+        },
+        {
+          "id": "9q99ucl0",
+          "name": "rajčatový protlak",
+          "unit": "g",
+          "amount": 100
+        },
+        {
+          "id": "7d0uj895",
+          "name": "nastrouhaný čerstvý zázvor",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "8zp07rbw",
+          "name": "stroužky česneku (prolisované)",
+          "unit": "ks",
+          "amount": 6
+        },
+        {
+          "id": "31u85baf",
+          "name": "velká cibule",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "figuddsx",
+          "name": "garam masala",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "yf1d0hmy",
+          "name": "kurkuma",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "pv3pk6so",
+          "name": "mletý kmín",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "fmrxrl6l",
+          "name": "pálivá paprika",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "d8egn2un",
+          "name": "skořice",
+          "unit": "lžička",
+          "amount": 0.25
+        },
+        {
+          "id": "xykxvt8l",
+          "name": "mletý pepř",
+          "unit": "lžička",
+          "amount": 0.5
+        },
+        {
+          "id": "k3dbrufp",
+          "name": "sůl",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "0mtual2e",
+          "name": "uvařená rýže",
+          "unit": "k podávání",
+          "amount": 1
+        },
+        {
+          "id": "5gv20ulq",
+          "name": "naan nebo pita",
+          "unit": "k podávání",
+          "amount": 1
+        },
+        {
+          "id": "1kc3bvp8",
+          "name": "čerstvý koriandr",
+          "unit": "k podávání",
+          "amount": 1
+        },
+        {
+          "id": "4qs4e1gs",
+          "name": "sezamová semínka",
+          "unit": "k podávání",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T15:56:34.803521+00:00",
+      "updated_at": "2026-06-01T16:34:36.282054+00:00",
+      "instructions": "Troubu si předehřejte na 210℃. Cibuli si nakrájejte na tenké plátky, zázvor nastrouhejte a stroužky česneku prolisujte. Kuřecí maso nakrájejte na menší kousky.\nDo hlubokého pekáče nebo zapékací mísy vložte maso a osolte. Přidejte ostatní koření, kokosové mléko, nastrouhaný zázvor, česnek, cibuli a rajčatový protlak. Vše v pekáči důkladně promíchejte (klidně se toho nebojte a směs promíchejte vlastníma rukama).\nMaso nechte 5-10 min odležet a poté jej vložte do předehřáté trouby. Pečte cca 30-40 minut, dokud není maso hezky propečené.\nHotové maso servírujte s uvařenou rýží nebo indickými plackami. Před podáváním můžete maso navíc posypat sezamovými semínky a čerstvým koriandrem.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780329464488-d56ybsm0.jpg",
+      "prep_time": 45,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "web",
+      "source_url": "https://www.receptyodanicky.cz/indicke-kure-z-jedne-panve/"
+    },
+    {
+      "id": "1865a0b0-1f50-4b9b-88ff-0107c5e4f1cf",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Šťavnaté kuřecí stripsy",
+      "portions": 4,
+      "notes": "Doba přípravy 30 min. Kuřecí prsa nakrájej na nudličky a osol. Obal je nejprve ve vaječné směsi a poté ve směsi z mouky, panko strouhanky a koření. Rozpusť máslo na rozpáleném plechu, vylož stripsy, zastříkni olejem a peč při 220 °C 12 minut z každé strany. Podávej s bramborami nebo v tortille.",
+      "ingredients": [
+        {
+          "id": "6f5haj9n",
+          "name": "kuřecí prsa",
+          "unit": "g",
+          "amount": 650
+        },
+        {
+          "id": "08o1tsua",
+          "name": "vejce",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "t61t9kwd",
+          "name": "hladká mouka",
+          "unit": "g",
+          "amount": 90
+        },
+        {
+          "id": "xo031lry",
+          "name": "panko strouhanka",
+          "unit": "g",
+          "amount": 120
+        },
+        {
+          "id": "8v7if54m",
+          "name": "sušené oregano",
+          "unit": "lžičky",
+          "amount": 2
+        },
+        {
+          "id": "zcpwej9s",
+          "name": "sušený tymián",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "blimm47k",
+          "name": "uzená paprika",
+          "unit": "lžičky",
+          "amount": 2
+        },
+        {
+          "id": "go0f1163",
+          "name": "sušená cibule",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "vu1757d4",
+          "name": "sůl",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "rpjnlshe",
+          "name": "mletý pepř",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "0s9rco7m",
+          "name": "máslo",
+          "unit": "g",
+          "amount": 30
+        },
+        {
+          "id": "97e8wu30",
+          "name": "olej ve spreji",
+          "unit": "",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:02.044134+00:00",
+      "instructions": "Troubu předehřejte na 220 °C a vložte do ní plech, na kterém budete stripsy péct. Plech se musí nahřát.\nKuřecí prsa si nakrájejte na menší kousky, ideálně na větší nudličky a každý kousek lehce osolte.\nPřipravte si dvě misky. Do jedné vyklepněte obě vejce a dobře je vidličkou rozmíchejte. Do druhé misky dejte mouku, strouhanku, oregano, tymián, uzenou papriku, cibuli, sůl a pepř. Dobře promíchejte.\nDo misky s vejci dejte lžíci strouhankové směsi, promíchejte a začněte s obalováním. Každý kousek kuřete obalte nejprve ve vaječné směsi a poté ve směsi se strouhankou a odložte stranou.\nZ trouby vyndejte horký plech a přímo na plech dejte rozpustit máslo. Teplem by se mělo krásně roztéct. Poté na plech vyskládejte obalené kuřecí kousky, lehce zastříkněte olejem ve spreji a dejte péct do předehřáté trouby na 12 minut.\nPo 12 minutách každý kousek otočte a pečte dalších 12 minut.\nHotové stripsy podávejte třeba s pečenými bramborami, zabalte je do tortilly nebo si je dejte jen tak.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337333981-8cadwg1y.jpg",
+      "prep_time": 30,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "0f49e530-ecf9-4332-b6d5-ab53ec8085ac",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Krevetové tostadas s mangovou salsou",
+      "portions": 4,
+      "notes": "Doba přípravy 30 min. Rozmixuj koriandrový dip a tortilly opeč do křupava. Krevety orestuj s paprikou, česnekem a limetou. Smíchej mangovou salsu z manga, okurky, cibule a avokáda. Na tortilly natři dip, navrch dej salsu a orestované krevety.",
+      "ingredients": [
+        {
+          "id": "fubk80rh",
+          "name": "kukuřičné tortilly",
+          "unit": "ks",
+          "amount": 12
+        },
+        {
+          "id": "svag7hxz",
+          "name": "syrové krevety (oloupané, očištěné)",
+          "unit": "g",
+          "amount": 500
+        },
+        {
+          "id": "wzi4oc7q",
+          "name": "olivový olej",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "gdig67jo",
+          "name": "uzená paprika",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "0v9v8ert",
+          "name": "sušený česnek",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "qwj7oyow",
+          "name": "limety",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "7jgbp8wp",
+          "name": "zralé mango",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "3seihw78",
+          "name": "salátová okurka",
+          "unit": "ks",
+          "amount": 0.5
+        },
+        {
+          "id": "z0y4j457",
+          "name": "červená cibule",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "meuyb232",
+          "name": "avokádo",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "mjinz2yt",
+          "name": "čerstvě nasekaná máta",
+          "unit": "hrst",
+          "amount": 1
+        },
+        {
+          "id": "k8azitat",
+          "name": "sůl a pepř na dochucení",
+          "unit": "dle chuti",
+          "amount": 1
+        },
+        {
+          "id": "i53jzm8j",
+          "name": "zakysaná smetana (na koriandrový dip)",
+          "unit": "g",
+          "amount": 100
+        },
+        {
+          "id": "cpcz03fh",
+          "name": "avokádo (na koriandrový dip)",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "0ynu8mu9",
+          "name": "čerstvý koriandr (na koriandrový dip)",
+          "unit": "hrst",
+          "amount": 1
+        },
+        {
+          "id": "uzw4fk37",
+          "name": "prolisovaný stroužek česneku (na koriandrový dip)",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "9u1fu1x3",
+          "name": "šťáva z limety (na koriandrový dip)",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "pawwcaxs",
+          "name": "špetka soli (na koriandrový dip)",
+          "unit": "špetka",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:03.70476+00:00",
+      "instructions": "Všechny ingredience na koriandrový dip dejte do mixéru a rozmixujte dohladka. Dochuťte dle potřeby solí nebo limetkovou šťávou. Dip odložte do lednice.\nTortilly z obou stran lehce potřete olejem a opečte buď v troubě (lehce na 200 °C asi 5 minut z každé strany), nebo je nasucho orestujte na pánvi do křupava.\nV misce promíchejte krevety s olejem, paprikou, česnekem, šťávou z jedné limety, solí a pepřem. Orestujte je na pánvi 2–3 minuty z každé strany, dokud nejsou hezky růžové a jemně opečené.\nMango oloupejte a nakrájejte na kostičky. Okurku a cibuli nakrájejte nadrobno, avokádo vydlabejte a nakrájejte na menší kousky. Vše dejte společně do větší mísy a promíchejte společně s mátou, šťávou z druhé limety, špetkou soli a pepře.\nNa opečenou tortillu natřete lžíci koriandrového dipu, na dip dejte mangovou salsu a orestované krevety.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337336036-d0aucuo4.jpg",
+      "prep_time": 30,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "539ece9d-54f6-4419-88f8-48bc1b9d44ef",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Citronové těstoviny s cuketou",
+      "portions": 4,
+      "notes": "Doba přípravy 25 min. Uvař těstoviny al dente. Na másle a oleji opeč plátky citronu a nasekej je s bazalkou. Restuj cuketu s česnekem, tymiánem a chilli, zalij vodou z těstovin a smetanou, vmíchej parmazán a těstoviny a posyp směsí citronu s bazalkou.",
+      "ingredients": [
+        {
+          "id": "v7uq8opt",
+          "name": "těstoviny",
+          "unit": "g",
+          "amount": 400
+        },
+        {
+          "id": "pcqo9oqh",
+          "name": "velký citron",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "oq4uw23s",
+          "name": "máslo",
+          "unit": "g",
+          "amount": 30
+        },
+        {
+          "id": "2qz3a3ju",
+          "name": "olivový olej",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "2vpgbmgl",
+          "name": "velká cuketa",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "723c2141",
+          "name": "stroužky česneku",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "yjpa4c3p",
+          "name": "čerstvá bazalka",
+          "unit": "hrsti",
+          "amount": 2
+        },
+        {
+          "id": "eszq0yfm",
+          "name": "sušený tymián",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "cwz2mdqe",
+          "name": "mletý pepř",
+          "unit": "lžičky",
+          "amount": 0.25
+        },
+        {
+          "id": "8rorgk0x",
+          "name": "chilli vločky",
+          "unit": "lžičky",
+          "amount": 0.25
+        },
+        {
+          "id": "gmjmbq0u",
+          "name": "sůl",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "xys04486",
+          "name": "smetana ke šlehání",
+          "unit": "ml",
+          "amount": 250
+        },
+        {
+          "id": "42tlqgug",
+          "name": "čerstvě nastrouhaný parmazán",
+          "unit": "g",
+          "amount": 100
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:04.687224+00:00",
+      "instructions": "Citron a oba stroužky česneku si nakrájejte na tenké plátky, cuketu nakrájejte na cca 0,5 cm vysoká kolečka. Smetanu ke šlehání si vyndejte z lednice.\nVe velkém hrnci přiveďte osolenou vodu k varu, přidejte těstoviny a uvařte je al dente podle návodu na obalu. Až budete uvařené těstoviny slívat, odlijte si cca 100 ml vody stranou.\nZatímco se vaří těstoviny, rozehřejte si na pánvi máslo a olivový olej. Přidejte na tenké plátky nakrájený citron a opečte ho z obou stran dozlatova. Poté citron vyndejte z pánve a odložte na prkénko.\nK citronu na prkénko přidejte čerstvou bazalku a velkým nožem nasekejte nadrobno. Promíchejte a odložte stranou.\nDo stejné pánve dejte nakrájenou cuketu a oba stroužky česneku. Restujte půl minuty, poté přidejte čerstvý tymián, sůl, pepř a špetku chilli vloček. Restujte dalších 5 minut, dokud cuketa nezměkne a nezíská lehce zlatavou barvu.\nDo pánve přilijte odloženou vodu z těstovin a smetanu. Omáčku přiveďte k mírnému varu a nechte ji vařit asi 5 minut, dokud mírně nezhoustne. Poté přidejte nastrouhaný parmazán a dobře promíchejte, aby se sýr rozpustil a omáčka získala krémovou konzistenci.\nDo hotové omáčky přidejte uvařené těstoviny a vše důkladně promíchejte, aby se těstoviny obalily omáčkou. Hotové těstoviny rozdělte na talíře a posypte připravenou směsí citronu a bazalky.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337336947-w5exlw75.jpg",
+      "prep_time": 25,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "a42f4cfb-2b46-4ba2-966b-503b6743579d",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Křupavé tofu s avokádem",
+      "portions": 4,
+      "notes": "Doba přípravy 20 min. Tofu zbav přebytečné tekutiny a nakrájej na kousky. Obal v mouce, vejci se sójovkou a panko strouhance s kořením, zastříkni olejem a peč 10 min při 200 °C. Podávej s avokádovo-parmazánovým salátem s balzamikovo-medovou zálivkou.",
+      "ingredients": [
+        {
+          "id": "rtjet6ju",
+          "name": "bloček tofu",
+          "unit": "g",
+          "amount": 400
+        },
+        {
+          "id": "waddx440",
+          "name": "hladká mouka",
+          "unit": "g",
+          "amount": 75
+        },
+        {
+          "id": "8hji19b3",
+          "name": "vejce",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "kmpx3bij",
+          "name": "sójová omáčka",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "o1qg2n9v",
+          "name": "panko strouhanka",
+          "unit": "g",
+          "amount": 75
+        },
+        {
+          "id": "q867tr8a",
+          "name": "sušená cibule",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "qzf8w638",
+          "name": "uzená paprika",
+          "unit": "lžičky",
+          "amount": 2
+        },
+        {
+          "id": "yndi4315",
+          "name": "sušený česnek",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "1su3mkir",
+          "name": "sůl",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "bojw9l8e",
+          "name": "olej ve spreji",
+          "unit": "",
+          "amount": 1
+        },
+        {
+          "id": "ijxa3gn7",
+          "name": "avokádo (na salát)",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "sqao2za9",
+          "name": "římský salát (na salát)",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "jvtr3gga",
+          "name": "čerstvý parmazán (na salát)",
+          "unit": "g",
+          "amount": 100
+        },
+        {
+          "id": "9gx9qnoq",
+          "name": "olivový olej (na salát)",
+          "unit": "ml",
+          "amount": 60
+        },
+        {
+          "id": "sq855r0t",
+          "name": "balzamikový ocet (na salát)",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "93fldp9s",
+          "name": "med (na salát)",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "mawhu8po",
+          "name": "sůl a pepř (na salát)",
+          "unit": "dle chuti",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:05.34758+00:00",
+      "instructions": "Tofu nakrájejte na tři až čtyři stejné obdélníkové kousky. Položte je na prkénko a navrch dejte papírové utěrky, na ně položte plech na pečení a zatěžkejte ho, abyste z tofu vytlačili veškerou tekutinu. Odstavte na cca 10 minut.\nTroubu si předehřejte na 200 °C a vyložte si plech pečicím papírem. Připravte si 3 misky. Do jedné dejte mouku, do druhé rozklepněte vejce se sójovou omáčkou a promíchejte a do třetí dejte panko strouhanku, sušenou cibuli, papriku, česnek a sůl.\nKaždý kousek tofu obalte v mouce, pak ho namočte do vejce, a nakonec obalte v panko strouhance tak, aby tofu bylo obalené ze všech stran.\nObalené kousky tofu z obou stran zastříkněte olejem ve spreji a dejte péct do předehřáté trouby na cca 10 minut tak, aby tofu bylo upečené dozlatova.\nBěhem pečení tofu připravte salát. Avokádo vydlabejte a nakrájejte na kostičky. Salát nakrájejte nahrubo, parmazán nastrouhejte a vše dejte do větší mísy. Ve vyšší sklenici smíchejte olivový olej, balzamikový ocet, med, sůl a pepř a hotovou zálivkou přelijte připravený salát.\nKřupavé tofu podávejte ještě teplé s hotovým salátem a kouskem čerstvého pečiva.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337337479-xkx0kvdk.jpg",
+      "prep_time": 20,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "5916cb2d-0713-46b9-b6db-ff28dcb26297",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Fazole v rajčatové omáčce",
+      "portions": 2,
+      "notes": "Doba přípravy 25 min. Na oleji orestuj cherry rajčata, rozmačkej je a přidej česnek, protlak, harissu a uzenou papriku. Vmíchej máslové fazole a cream cheese, povař 8–10 min. Polij tahini, posyp mandlemi a petrželkou a podávej s pečivem.",
+      "ingredients": [
+        {
+          "id": "hnzn7n3x",
+          "name": "olivový olej",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "4ru1lt96",
+          "name": "cherry rajčata",
+          "unit": "g",
+          "amount": 350
+        },
+        {
+          "id": "abp4c5se",
+          "name": "prolisované stroužky česneku",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "7v56jy5f",
+          "name": "rajčatový protlak",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "i62pvp6e",
+          "name": "harissa pasta",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "omamxyoi",
+          "name": "uzená paprika",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "268jsd93",
+          "name": "plechovka máslových fazolí (2 × 400 g)",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "43r5q37z",
+          "name": "cream cheese",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "lvyrwege",
+          "name": "sůl",
+          "unit": "lžičky",
+          "amount": 0.25
+        },
+        {
+          "id": "v5d5swr4",
+          "name": "čerstvá petrželka",
+          "unit": "hrst",
+          "amount": 1
+        },
+        {
+          "id": "xehu97sc",
+          "name": "tahini pasta",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "2bl306ds",
+          "name": "plátky mandlí",
+          "unit": "g",
+          "amount": 40
+        },
+        {
+          "id": "1gp5mhhy",
+          "name": "pečivo k podávání",
+          "unit": "",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:06.592549+00:00",
+      "instructions": "Na pánvi rozehřejte olivový olej a začněte na něm restovat cherry rajčata. Za občasného míchání je restujte cca 5–6 minut. Rajčata by měla změknout.\nPomocí vařečky rajčata lehce rozmačkejte. Přidejte oba prolisované stroužky česneku, rajčatový protlak, harissu a uzenou papriku. Dobře promíchejte a restujte další 2–3 minuty.\nJednu plechovku fazolí slijte, v druhé tekutinu nechte a obě plechovky fazolí přidejte do pánve. Promíchejte a přidejte cream cheese, lehce osolte a znovu promíchejte.\nPřiveďte směs k varu a nechte 8–10 minut probublávat, aby se tekutina lehce zredukovala. Občas promíchejte.\nFazole rozdělte na talíře, každou porci přelijte lžící tahini pasty, posypte plátky mandlí a čerstvou petrželkou. Podávejte s kouskem pečiva.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337338854-kjana0en.jpg",
+      "prep_time": 25,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "f4d0c5bb-cc5b-4d7c-b7d3-d8f8f4abfb96",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Těstoviny s krémovou omáčkou",
+      "portions": 4,
+      "notes": "Doba přípravy 20 min. Opečené ořechy rozmixuj s pečenými paprikami, sušenými rajčaty, protlakem, česnekem, bazalkou, olejem, máslem, octem, medem a kořením do hladka. Smíchej omáčku s uvařenými těstovinami a parmazánem a podávej s natrhanou burratou.",
+      "ingredients": [
+        {
+          "id": "bp31kh9d",
+          "name": "vlašské ořechy",
+          "unit": "g",
+          "amount": 80
+        },
+        {
+          "id": "0vg9uk74",
+          "name": "pečené papriky",
+          "unit": "g",
+          "amount": 350
+        },
+        {
+          "id": "ug5datx3",
+          "name": "sušená rajčata v oleji",
+          "unit": "g",
+          "amount": 75
+        },
+        {
+          "id": "v953nzlz",
+          "name": "rajčatový protlak",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "0fte4gm5",
+          "name": "stroužky česneku",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "pfhuosov",
+          "name": "čerstvá bazalka",
+          "unit": "hrst",
+          "amount": 1
+        },
+        {
+          "id": "vsu13qgz",
+          "name": "olivový olej",
+          "unit": "lžíce",
+          "amount": 3
+        },
+        {
+          "id": "nq88ukza",
+          "name": "rozpuštěné máslo",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "nvdwd77k",
+          "name": "jablečný ocet",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "ilgjo78a",
+          "name": "med",
+          "unit": "lžičky",
+          "amount": 2
+        },
+        {
+          "id": "v2a9tfvv",
+          "name": "uzená paprika",
+          "unit": "lžičky",
+          "amount": 2
+        },
+        {
+          "id": "4s1hrt95",
+          "name": "sůl",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "fismbkzs",
+          "name": "chilli vločky",
+          "unit": "lžičky",
+          "amount": 0.25
+        },
+        {
+          "id": "26yno6yr",
+          "name": "těstoviny",
+          "unit": "g",
+          "amount": 450
+        },
+        {
+          "id": "9colrmnz",
+          "name": "čerstvě nastrouhaný parmazán",
+          "unit": "g",
+          "amount": 200
+        },
+        {
+          "id": "zfqfx4mv",
+          "name": "burrata",
+          "unit": "g",
+          "amount": 300
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:07.043216+00:00",
+      "instructions": "Ořechy na pánvi na sucho orestujte. Poté je dejte do kuchyňského mixéru společně s paprikami, sušenými rajčaty, protlakem, stroužky česneku, bazalkou, olivovým olejem, máslem, jablečným octem, medem, uzenou paprikou, solí a chilli a rozmixujte do hladka.\nVe velkém hrnci přiveďte vodu k varu, osolte ji lžící soli a dejte do vody vařit těstoviny. Uvařte je dle návodu na obalu tak, aby byly al dente. Až budete těstoviny slívat, dejte si stranou 1 hrnek vody z těstovin.\nHladkou omáčku smíchejte s uvařenými těstovinami tak, aby se těstoviny v omáčce hezky obalily. Přimíchejte také většinu parmazánu (zbytek si odložte na servírování) a v případě potřeby přidejte trochu vody z těstovin.\nTěstoviny podávejte s natrhanou burratou a posypané zbylým parmazánem.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337339386-u47m774h.jpg",
+      "prep_time": 20,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "b5de12cb-28e9-4524-8952-d5713d1171d3",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Bramborové placičky s čedarem",
+      "portions": 4,
+      "notes": "Doba přípravy 30 min. Z jogurtu, česneku, citronu a bylinek umíchej dip. Nastrouhej brambory, vymačkej vodu a smíchej s cibulí, česnekem, panko strouhankou, vejcem, čedarem a bylinkami. Na sádle opékej placičky 3–5 min z každé strany a podávej s dipem.",
+      "ingredients": [
+        {
+          "id": "c49up7zr",
+          "name": "brambory",
+          "unit": "kg",
+          "amount": 1
+        },
+        {
+          "id": "sl7435fj",
+          "name": "velká žlutá cibule",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "v2vdc3z6",
+          "name": "stroužek česneku",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "e74mf50j",
+          "name": "panko strouhanka",
+          "unit": "lžíce",
+          "amount": 3
+        },
+        {
+          "id": "fra2keh5",
+          "name": "vejce",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "abdvqkht",
+          "name": "strouhaný čedar",
+          "unit": "g",
+          "amount": 175
+        },
+        {
+          "id": "ur6ssck6",
+          "name": "tymián",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "jx8dtn13",
+          "name": "sušené oregano",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "ztxdgejw",
+          "name": "majoránka",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "n4anyiyk",
+          "name": "sůl",
+          "unit": "lžičky",
+          "amount": 0.75
+        },
+        {
+          "id": "17dbgjan",
+          "name": "sádlo na smažení",
+          "unit": "",
+          "amount": 1
+        },
+        {
+          "id": "99gmeyud",
+          "name": "řecký jogurt (na jogurtový dip)",
+          "unit": "g",
+          "amount": 200
+        },
+        {
+          "id": "1l3xj2jb",
+          "name": "prolisovaný stroužek česneku (na jogurtový dip)",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "xzwa5fmw",
+          "name": "citronová šťáva (na jogurtový dip)",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "4xfxqqx0",
+          "name": "olivový olej (na jogurtový dip)",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "5x5eync3",
+          "name": "nasekaná čerstvá máta (na jogurtový dip)",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "n9hipnrp",
+          "name": "nasekaná petrželka (na jogurtový dip)",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "l35yiisv",
+          "name": "sůl a pepř na dochucení (na jogurtový dip)",
+          "unit": "dle chuti",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:07.47021+00:00",
+      "instructions": "Všechny ingredience na dip dejte do menší misky a dobře promíchejte. Dle potřeby dochuťte solí a pepřem a uložte do doby podávání do lednice.\nBrambory umyjte, oloupejte a nastrouhejte na jemném struhadle. Poté je nechte 5 minut odpočinout a vodu, kterou brambory pustily, slijte. Můžete ji z brambor i lehce vymačkat.\nCibuli najemno nastrouhejte, stroužky česneku prolisujte a obojí přidejte k bramborám. Promíchejte, poté přidejte do mísy také panko strouhanku, vejce, nastrouhaný čedar, tymián, oregano, majoránku a sůl.\nPánev si důkladně rozehřejte a poté do ní přidejte 1–2 lžičky sádla. Jakmile se sádlo rozpustí, pomocí naběračky nebo lžíce naberte bramborové těsto, vyklopte ho do pánve a lehce rozprostřete, aby vám vznikla cca 0,5 cm vysoká placička.\nKaždou placičku pomalu opékejte. Nikam nespěchejte, brambory se musí dobře propéct. Jakmile je spodní strana zlatavá, otočte placičku a znovu opékejte. Celkem je to 3–5 minut z každé strany.\nJeště teplé bramboráčky podávejte s jogurtovým dipem, ozdobené čerstvými bylinkami.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337339839-5ixlv4ci.jpg",
+      "prep_time": 30,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "c4d77ccb-5a54-4a8b-99d3-1f450d093510",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Sendvič s medovo-hořčičným kuřetem",
+      "portions": 4,
+      "notes": "Doba přípravy 30 min. Kuřecí prsa nech marinovat v medu, hořčici, citronu a koření a griluj 5–7 min z každé strany. Z tahini, citronu, hořčice a bylinek umíchej dresink. Pečivo opeč, potři dresinkem, přidej avokádo, maso, rukolu a parmazán.",
+      "ingredients": [
+        {
+          "id": "uv9h7rly",
+          "name": "bagety nebo ciabatty",
+          "unit": "ks",
+          "amount": 4
+        },
+        {
+          "id": "2mukfn3y",
+          "name": "kuřecí prsa nebo kuřecí řízky",
+          "unit": "g",
+          "amount": 340
+        },
+        {
+          "id": "io9y59nb",
+          "name": "extra panenský olivový olej",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "cqn2kgre",
+          "name": "kvalitní med",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "6vq5w8wz",
+          "name": "dijonská hořčice",
+          "unit": "lžíce",
+          "amount": 3
+        },
+        {
+          "id": "xk9enj53",
+          "name": "citron",
+          "unit": "ks",
+          "amount": 0.5
+        },
+        {
+          "id": "jutqch2d",
+          "name": "jablečný ocet",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "4nkulux8",
+          "name": "nasekaná petrželka",
+          "unit": "hrst",
+          "amount": 1
+        },
+        {
+          "id": "jx2veh43",
+          "name": "šalotka",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "g79aqmtv",
+          "name": "stroužky česneku",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "e1utqwtd",
+          "name": "chilli vločky",
+          "unit": "lžičky",
+          "amount": 0.25
+        },
+        {
+          "id": "bemshh4j",
+          "name": "sůl",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "o54r5ko4",
+          "name": "avokádo",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "xwofb54w",
+          "name": "rukola",
+          "unit": "hrsti",
+          "amount": 2
+        },
+        {
+          "id": "n30lpwq2",
+          "name": "hobliny parmazánu",
+          "unit": "g",
+          "amount": 100
+        },
+        {
+          "id": "vx3r0s7x",
+          "name": "tahini (na tahini dresink)",
+          "unit": "g",
+          "amount": 60
+        },
+        {
+          "id": "e3houb0k",
+          "name": "citronová šťáva (na tahini dresink)",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "6oneap0v",
+          "name": "dijonská hořčice (na tahini dresink)",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "39dm8wre",
+          "name": "sušená pažitka (na tahini dresink)",
+          "unit": "lžičky",
+          "amount": 2
+        },
+        {
+          "id": "tz43r9az",
+          "name": "čerstvě nasekaná petrželka (na tahini dresink)",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "0c4yoxl9",
+          "name": "sušený česnek (na tahini dresink)",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "tnmzlo9d",
+          "name": "sušená cibule (na tahini dresink)",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "4vwnpu94",
+          "name": "sůl a pepř na dochucení (na tahini dresink)",
+          "unit": "dle chuti",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:08.212159+00:00",
+      "instructions": "Šalotku si nakrájejte nadrobno, stroužky česneku prolisujte a petrželku nasekejte nahrubo.\nV míse smíchejte olivový olej, med, hořčici, kůru a šťávu z ½ citronu, jablečný ocet, nasekanou petrželku, šalotku, česnek, chilli vločky a sůl.\nKuřecí prsa vložte do misky a nechte alespoň 30 minut marinovat.\nPředehřejte gril nebo grilovací pánev a maso grilujte z každé strany 5–7 minut, dokud není zcela propečené. Poté nechte maso lehce vychladnout a nakrájejte ho na plátky.\nV misce smíchejte tahini, citronovou šťávu, hořčici, pažitku, petrželku, česnek, cibulový prášek, sůl a pepř. Přidejte 1–2 lžíce studené vody, aby dresink získal požadovanou krémovou konzistenci.\nPečivo podélně rozkrojte, obě poloviny potřete olivovým olejem a lehce ho opečte. Na spodní polovinu rozetřete část dresinku, rozmačkané avokádo, plátky kuřecího masa, rukolu a parmazán.\nPřelijte znovu dresinkem, přiklopte a podávejte nebo zabalte s sebou na výlet.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337340744-ud7inmiu.jpg",
+      "prep_time": 30,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "5fd36918-182e-4553-9b73-d170992f182d",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Kuře na paprice",
+      "portions": 6,
+      "notes": "Doba přípravy 65 min. Kuřecí stehna opeč ze všech stran a vyndej. Zesklovať cibuli, přidej papriku, podlij vínem a vývarem, vrať stehna s bobkovým listem a duste 40–45 min. Maso ober, omáčku rozmixuj, zahusti jíškou, dolij smetanou a vrať maso.",
+      "ingredients": [
+        {
+          "id": "qkrzda3z",
+          "name": "řepkový olej",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "pjj2n0pf",
+          "name": "velká kuřecí stehna",
+          "unit": "ks",
+          "amount": 4
+        },
+        {
+          "id": "sm5jr9cc",
+          "name": "sůl",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "lcnijldg",
+          "name": "černý pepř",
+          "unit": "lžičky",
+          "amount": 0.25
+        },
+        {
+          "id": "dqssb691",
+          "name": "máslo",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "ix014jzh",
+          "name": "velké cibule",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "5n9124uq",
+          "name": "sladká paprika",
+          "unit": "lžíce",
+          "amount": 1.5
+        },
+        {
+          "id": "051kpin3",
+          "name": "bílé víno",
+          "unit": "ml",
+          "amount": 75
+        },
+        {
+          "id": "pa3i8idu",
+          "name": "kuřecí vývar",
+          "unit": "ml",
+          "amount": 500
+        },
+        {
+          "id": "8nnhv2ij",
+          "name": "bobkové listy",
+          "unit": "ks",
+          "amount": 3
+        },
+        {
+          "id": "fv85krqj",
+          "name": "smetana ke šlehání",
+          "unit": "ml",
+          "amount": 250
+        },
+        {
+          "id": "sk0cdiuw",
+          "name": "hladká mouka",
+          "unit": "lžíce",
+          "amount": 2
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:08.721695+00:00",
+      "instructions": "Kuřecí stehna dobře osušte papírovým ubrouskem a osolte a opepřete ze všech stran. Cibuli nakrájejte nadrobno. Z lednice si vyndejte smetanu ke šlehání.\nVe větším hrnci nebo v dostatečně velké a hluboké pánvi rozehřejte 2 lžíce oleje a důkladně na něm dozlatova opečte kuřecí stehna ze všech stran. Nejprve je opékejte kůží dolů. Kuře vyjměte a dejte stranou.\nZtlumte na střední plamen a ve stejné pánvi rozpusťte 1 lžíci másla. Přidejte najemno nakrájenou cibuli a pomalu nechte cibuli zesklovatět (opravdu pomalu a jen zlehka, aby moc nechytla barvu).\nPřidejte papriku a zlehka ji pár vteřin opékejte, aby pustila aroma. Poté vlijte bílé víno a nechte jej zcela zredukovat.\nDo hrnce vložte zpět kuřecí stehna a podlijte teplým vývarem tak, aby stehna byla zcela ponořená. Přidejte bobkové listy, osolte, přikryjte pokličkou a nechte vařit na mírném plameni 40–45 minut.\nZkontrolujte maso, zda jde snadno od kosti, a pokud tomu tak je, vyndejte jej stranou společně s bobkovými listy. Maso můžete obrat a natrhat na menší kousky.\nOmáčku rozmixujte tyčovým mixérem dohladka a ideálně propasírujte přes jemné sítko.\nPřipravte si jíšku – na pánvi si rozpusťte 1 lžíci másla a smíchejte ji s hladkou moukou. Na mírném plameni za stálého míchání vytvořte hustou kašičku.\nDo jíšky vlijte 2–3 lžíce omáčky, důkladně promíchejte. Hotovou jíšku vlijte do omáčky, promíchejte a nechte 1–2 minuty povařit.\nNakonec do omáčky vlijte smetanu, přidejte uvařené kuřecí maso a vařte dalších 5–7 minut, aby se všechny chutě hezky propojily. Podávejte nejlépe s uvařenými těstovinami.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337341272-v2e36aaq.jpg",
+      "prep_time": 65,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "9f611db5-76da-4bf7-8e37-c858726a2a3b",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Pastýřský koláč trochu jinak",
+      "portions": 6,
+      "notes": "Doba přípravy 60 min. Orestuj cibuli, mrkev, celer a česnek, přidej mleté maso s kořením a protlakem. Zalij vývarem se sójovou a worcester omáčkou a vař 10–15 min. Navrch poklaď plátky brambor s máslem, zakryj alobalem a peč 20 + 20 min s parmazánem.",
+      "ingredients": [
+        {
+          "id": "cxskg0dt",
+          "name": "olivový olej",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "hkq79dng",
+          "name": "žlutá cibule",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "5ip8gaze",
+          "name": "mrkev",
+          "unit": "g",
+          "amount": 125
+        },
+        {
+          "id": "16qfbwxs",
+          "name": "stonky řapíkatého celeru",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "zi7dcppp",
+          "name": "stroužky česneku",
+          "unit": "ks",
+          "amount": 3
+        },
+        {
+          "id": "eafe2evr",
+          "name": "hovězí mleté maso",
+          "unit": "g",
+          "amount": 750
+        },
+        {
+          "id": "8x3khmuj",
+          "name": "sladká paprika",
+          "unit": "lžičky",
+          "amount": 2
+        },
+        {
+          "id": "jxq232q2",
+          "name": "sušený tymián",
+          "unit": "lžičky",
+          "amount": 2
+        },
+        {
+          "id": "n6hdlrn2",
+          "name": "mletý pepř",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "tvh71y8t",
+          "name": "rajčatový protlak",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "ahvt7ibg",
+          "name": "mouka",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "507fre9b",
+          "name": "hovězí vývar",
+          "unit": "ml",
+          "amount": 400
+        },
+        {
+          "id": "8kipn0co",
+          "name": "sójová omáčka",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "08fncptd",
+          "name": "Worcestershire omáčka",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "irasukji",
+          "name": "vinný ocet",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "wn8zzbur",
+          "name": "plnotučná hořčice",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "2txupcbk",
+          "name": "sůl",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "3al4xizy",
+          "name": "brambory",
+          "unit": "g",
+          "amount": 750
+        },
+        {
+          "id": "9p0g5esx",
+          "name": "rozpuštěné máslo",
+          "unit": "g",
+          "amount": 30
+        },
+        {
+          "id": "g90cy87e",
+          "name": "strouhaný parmazán",
+          "unit": "g",
+          "amount": 60
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:09.008553+00:00",
+      "instructions": "Troubu si předehřejte na 200 °C. Cibuli, mrkev a řapíkatý celer si nakrájejte nadrobno. Stroužky česneku prolisujte.\nV hluboké pánvi vhodné do trouby rozehřejte olivový olej. Přidejte do pánve cibuli, mrkev, řapíkatý celer a česnek, lehce osolte a restujte 4–5 minut, aby zelenina změkla.\nPřidejte mleté maso, papriku, tymián a pepř, lehce ho osolte a zprudka ho orestujte. Během restování maso pomocí vařečky rozbijte na menší kousky.\nVmíchejte rajčatový protlak, promíchejte ho s ostatními ingrediencemi a restujte další 1–2 minuty. Přidejte mouku a znovu promíchejte.\nDo pánve přidejte hovězí vývar, sójovou a Worcestershire omáčku, vinný ocet a hořčici, promíchejte a přiveďte k varu. Vařte 10–15 minut, občas promíchejte.\nMezitím, co se maso vaří, si oloupejte brambory a nakrájejte je na cca 2 mm tenké plátky.\nNa hotovou masovou směs v pánvi rovnoměrně rozložte plátky brambor ve vrstvách, každou vrstvu lehce potřete rozpuštěným máslem a posypte špetkou soli.\nPánev přikryjte alobalem a pečte v předehřáté troubě 20 minut. Po 20 minutách alobal odstraňte, brambory posypte parmazánem a pečte dalších 20 minut, dokud nejsou brambory dozlatova upečené.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337341523-zanwqmpj.jpg",
+      "prep_time": 60,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "56a26ba1-0acc-42fa-90fb-8cf3072e7fb6",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Sekaná s bramborovou kaší",
+      "portions": 4,
+      "notes": "Doba přípravy 70 min. Cibuli s česnekem opeč na másle a nech vychladnout. Smíchej mleté maso, strouhanku, vejce, kečup, petrželku, worcester, hořčici a koření, přidej cibuli. Vytvaruj šišku a peč 50–55 min při 200 °C. Podávej s bramborovou kaší.",
+      "ingredients": [
+        {
+          "id": "oe0uwvji",
+          "name": "mleté maso (1:1 vepřové a krůtí)",
+          "unit": "g",
+          "amount": 800
+        },
+        {
+          "id": "3rrydpdj",
+          "name": "žlutá cibule",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "pe6avm1v",
+          "name": "stroužky česneku, prolisované",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "4d5s9j4m",
+          "name": "máslo",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "802de0jv",
+          "name": "strouhanka",
+          "unit": "g",
+          "amount": 75
+        },
+        {
+          "id": "5awngez0",
+          "name": "vejce",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "tk6awagb",
+          "name": "kečup",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "de82t9k0",
+          "name": "čerstvě nasekaná petrželka",
+          "unit": "hrsti",
+          "amount": 2
+        },
+        {
+          "id": "b7hi50pe",
+          "name": "Worcestershire omáčka",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "r7h0vxmz",
+          "name": "dijonská hořčice",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "0t5dbejr",
+          "name": "majoránka",
+          "unit": "lžičky",
+          "amount": 2
+        },
+        {
+          "id": "1ny9zuky",
+          "name": "mletý pepř",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "4z21kfsn",
+          "name": "sůl",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "vgvfy2lf",
+          "name": "bramborová kaše k podávání",
+          "unit": "",
+          "amount": 1
+        },
+        {
+          "id": "cspsz1zx",
+          "name": "nakládané okurky k podávání",
+          "unit": "",
+          "amount": 1
+        },
+        {
+          "id": "nhsm5evk",
+          "name": "rozpuštěné máslo k podávání",
+          "unit": "",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:09.582222+00:00",
+      "instructions": "Troubu si předehřejte na 200 °C a připravte si pekáček, ve kterém sekanou upečete.\nCibuli si nakrájejte nadrobno. V menším kastrůlku rozehřejte máslo a cibuli na něm opečte dozlatova. V závěru přidejte oba prolisované stroužky česneku, jen lehce orestujte a stáhněte z plotny. Nechte zcela vychladnout.\nDo velké mísy dejte mleté maso, strouhanku, vejce, kečup, petrželku, Worcestershire omáčku, hořčici, majoránku, pepř a sůl. Rukama dobře propracujte. Nakonec přidejte i cibuli s česnekem a znovu propracujte.\nPekáček lehce vymažte olejem a z masové směsi vytvarujte šišku dlouhou asi 25–30 cm. Dejte péct do předehřáté trouby cca na 50–55 minut. Ke konci pečení můžete sekanou 2–3x přelít vypečeným tukem.\nSekanou podávejte nakrájenou na plátky, s bramborovou kaší a přelitou rozpuštěným máslem.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337342112-od2gbx48.jpg",
+      "prep_time": 70,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "9cb1ebca-02d3-437b-8a0c-ada942ddcbab",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Chilli con carne",
+      "portions": 4,
+      "notes": "Doba přípravy 70 min. Cibuli, česnek a kmín opeč nasucho a rozmixuj s rajčaty, chipotle a kořením. Orestuj maso, pak cibuli s paprikami, vrať maso, zalij omáčkou a fazolemi a vař 45–50 min. Na závěr vmíchej hořkou čokoládu. Podávej s rýží a chipsy.",
+      "ingredients": [
+        {
+          "id": "de5bwair",
+          "name": "střední žluté cibule",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "946w2kb8",
+          "name": "červená paprika",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "tggf9dfq",
+          "name": "zelená paprika",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "jgdnsb5i",
+          "name": "stroužky česneku",
+          "unit": "ks",
+          "amount": 4
+        },
+        {
+          "id": "zofq87jk",
+          "name": "celý římský kmín",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "n7x0g562",
+          "name": "chipotle pasta",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "j4gkx09k",
+          "name": "krájená rajčata v konzervě",
+          "unit": "g",
+          "amount": 400
+        },
+        {
+          "id": "uxtb3cc2",
+          "name": "sušené oregano",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "tp98vbgv",
+          "name": "uzená paprika",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "s4jsmmkr",
+          "name": "mletý koriandr",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "0pk2zd05",
+          "name": "olivový olej",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "pbml1nvr",
+          "name": "mleté hovězí maso",
+          "unit": "g",
+          "amount": 500
+        },
+        {
+          "id": "7h1dd3n4",
+          "name": "rajčatový protlak",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "wp05jji5",
+          "name": "balzamikový ocet",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "ih5iqwbc",
+          "name": "červené fazole (sterilované v nálevu)",
+          "unit": "g",
+          "amount": 240
+        },
+        {
+          "id": "8y5xdswv",
+          "name": "kvalitní hořká čokoláda",
+          "unit": "g",
+          "amount": 10
+        },
+        {
+          "id": "lw2l6eif",
+          "name": "sůl a pepř na dochucení",
+          "unit": "dle chuti",
+          "amount": 1
+        },
+        {
+          "id": "i4e7uphk",
+          "name": "tortilla chipsy (na dokončení)",
+          "unit": "",
+          "amount": 1
+        },
+        {
+          "id": "u1q0590x",
+          "name": "strouhaný čedar (na dokončení)",
+          "unit": "",
+          "amount": 1
+        },
+        {
+          "id": "fqhxpn63",
+          "name": "zakysaná smetana (na dokončení)",
+          "unit": "",
+          "amount": 1
+        },
+        {
+          "id": "itkwadnf",
+          "name": "avokádo (na dokončení)",
+          "unit": "",
+          "amount": 1
+        },
+        {
+          "id": "wzuu4gvn",
+          "name": "limeta (na dokončení)",
+          "unit": "",
+          "amount": 1
+        },
+        {
+          "id": "51hwrcwe",
+          "name": "vařená rýže (na dokončení)",
+          "unit": "",
+          "amount": 1
+        },
+        {
+          "id": "du6lxxti",
+          "name": "čerstvý koriandr (na dokončení)",
+          "unit": "",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:09.851184+00:00",
+      "instructions": "Obě cibule si oloupejte. Jednu cibuli nakrájejte nadrobno, druhou cibuli rozkrojte na poloviny a poté každou polovinu ještě na čtvrtiny. Papriky nakrájejte na kostičky.\nNa suchou pánev dejte stroužky česneku, římský kmín a na čtvrtiny nakrájenou cibuli. Na středním plameni 4–5 minut opékejte, aby cibule i česnek lehce zuhelnatěly.\nSpálenou cibuli, česnek a kmín dejte do nádoby kuchyňského mixéru a přidejte k nim chipotle pastu, rajčata z konzervy, oregano, sladkou i uzenou papriku a koriandr a rozmixujte vše do hladké omáčky.\nNa větší pánvi rozehřejte olivový olej, přidejte mleté maso, lehce ho osolte a zprudka ho orestujte. Během restování maso pomocí vařečky rozdělte na menší kousky. Jakmile je maso opečené, vyndejte ho z pánve.\nDo stejné pánve dejte druhou lžíci oleje a nadrobno nakrájenou cibuli. Restujte 2–3 minuty, dokud cibule lehce nezměkne. Přidejte k ní obě papriky a restujte dalších 5–7 minut, dokud nezměknou.\nDo pánve dejte rajčatový protlak a promíchejte ho s paprikami a cibulí. Poté do pánve vraťte také maso a zalijte ho připravenou omáčkou. Promíchejte a přiveďte k varu.\nDo omáčky přidejte balzamikový ocet, fazole i s nálevem, lehce osolte a opepřete. Promíchejte a nechte odkryté vařit a probublávat alespoň 45–50 minut. Občas promíchejte.\nNa závěr přidejte hořkou čokoládu, nechte ji zcela rozpustit a promíchejte. Dle potřeby dochuťte solí, pepřem, případně můžete chilli lehce zakápnout šťávou z limety.\nPodávejte s vařenou rýží, tortilla chipsy, strouhaným čedarem, avokádem a lžící zakysané smetany.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337342378-lg7gdj1s.jpg",
+      "prep_time": 70,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "9ed46afd-ded4-47ea-a8e3-e575e643cd7a",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Masové kuličky v rajčatové omáčce",
+      "portions": 6,
+      "notes": "Doba přípravy 65 min. Pečivo namoč v mléce, smíchej s mletým masem, vejcem a kořením a vytvaruj kuličky. Peč 15 min při 210 °C. Z cibule, česneku, protlaku a rajčat udělej omáčku, přidej kuličky a vař 25 min. Posyp strouhankou a parmazánem a zapeč.",
+      "ingredients": [
+        {
+          "id": "qn7zbhiu",
+          "name": "staré pečivo",
+          "unit": "g",
+          "amount": 110
+        },
+        {
+          "id": "n7q43k45",
+          "name": "mléko",
+          "unit": "ml",
+          "amount": 250
+        },
+        {
+          "id": "bq1are2v",
+          "name": "mleté hovězí maso",
+          "unit": "g",
+          "amount": 750
+        },
+        {
+          "id": "iiy9leme",
+          "name": "vejce",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "xj43irsg",
+          "name": "provensálské koření",
+          "unit": "lžičky",
+          "amount": 2
+        },
+        {
+          "id": "iktrmj65",
+          "name": "sušená bazalka",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "d60cilzv",
+          "name": "nasekaná čerstvá petrželka",
+          "unit": "hrsti",
+          "amount": 2
+        },
+        {
+          "id": "ndhiq327",
+          "name": "mletý pepř",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "8n0qds0h",
+          "name": "sůl",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "tabdglyp",
+          "name": "panko strouhanka",
+          "unit": "g",
+          "amount": 35
+        },
+        {
+          "id": "l6vw1soa",
+          "name": "nastrouhaný parmazán",
+          "unit": "g",
+          "amount": 100
+        },
+        {
+          "id": "vmvwgzn8",
+          "name": "čerstvé pečivo k podávání",
+          "unit": "",
+          "amount": 1
+        },
+        {
+          "id": "euaqf91l",
+          "name": "olivový olej (na omáčku)",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "dxzecgt6",
+          "name": "červená cibule (na omáčku)",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "hos0oujh",
+          "name": "stroužky česneku (na omáčku)",
+          "unit": "ks",
+          "amount": 3
+        },
+        {
+          "id": "3apw551b",
+          "name": "rajčatový protlak (na omáčku)",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "53vb11pm",
+          "name": "rajčata v konzervě (2 × 400 g) (na omáčku)",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "qees5czh",
+          "name": "krupicový cukr (na omáčku)",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "w930onwn",
+          "name": "sušené oregano (na omáčku)",
+          "unit": "lžičky",
+          "amount": 2
+        },
+        {
+          "id": "jhw5xypd",
+          "name": "sušená bazalka (na omáčku)",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "mlfgkp2k",
+          "name": "balzamikový ocet (na omáčku)",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "b9ttpfix",
+          "name": "sójová omáčka (na omáčku)",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "sl11090p",
+          "name": "mletý pepř (na omáčku)",
+          "unit": "lžičky",
+          "amount": 0.25
+        },
+        {
+          "id": "s7hatlu1",
+          "name": "sůl (na omáčku)",
+          "unit": "lžičky",
+          "amount": 0.75
+        },
+        {
+          "id": "e9ch1x6h",
+          "name": "olej ve spreji",
+          "unit": "",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:10.388676+00:00",
+      "instructions": "Pečivo si nakrájejte na kostičky a dejte do větší mísy. Zalijte mlékem, lehce promíchejte, aby bylo pečivo v mléku ponořené a nechte 20 minut odstát.\nMezitím si do velké mísy dejte mleté maso, vejce, provensálské koření, bazalku, nasekanou čerstvou petrželku, pepř a sůl. Rukama dobře promíchejte.\nTroubu si nyní předehřejte na 210 °C a připravte si plech vyložený pečicím papírem.\nNasáklé pečivo tyčovým mixérem lehce rozmixujte a přidejte k masové směsi. Dobře promíchejte, aby vám vznikla kompaktní směs a tvarujte ze směsi kuličky cca o průměru 4–5 cm.\nKuličky vyskládejte na připravený plech a dejte péct do předehřáté trouby na 15 minut.\nNyní se pusťte do přípravy omáčky. Cibuli nakrájejte nadrobno a stroužky česneku prolisujte.\nVe větší pánvi vhodné do trouby rozpalte olej a orestujte na něm cibuli lehce dozlatova. Přidejte prolisovaný česnek a rajčatový protlak a restujte další minutu.\nDo pánve vlijte rajčata, jednu z plechovek pak naplňte do ¾ vodou a přidejte do pánve. Přidejte cukr, oregano, bazalku, balzamikový ocet, sójovou omáčku, lehce osolte, opepřete a přiveďte k varu. Promíchejte a nechte omáčku 15 minut lehce probublávat.\nUpečené masové kuličky vyndejte z trouby a vyskládejte je do pánve k omáčce. Přiklopte a společně vařte dalších 25 minut. Troubu si nechte rozpálenou.\nMasové kuličky posypte rovnoměrně panko strouhankou a parmazánem. Lehce zastříkněte olejem ve spreji a vložte bez poklice do předehřáté trouby. Pečte 15 minut, dokud se sýr nerozpustí a strouhanka není lehce dozlatova.\nPodávejte ideálně s kousky čerstvého pečiva a zeleninovým salátem.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337342655-fbv2ccj2.jpg",
+      "prep_time": 65,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "f7d9979a-1d42-477b-a6f9-149212b9960e",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Tvarohové knedlíky",
+      "portions": 6,
+      "notes": "Doba přípravy 25 min. Z tvarohu, žloutků, citronové kůry, cukrů, másla, krupičky a mouky vypracuj hladké těsto a nech odležet v lednici. Vytvaruj váleček, odkrajuj dílky, do každého zabal jahodu a vař 5 min ve vroucí vodě. Podávej s tvarohem a máslem.",
+      "ingredients": [
+        {
+          "id": "1q5jktv5",
+          "name": "měkký tučný tvaroh",
+          "unit": "g",
+          "amount": 750
+        },
+        {
+          "id": "psynnxp7",
+          "name": "žloutky",
+          "unit": "ks",
+          "amount": 3
+        },
+        {
+          "id": "e0lzru8r",
+          "name": "kůra z citrónu",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "m3o3idd3",
+          "name": "sůl",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "awgilw0a",
+          "name": "vanilkový cukr",
+          "unit": "g",
+          "amount": 40
+        },
+        {
+          "id": "rtvx3p8a",
+          "name": "moučkový cukr",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "07666txd",
+          "name": "rozpuštěné máslo",
+          "unit": "lžíce",
+          "amount": 3
+        },
+        {
+          "id": "1o9tnxdb",
+          "name": "dětská krupička",
+          "unit": "g",
+          "amount": 150
+        },
+        {
+          "id": "cevqomwu",
+          "name": "polohrubá mouka",
+          "unit": "g",
+          "amount": 200
+        },
+        {
+          "id": "jael032r",
+          "name": "čerstvé jahody",
+          "unit": "g",
+          "amount": 700
+        },
+        {
+          "id": "2f71lu8u",
+          "name": "zakysaná smetana k podávání",
+          "unit": "",
+          "amount": 1
+        },
+        {
+          "id": "znkox0j4",
+          "name": "rozpuštěné máslo k podávání",
+          "unit": "",
+          "amount": 1
+        },
+        {
+          "id": "ctx8qzyu",
+          "name": "nastrouhaný tvaroh k podávání",
+          "unit": "",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:10.639351+00:00",
+      "instructions": "Všechny ingredience kromě jahod dejte do velké mísy a buď pomocí lžíce, nebo vlastníma rukama vypracujte jemné, hladké těsto.\nMísu s těstem zakryjte potravinářskou fólií a dejte na půl hodiny odležet do lednice.\nOdleželé těsto vyklopte na pomoučněnou pracovní plochu a vytvarujte z něj váleček o průměru cca 5 cm.\nZ válečku pak odkrajujte dílky těsta. Ty v dlani rozmáčkněte, do středu těsta vložte jahodu a opatrně zabalte.\nDo většího hrnce si napusťte vodu, lehce ji osolte a přiveďte k varu. Poté snižte plamen, aby voda jen jemně probublávala, ale nevřela.\nVytvarované knedlíky opatrně vkládejte do vroucí vody. Jakmile knedlíky vyplavou na hladinu, vařte je 5 minut. Uvařené knedlíky z vody vylovte děrovanou naběračkou.\nHotové knedlíky můžete podávat se strouhaným tvarohem, zakysanou smetanou a rozpuštěným máslem nebo je můžete obalit ve strouhance opražené na másle.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337343190-xm2gt8p8.jpg",
+      "prep_time": 25,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "6795cd4e-f17a-4c02-8a82-44e89891f12b",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Cobb salát",
+      "portions": 4,
+      "notes": "Doba přípravy 30 min (plus marinování). Kuřecí prsa naklep, osol a nech marinovat v majonéze a hořčici. Upeč je s prosciuttem při 200 °C, uvař vejce na 8 minut a nakrájej zeleninu. Z žloutků, pažitky, hořčice, smetany, oleje a octa umíchej dresink a salát naservíruj na talíře.",
+      "ingredients": [
+        {
+          "id": "fmds32ge",
+          "name": "kuřecí prsa",
+          "unit": "g",
+          "amount": 500
+        },
+        {
+          "id": "xryad67m",
+          "name": "sůl",
+          "unit": "lžičky",
+          "amount": 0.25
+        },
+        {
+          "id": "z3l5av8r",
+          "name": "mletý pepř",
+          "unit": "lžičky",
+          "amount": 0.25
+        },
+        {
+          "id": "gsn34c1b",
+          "name": "majonéza",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "0o1p9b37",
+          "name": "plnotučná hořčice",
+          "unit": "lžíce",
+          "amount": 1.5
+        },
+        {
+          "id": "99xi5l8z",
+          "name": "olivový olej",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "0y1m7ti4",
+          "name": "prosciutto",
+          "unit": "g",
+          "amount": 150
+        },
+        {
+          "id": "j2mkeuvd",
+          "name": "vařená vejce",
+          "unit": "ks",
+          "amount": 4
+        },
+        {
+          "id": "m0acqd77",
+          "name": "hlávka ledového salátu",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "8g7rieo8",
+          "name": "rukola",
+          "unit": "hrsti",
+          "amount": 2
+        },
+        {
+          "id": "ngehai0y",
+          "name": "velká rajčata",
+          "unit": "ks",
+          "amount": 3
+        },
+        {
+          "id": "xcyo6bhp",
+          "name": "avokádo",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "rgfs4vdl",
+          "name": "pažitka na dokončení",
+          "unit": "",
+          "amount": 1
+        },
+        {
+          "id": "6uaju5fy",
+          "name": "žloutky (na dresink)",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "0jao6zbu",
+          "name": "nasekaná čerstvá pažitka (na dresink)",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "p07x6gf5",
+          "name": "plnotučná hořčice (na dresink)",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "d94776i3",
+          "name": "zakysaná smetana (na dresink)",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "sfi2pm6s",
+          "name": "olivový olej (na dresink)",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "bw1etsj0",
+          "name": "vinný ocet (na dresink)",
+          "unit": "lžíce",
+          "amount": 1.5
+        },
+        {
+          "id": "687kh2mn",
+          "name": "krupicový cukr (na dresink)",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "3egzanpy",
+          "name": "sůl a pepř (na dresink)",
+          "unit": "dle chuti",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:02.347768+00:00",
+      "instructions": "Kuřecí prsa naklepejte z obou stran, je osolte a opepřete. Dejte je do misky společně s majonézou, hořčicí a olivovým olejem, promíchejte a nechte 30 minut až 1 hodinu marinovat.\nTroubu si předehřejte na 200 °C a připravte si plech vyložený pečicím papírem. Na část plechu rovnoměrně natřete prosciutto, na zbylou část plechu položte marinovaná kuřecí prsa a dejte péct do předehřáté trouby cca na 20 minut.\nV menším hrnci přiveďte vodu k varu. Do vody vložte vejce a vařte je přesně 8 minut. Poté je okamžitě vložte do ledové vody a vychladlá oloupejte a nakrájejte na plátky.\nRajčata nakrájejte na větší kousky, ideálně na osminy. Salát a rukolu důkladně omyjte a osušte. Avokádo nakrájejte na plátky a vše odložte stranou.\nPažitku nasekejte nadrobno a dejte do misky, ve které rozmícháte dresink. Přidejte žloutky, hořčici, zakysanou smetanu, olivový olej, vinný ocet, krupicový cukr, sůl a pepř, dobře promíchejte a podle potřeby dochuťte.\nNa talíře rozložte salátové listy, zalijte trochou zálivky a navrch naaranžujte maso, vejce, rajčata a avokádo. Posypte krupavým prosciuttem, přelijte zbylou zálivkou a nakonec posypte pažitkou.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337334869-n8ppsoq7.jpg",
+      "prep_time": 30,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "0f318eb4-0278-4430-a1cd-05d7aed6f6f5",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Orzo s kuřetem po toskánsku",
+      "portions": 4,
+      "notes": "Doba přípravy 35 min. Na másle orestuj cibuli, řapíkatý celer a česnek s provensálským kořením a tymiánem, přidej nakrájené kuřecí maso. Vsyp orzo, zalij vývarem a vař 10 min. Vmíchej smetanu, špenát a pesto, posyp parmazánem a zapeč 10 min při 200 °C.",
+      "ingredients": [
+        {
+          "id": "pjfso7ie",
+          "name": "kuřecí prsa",
+          "unit": "g",
+          "amount": 600
+        },
+        {
+          "id": "r31h0muq",
+          "name": "sůl",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "2sxo7xsj",
+          "name": "mletý pepř",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "xpe23ews",
+          "name": "máslo",
+          "unit": "g",
+          "amount": 35
+        },
+        {
+          "id": "ao74qiwm",
+          "name": "žlutá cibule",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "u7lk2ag6",
+          "name": "stroužky česneku",
+          "unit": "ks",
+          "amount": 4
+        },
+        {
+          "id": "ivct1yvi",
+          "name": "řapíkatý celer",
+          "unit": "stonky",
+          "amount": 2
+        },
+        {
+          "id": "xdg3xrso",
+          "name": "provensálské koření",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "d4crantr",
+          "name": "sušený tymián",
+          "unit": "lžičky",
+          "amount": 2
+        },
+        {
+          "id": "wagzhgea",
+          "name": "těstovinová rýže Orzo",
+          "unit": "g",
+          "amount": 225
+        },
+        {
+          "id": "qxef080w",
+          "name": "kuřecí vývar",
+          "unit": "ml",
+          "amount": 500
+        },
+        {
+          "id": "qv1s55qh",
+          "name": "smetana ke šlehání",
+          "unit": "ml",
+          "amount": 200
+        },
+        {
+          "id": "uveaqdhi",
+          "name": "čerstvý špenát",
+          "unit": "hrsti",
+          "amount": 2
+        },
+        {
+          "id": "i6mdnphg",
+          "name": "pesto ze sušených rajčat",
+          "unit": "g",
+          "amount": 100
+        },
+        {
+          "id": "v7gopebg",
+          "name": "čerstvý parmazán",
+          "unit": "g",
+          "amount": 100
+        },
+        {
+          "id": "azn2mx80",
+          "name": "čerstvá bazalka k podávání",
+          "unit": "",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:03.033895+00:00",
+      "instructions": "Troubu si předehřejte na 200 °C, připravte si pánev vhodnou do trouby a z lednice si vyndejte smetanu ke šlehání.\nKuřecí prsa nakrájejte na kostky, osolte a opepřete. Cibuli a řapíkatý celer nakrájejte nadrobno, česnek na tenké plátky.\nNa pánvi rozehřejte máslo. Jakmile se rozpustí, přidejte do pánve nakrájenou cibuli, řapíkatý celer, stroužky česneku a dochuťte provensálským kořením a tymiánem. Restujte cca 5 minut, dokud zelenina trochu nezměkne.\nNyní do pánve přidejte také kuřecí maso a restujte 2–3 minuty z každé strany dozlatova.\nVsypte do pánve orzo, lehce osolte, zalijte vývarem a přiveďte ke varu. Pánev přiklopte, snižte lehce plamen a vařte cca 10 minut.\nOdklopte, vlijte smetanu, přidejte špenát a pesto a dobře promíchejte. Navrch posypte parmazánem a dejte zapéct do předehřáté trouby na 10 minut.\nHotové orzo podávejte ozdobené čerstvou bazalkou a posypané extra parmazánem.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337335388-68s19pnx.jpg",
+      "prep_time": 35,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "ff8b8b50-f326-4592-906e-abbf7ee8d143",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Polévka, co chutná jako lasagne",
+      "portions": 6,
+      "notes": "Doba přípravy 40 min. Na oleji orestuj česnek a mleté maso s kořením. Zalij passatou a vývarem, nalámej lasagne, přidej smetanu a vař do změknutí. Ricottu smíchej s parmazánem, mlékem a muškátem. Polévku podávej ozdobenou ricottovou směsí a parmazánem.",
+      "ingredients": [
+        {
+          "id": "z4zma354",
+          "name": "olivový olej",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "jbp3m8ct",
+          "name": "stroužky česneku, prolisované",
+          "unit": "ks",
+          "amount": 3
+        },
+        {
+          "id": "bateoj95",
+          "name": "mleté hovězí maso",
+          "unit": "g",
+          "amount": 500
+        },
+        {
+          "id": "lesj5226",
+          "name": "provensálské koření",
+          "unit": "lžičky",
+          "amount": 2
+        },
+        {
+          "id": "as9381fv",
+          "name": "sušené oregano",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "b3r8977x",
+          "name": "sladká paprika",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "stxgqe1h",
+          "name": "sušená cibule",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "njlpslg6",
+          "name": "sušený česnek",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "veg1cg4l",
+          "name": "mletý pepř",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "4yjkgbuw",
+          "name": "sůl",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "7o2ub6ky",
+          "name": "passata",
+          "unit": "g",
+          "amount": 700
+        },
+        {
+          "id": "qh9g55m7",
+          "name": "hovězí vývar",
+          "unit": "ml",
+          "amount": 800
+        },
+        {
+          "id": "zwew8zoc",
+          "name": "lasagne",
+          "unit": "g",
+          "amount": 300
+        },
+        {
+          "id": "9mra9s6d",
+          "name": "smetana ke šlehání",
+          "unit": "ml",
+          "amount": 125
+        },
+        {
+          "id": "9qu688mi",
+          "name": "nasekaná čerstvá bazalka",
+          "unit": "hrst",
+          "amount": 1
+        },
+        {
+          "id": "z9u9rbzd",
+          "name": "ricotta",
+          "unit": "g",
+          "amount": 250
+        },
+        {
+          "id": "j293cwwa",
+          "name": "čerstvě nastrouhaný parmazán",
+          "unit": "g",
+          "amount": 125
+        },
+        {
+          "id": "nrq6luew",
+          "name": "mléko",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "i5swf3g0",
+          "name": "muškátový oříšek",
+          "unit": "lžičky",
+          "amount": 0.125
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:07.952396+00:00",
+      "instructions": "Ve větším hrnci rozpalte olivový olej a krátce na něm orestujte prolisovaný česnek. Přidejte mleté maso, provensálské koření, oregano, papriku, cibuli, česnek, pepř a sůl a promíchejte.\nMaso vařečkou rozdělte na menší kousky a restujte, dokud maso ze všech stran hezky nezhnědne.\nMaso zalijte passatou a vývarem a přiveďte polévku k varu. Povařte 4–5 minut a poté do polévky nalámejte na menší kusy lasagne. Zalijte smetanou a vařte dalších 12–14 minut, dokud těstoviny nezměknou.\nMezitím si nahrubo nasekejte bazalku a ricottu smíchejte s 50 g parmazánu, mlékem, muškátovým oříškem, špetkou soli a pepřem. Odložte stranou.\nJakmile jsou těstoviny uvařené, přidejte do polévky nasekanou bazalku, promíchejte a vařte 3–4 minuty, aby se chutě hezky propojily.\nPolévku podávejte ozdobenou ricottovou směsí a posypanou strouhaným parmazánem.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337340504-pug26fhu.jpg",
+      "prep_time": 40,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "7ac6c55e-1b81-4770-9907-c387c0a186ed",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Nepečené brownie sušenky",
+      "portions": 8,
+      "notes": "Doba přípravy 30 min. Datle namoč, ořechy a kokos rozmixuj. Vše smíchej s kakaem, semínky, vanilkou, kokosovým olejem a skořicí do lepivé hmoty. Vmáčkni do formy, zamraz, přelij rozpuštěnou čokoládou, posyp ořechy a brusinkami a nech ztuhnout.",
+      "ingredients": [
+        {
+          "id": "qpbzo2i3",
+          "name": "vypeckované datle",
+          "unit": "g",
+          "amount": 200
+        },
+        {
+          "id": "hckjqbcr",
+          "name": "vlašské nebo pekanové ořechy",
+          "unit": "g",
+          "amount": 75
+        },
+        {
+          "id": "a611jofl",
+          "name": "strouhaný kokos",
+          "unit": "g",
+          "amount": 25
+        },
+        {
+          "id": "927vxm9d",
+          "name": "holandské kakao",
+          "unit": "lžíce",
+          "amount": 3
+        },
+        {
+          "id": "htweryrg",
+          "name": "chia semínka",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "5bh1wjil",
+          "name": "konopná semínka",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "tfqd5d13",
+          "name": "vanilkový extrakt",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "fsdi43e2",
+          "name": "kokosový olej",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "9ptvj8mu",
+          "name": "skořice",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "z37c0qxt",
+          "name": "sůl",
+          "unit": "špetka",
+          "amount": 1
+        },
+        {
+          "id": "06yqq9ef",
+          "name": "hořká čokoláda",
+          "unit": "g",
+          "amount": 75
+        },
+        {
+          "id": "nk753yuk",
+          "name": "ořechy a sušené brusinky na dokončení",
+          "unit": "",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:08.47305+00:00",
+      "instructions": "Datle namočte alespoň na 10 minut do teplé vody. V mixéru nebo kuchyňském robotu rozmixujte ořechy a kokos na hrubší směs.\nDatle slijte a přidejte je do kuchyňského robotu společně s kakaem, chia semínky, konopnými semínky, vanilkou, kokosovým olejem, skořicí a solí.\nMixujte, dokud nevznikne lepivá, hutná hmota. Pokud by směs byla příliš suchá, přidejte 1–2 lžíce vody.\nPřipravte si formu na biskupský chlebíček a vyložte ji pečicím papírem. Směs přendejte do formy a rukama nebo lžící upěchujte.\nVložte i s formou na 10 minut do mrazáku, aby směs zatuhla. Mezitím si připravte čokoládovou polevu. Ve vodní lázni nebo v mikrovlnné troubě rozpusťte čokoládu a dobře promíchejte, aby vám vznikla hladká čokoládová poleva.\nZ mrazáku vyndejte směs na sušenky, přelijte připravenou polevou a posypte ořechy a brusinkami. Vraťte zpět do mrazáku na dalších 20 minut.\nPo 20 minutách sušenky vyndejte a nakrájejte na menší kousky.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337341009-yykhel80.jpg",
+      "prep_time": 30,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "80b49a32-c4f4-41f4-9727-7fcb8930b608",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Kuře Milanese z jednoho plechu",
+      "portions": 4,
+      "notes": "Doba přípravy 45 min. Brambory na osminky promíchej s olejem a parmazánem a peč 20 min při 200 °C. Kuřecí plátky naklep, obal v másle a panko strouhance s provensálským kořením a přidej k bramborám na dalších 20 min. Podávej s rukolovým salátem.",
+      "ingredients": [
+        {
+          "id": "dhehhhsm",
+          "name": "brambory",
+          "unit": "g",
+          "amount": 700
+        },
+        {
+          "id": "76bxmyec",
+          "name": "olivový olej",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "cvofeyek",
+          "name": "strouhaný parmazán",
+          "unit": "g",
+          "amount": 50
+        },
+        {
+          "id": "04ch8gnr",
+          "name": "kuřecí prsa",
+          "unit": "g",
+          "amount": 600
+        },
+        {
+          "id": "oaz8kp08",
+          "name": "sůl",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "0oznglgq",
+          "name": "mletý pepř",
+          "unit": "lžičky",
+          "amount": 0.25
+        },
+        {
+          "id": "oav6mccb",
+          "name": "rozpuštěné máslo",
+          "unit": "g",
+          "amount": 35
+        },
+        {
+          "id": "klhcovcb",
+          "name": "panko strouhanka",
+          "unit": "g",
+          "amount": 100
+        },
+        {
+          "id": "6ltv1z7h",
+          "name": "provensálské koření",
+          "unit": "lžičky",
+          "amount": 1.5
+        },
+        {
+          "id": "5kqaxno5",
+          "name": "rukola",
+          "unit": "g",
+          "amount": 100
+        },
+        {
+          "id": "i1djbgqo",
+          "name": "balzamikový ocet",
+          "unit": "lžíce",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:03.247104+00:00",
+      "instructions": "Troubu si předehřejte na 200 °C a připravte si plech vyložený pečicím papírem.\nBrambory nakrájejte na osminky a dejte je do větší mísy společně s 1 lžící olivového oleje a strouhaným parmazánem.\nVše promíchejte, vysypte na připravený plech a dejte péct do předehřáté trouby na 20 minut. Mísu si nechte stranou, připravíte v ní pak rukolový salát.\nMezitím si kuřecí prsa nakrájejte na tenké plátky a lehce je naklepejte. Z obou stran je osolte a opepřete.\nDo jedné misky si dejte rozpuštěné máslo, do druhé panko strouhanku smíchanou s provensálským kořením. Kuřecí plátky obalte vždy nejprve v másle, poté ve strouhance a odložte stranou.\nNa rukolový salát vsypte rukolu do stejné mísy, ve které jste promíchali brambory. Zalijte druhou lžící olivového oleje, balzamikovým octem a lehce osolte a opepřete a uložte salát do lednice.\nPo 20 minutách pečení brambor vyskládejte na stejný plech také obalená kuřecí prsa. Pečte dalších 20 minut, v polovině pečení maso otočte.\nHotová kuřecí prsa podávejte s pečenými parmazánovými brambory a vychlazeným rukolovým salátem.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337335820-bpl3j8sl.jpg",
+      "prep_time": 45,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "48251d40-fa65-41a4-8a5a-2d53cb06c8e0",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Krémové těstoviny s křupavým kuřetem",
+      "portions": 4,
+      "notes": "Doba přípravy 35 min. Kuřecí plátky obal v panko strouhance s parmazánem a kořením a opeč na pánvi dozlatova. Uvař těstoviny s brokolicí. Z másla, česneku, smetany, smetanového sýra a parmazánu udělej omáčku, smíchej s těstovinami a navrch dej křupavé kuře.",
+      "ingredients": [
+        {
+          "id": "6bnbxi97",
+          "name": "kuřecí prsa",
+          "unit": "g",
+          "amount": 500
+        },
+        {
+          "id": "8h015m30",
+          "name": "mletý pepř",
+          "unit": "lžičky",
+          "amount": 0.25
+        },
+        {
+          "id": "8ah5bobv",
+          "name": "sůl",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "ujfw25al",
+          "name": "panko strouhanka",
+          "unit": "g",
+          "amount": 60
+        },
+        {
+          "id": "b5ijfv5u",
+          "name": "nastrouhaný parmazán",
+          "unit": "g",
+          "amount": 9
+        },
+        {
+          "id": "xmxpcrmo",
+          "name": "sušené oregano",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "jz4lellp",
+          "name": "sušená cibule",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "6tkqtv7v",
+          "name": "rostlinný olej na smažení",
+          "unit": "lžíce",
+          "amount": 3
+        },
+        {
+          "id": "7jath5cj",
+          "name": "těstoviny",
+          "unit": "g",
+          "amount": 400
+        },
+        {
+          "id": "bw5ubjko",
+          "name": "brokolice (rozdělená na růžičky)",
+          "unit": "g",
+          "amount": 250
+        },
+        {
+          "id": "ed67dcyx",
+          "name": "olivový olej",
+          "unit": "lžíce",
+          "amount": 3
+        },
+        {
+          "id": "kpd01i2i",
+          "name": "máslo",
+          "unit": "g",
+          "amount": 30
+        },
+        {
+          "id": "cdfpu1o3",
+          "name": "stroužky česneku, prolisované",
+          "unit": "ks",
+          "amount": 3
+        },
+        {
+          "id": "bud4545k",
+          "name": "smetana ke šlehání",
+          "unit": "ml",
+          "amount": 150
+        },
+        {
+          "id": "t3ve2bmr",
+          "name": "smetanový sýr (např. Lučina)",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "gv9a8bxq",
+          "name": "jemně strouhaný parmazán",
+          "unit": "g",
+          "amount": 120
+        },
+        {
+          "id": "lq2xtgyx",
+          "name": "čerstvá bazalka",
+          "unit": "hrsti",
+          "amount": 2
+        },
+        {
+          "id": "3uua52nx",
+          "name": "sůl a pepř na dochucení",
+          "unit": "dle chuti",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:04.15732+00:00",
+      "instructions": "Smetanu ke šlehání a smetanový sýr vyndejte z lednice. Kuřecí prsa nakrájejte na tenké plátky a z obou stran je osolte a opepřete.\nV misce smíchejte panko strouhanku, parmazán, oregano a cibuli. V této směsi obalte kuřecí prsa a lehce směs do masa zatlačte.\nNa pánvi rozehřejte olej, vložte kuřecí plátky a z obou stran je opečte dozlatova. Trvá to cca 3–4 minuty z každé strany.\nVe velkém hrnci přiveďte vodu k varu, osolte a uvařte ve vodě těstoviny dle návodu na obalu tak, aby byly al dente. Na poslední 3 minuty vaření přidejte k těstovinám také kousky brokolice.\nTěstoviny i brokolici sceďte a odlijte si cca 150 ml vody stranou.\nV pánvi rozehřejte máslo a lžíci olivového oleje. Přidejte prolisované stroužky česneku a lehce orestujte. Přilijte smetanu, smetanový sýr a vše společně rozmíchejte do hladka.\nVmíchejte do omáčky parmazán a přiveďte k mírnému varu. Nechte 3–4 minuty povařit, poté do omáčky přilijte cca 100 ml vody z těstovin. Promíchejte a pokud by omáčka byla stále moc hustá, přidejte ještě trochu vody.\nOmáčku dochuťte solí a pepřem a vmíchejte nasekanou bazalku. Přidejte těstoviny s brokolicí a důkladně promíchejte, aby se těstoviny i brokolice s omáčkou dobře propojily.\nNakonec do pánve vraťte kuřecí prsa, nechte 1–2 minuty přiklopené povařit a podávejte s extra parmazánem a lístky čerstvé bazalky.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337336494-beyjzho8.jpg",
+      "prep_time": 35,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "f27daf6e-7a85-4c34-8f60-fedbcf7925f4",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Dýňové gnocchi se šalvějí",
+      "portions": 4,
+      "notes": "Doba přípravy 40 min. Dýni, cibuli a česnek upeč při 200 °C 25 min a rozmixuj na pyré. Na oleji opeč šalvěj, přidej protlak, chilli a pyré, dochuť octy, máslem a smetanou. Vmíchej uvařené gnocchi a posyp parmazánem.",
+      "ingredients": [
+        {
+          "id": "1df6eqyx",
+          "name": "malá Hokkaidó dýně",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "6harrj8c",
+          "name": "červené cibule",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "1lutekji",
+          "name": "stroužky česneku",
+          "unit": "ks",
+          "amount": 4
+        },
+        {
+          "id": "um83ju32",
+          "name": "olivový olej",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "jlon6t8l",
+          "name": "lístky šalvěje",
+          "unit": "ks",
+          "amount": 10
+        },
+        {
+          "id": "bjqfagwf",
+          "name": "rajčatový protlak",
+          "unit": "lžíce",
+          "amount": 3
+        },
+        {
+          "id": "ckeqssu9",
+          "name": "chilli vločky",
+          "unit": "lžičky",
+          "amount": 0.25
+        },
+        {
+          "id": "eipny5iz",
+          "name": "balzamikový ocet",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "xgaq4e96",
+          "name": "vinný ocet",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "nlbs4d48",
+          "name": "máslo",
+          "unit": "g",
+          "amount": 25
+        },
+        {
+          "id": "e0y54oda",
+          "name": "smetana ke šlehání",
+          "unit": "ml",
+          "amount": 75
+        },
+        {
+          "id": "u8u600po",
+          "name": "mletý pepř",
+          "unit": "lžičky",
+          "amount": 0.25
+        },
+        {
+          "id": "bzffeo8v",
+          "name": "sůl",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "76p9afrc",
+          "name": "gnocchi",
+          "unit": "g",
+          "amount": 500
+        },
+        {
+          "id": "ssxjuh11",
+          "name": "nastrouhaný parmazán",
+          "unit": "g",
+          "amount": 50
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:05.636988+00:00",
+      "instructions": "Troubu si předehřejte na 200 °C a připravte si plech vyložený pečicím papírem. Z lednice si vyndejte smetanu ke šlehání.\nDýni opatrně rozkrojte na dvě poloviny, lehce ji zakápněte olivovým olejem a osolte. Cibuli nakrájejte na osminky a stroužky česneku oloupejte.\nDýni, cibuli a stroužky česneku dejte péct do předehřáté trouby na 25 minut.\nPo upečení nechte zcela vychladnout. Poté dýni vydlabejte a společně s cibulí a česnekem tyčovým mixérem rozmixujte na pyré.\nV hlubší pánvi rozehřejte olivový olej a opečte na něm lístky šalvěje. Přidejte rajčatový protlak, chilli vločky a připravené pyré. Promíchejte, přiveďte k varu a nechte společně 3–4 minuty povařit.\nPřidejte balzamikový i vinný ocet, máslo, smetanu a dochuťte solí a pepřem. Promíchejte a opět nechte 2–3 minuty povařit, aby se chutě hezky propojily.\nMezitím si jiný hrnec napusťte vodou, vodu osolte a přiveďte k varu. Uvařte gnocchi dle návodu na obalu. Jakmile budou gnocchi uvařené, přidejte je do dýňové omáčky. Promíchejte a dle chuti dosolte. Před podáváním můžete gnocchi posypat nastrouhaným čerstvým parmazánem.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337338138-2943scd8.jpg",
+      "prep_time": 40,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "c97f010e-58df-42f3-82cf-52f597c754a8",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Plněné batáty",
+      "portions": 2,
+      "notes": "Doba přípravy 45 min. Batáty propíchej a peč 35–40 min při 220 °C. Z jogurtu, česneku, citronu a bylinek umíchej dip. Na pánvi orestuj česnek, papriku a kmín, přidej olivy, sušená rajčata a cizrnu, dochuť balzamikem a petrželkou. Naplň batáty a posyp fetou.",
+      "ingredients": [
+        {
+          "id": "2w0lfebe",
+          "name": "střední batáty (cca po 300 g)",
+          "unit": "ks",
+          "amount": 2
+        },
+        {
+          "id": "yxumnt69",
+          "name": "olivový olej",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "mspx4q9b",
+          "name": "stroužky česneku",
+          "unit": "ks",
+          "amount": 3
+        },
+        {
+          "id": "6gmuxxma",
+          "name": "uzená paprika",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "d3ahnxn1",
+          "name": "mletý římský kmín",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "2md67phd",
+          "name": "vypeckované olivy Kalamata",
+          "unit": "ks",
+          "amount": 10
+        },
+        {
+          "id": "ulf2aibw",
+          "name": "sušená rajčata",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "jsiorjuh",
+          "name": "cizrna z konzervy",
+          "unit": "g",
+          "amount": 150
+        },
+        {
+          "id": "3lq2ojcj",
+          "name": "balzamikový ocet",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "b3z3fau7",
+          "name": "čerstvá petrželka",
+          "unit": "hrst",
+          "amount": 1
+        },
+        {
+          "id": "7onya91r",
+          "name": "sůl a pepř na dochucení",
+          "unit": "dle chuti",
+          "amount": 1
+        },
+        {
+          "id": "1javbr5b",
+          "name": "sýr feta",
+          "unit": "g",
+          "amount": 50
+        },
+        {
+          "id": "woeexyz2",
+          "name": "řecký jogurt (na jogurtový dip)",
+          "unit": "g",
+          "amount": 200
+        },
+        {
+          "id": "9wrgmaib",
+          "name": "prolisovaný stroužek česneku (na jogurtový dip)",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "9ya83g8c",
+          "name": "citronová šťáva (na jogurtový dip)",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "kay0k0ng",
+          "name": "olivový olej (na jogurtový dip)",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "kcsyte00",
+          "name": "nasekaná čerstvá máta (na jogurtový dip)",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "tfsp3l3e",
+          "name": "nasekaná petrželka (na jogurtový dip)",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "h8wimz3a",
+          "name": "sůl a pepř na dochucení (na jogurtový dip)",
+          "unit": "dle chuti",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:06.063646+00:00",
+      "instructions": "Troubu si předehřejte na 220 °C a připravte si malý plech vyložený pečicím papírem.\nBatáty důkladně omyjte a několikrát po celé ploše propíchejte vidličkou. Takto připravené je pečte v předehřáté troubě cca 35–40 minut.\nStroužky česneku prolisujte. Kalamata olivy, sušená rajčata a petrželku nasekejte nadrobno. Odložte stranou a připravte si dip.\nVšechny ingredience na dip dejte do menší misky a dobře promíchejte. Dle potřeby dochuťte solí a pepřem a uložte do podávání do lednice.\nNa pánvi rozehřejte olivový olej. Přidejte stroužky česneku, uzenou papriku a římský kmín. Krátce orestujte, stačí půl minuty.\nPřidejte nasekané olivy, sušená rajčata a cizrnu. Dobře promíchejte a restujte další 3–4 minuty.\nDo směsi přidejte balzamikový ocet a dochuťte solí a pepřem. Nakonec vmíchejte nasekanou petrželku.\nUpečené batáty rozřízněte napůl, vnitřek jemně rozmačkejte vidličkou a naplňte cizrnovou směsí. Navrch posypte rozdrobenou Fetou.\nPřed podáváním můžete naplněné batáty ještě krátce opéct v troubě. Stačí 3–4 minuty, jen aby se sýr hezky roztekl. Podávejte s vychlazeným dipem.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337338431-nf6cd36c.jpg",
+      "prep_time": 45,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
+    },
+    {
+      "id": "b28e278f-9466-48e2-9efc-08c8359af78f",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Dýňová polévka",
+      "portions": 6,
+      "notes": "Doba přípravy 55 min. Dýni upeč při 200 °C 35–40 min. Na oleji poduste cibuli, mrkev a česnek, přidej vydlabanou dýni, skořici a kajenský pepř, zalij vývarem a vař 10–15 min. Rozmixuj dohladka a vmíchej javorový sirup, jablečný ocet a smetanu.",
+      "ingredients": [
+        {
+          "id": "vwbvidtw",
+          "name": "dýně Hokkaidó",
+          "unit": "g",
+          "amount": 900
+        },
+        {
+          "id": "m2qf9pb9",
+          "name": "olivový olej",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "20vb049v",
+          "name": "sůl + extra na dochucení",
+          "unit": "lžička",
+          "amount": 1
+        },
+        {
+          "id": "cmraahom",
+          "name": "žlutá cibule (nakrájená nadrobno)",
+          "unit": "ks",
+          "amount": 1
+        },
+        {
+          "id": "c3pgabeo",
+          "name": "mrkve (nakrájené na větší kostky)",
+          "unit": "ks",
+          "amount": 3
+        },
+        {
+          "id": "fycugank",
+          "name": "stroužky česneku (na plátky)",
+          "unit": "ks",
+          "amount": 4
+        },
+        {
+          "id": "tdxm7e3o",
+          "name": "skořice",
+          "unit": "lžičky",
+          "amount": 0.5
+        },
+        {
+          "id": "i60wtzjj",
+          "name": "kajenský pepř (lze vynechat)",
+          "unit": "špetka",
+          "amount": 1
+        },
+        {
+          "id": "6rw9dwqy",
+          "name": "zeleninový vývar",
+          "unit": "ml",
+          "amount": 700
+        },
+        {
+          "id": "pkzm1fst",
+          "name": "jablečný ocet",
+          "unit": "lžíce",
+          "amount": 1
+        },
+        {
+          "id": "aeuk380p",
+          "name": "javorový sirup",
+          "unit": "lžíce",
+          "amount": 2
+        },
+        {
+          "id": "zuhgc7j3",
+          "name": "smetana ke šlehání",
+          "unit": "ml",
+          "amount": 200
+        },
+        {
+          "id": "1thth9mg",
+          "name": "čerstvý pepř",
+          "unit": "dle chuti",
+          "amount": 1
+        }
+      ],
+      "created_at": "2026-06-01T16:43:39.102788+00:00",
+      "updated_at": "2026-06-01T18:09:07.710714+00:00",
+      "instructions": "Troubu předehřejte na 200 °C. Dýni nakrájejte na klínky, zbavte semínek v jejím středu a potřete lžící olivového oleje. Vyskládejte ji na plech vyložený pečicím papírem a pečte v troubě cca 35–40 minut. Dýně by po upečení měla být krásně měkká. Poté ji vyndejte z trouby a nechte vychladnout.\nVe velkém hrnci rozehřejte zbývající lžíci olivového oleje. Přidejte cibuli, mrkev, a na plátky nakrájený česnek. Promíchejte a dochuťte solí a pepřem. Za občasného míchání vařte, dokud cibule nezeskloví a zelenina nezměkne. Trvá to asi 10–12 minut.\nBěhem toho, co vaříte zeleninu, by měla dýně, kterou jste pekli, trochu vychladnout. Nyní tedy z dýně vydlabejte dužinu a přidejte ji k ostatní zelenině do hrnce.\nOchuťte skořicí, kajenským pepřem a promíchejte. Přidejte vývar (doporučuji použít vývar teplý) a přiveďte polévku k varu. Jakmile se polévka začne vařit, snižte plamen a nechte ji jen zlehka bublat. Takto polévku vařte dalších 10–15 minut.\nNyní použijte tyčový mixér a polévku rozmixujte do hladka nebo do takové konzistence, jakou máte u dýňové polévky rádi.\nNakonec do polévky vmíchejte javorový sirup, jablečný ocet, smetanu a dle potřeby dochuťte další solí či pepřem. Podávejte s opečenými dýňovými semínky a křupavými krutony.",
+      "image_url": "https://onrpnmhrwyeupltazime.supabase.co/storage/v1/object/public/recipe-photos/1780337340265-19af71xi.jpg",
+      "prep_time": 55,
+      "is_vege": false,
+      "is_sweet": false,
+      "is_breakfast": false,
+      "source_type": "photo",
+      "source_url": ""
     }
   ],
   "staples": [
@@ -678,6 +3732,186 @@
       "unit": "ks",
       "created_at": "2026-05-31T07:10:24.816672+00:00",
       "updated_at": "2026-05-31T07:10:24.816672+00:00"
+    },
+    {
+      "id": "5441dd2e-579a-49eb-ae0e-f735ab417f4b",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Čokoláda",
+      "category": "Sladkosti",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:37:54.91976+00:00",
+      "updated_at": "2026-06-01T16:37:54.91976+00:00"
+    },
+    {
+      "id": "31069f03-dfe7-4a72-9984-e9c47fbec559",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Oříšky",
+      "category": "Sladkosti a snacks",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:38:05.908781+00:00",
+      "updated_at": "2026-06-01T16:38:05.908781+00:00"
+    },
+    {
+      "id": "8caf2107-7486-4cdd-827c-a63d0f67555f",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Vločky",
+      "category": "Trvanlivé",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:38:17.310363+00:00",
+      "updated_at": "2026-06-01T16:38:17.310363+00:00"
+    },
+    {
+      "id": "74d75414-2424-4bfc-b9a6-44b56418fc08",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Mléko",
+      "category": "Mléčné a chlazené",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:38:27.983914+00:00",
+      "updated_at": "2026-06-01T16:38:27.983914+00:00"
+    },
+    {
+      "id": "b1bfe4a5-23f5-482a-874b-3dabc767d5ae",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Sýr",
+      "category": "Mléčné a chlazené",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:38:42.08229+00:00",
+      "updated_at": "2026-06-01T16:38:42.08229+00:00"
+    },
+    {
+      "id": "ff53ace9-b060-4b4c-9db2-adcf9e732f56",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Šunka",
+      "category": "Maso a uzeniny",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:38:54.706872+00:00",
+      "updated_at": "2026-06-01T16:38:54.706872+00:00"
+    },
+    {
+      "id": "52399e13-a931-4ea6-b761-68e154e36dd0",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Pomazánkové máslo",
+      "category": "Mléčné a chlazené",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:39:03.781673+00:00",
+      "updated_at": "2026-06-01T16:39:03.781673+00:00"
+    },
+    {
+      "id": "d2a6bfd3-e5e9-4e3a-af89-772554e4cc57",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Máslo",
+      "category": "Mléčné a chlazené",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:39:09.950568+00:00",
+      "updated_at": "2026-06-01T16:39:09.950568+00:00"
+    },
+    {
+      "id": "91cd6bad-d66b-470c-aecb-f78c18ffa815",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Vlhčené ubrousky",
+      "category": "Domácnost",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:39:49.754451+00:00",
+      "updated_at": "2026-06-01T16:39:49.754451+00:00"
+    },
+    {
+      "id": "65891a7b-b60b-41c5-89cc-41ce0612a225",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Banány",
+      "category": "Ovoce a zelenina",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:40:35.439058+00:00",
+      "updated_at": "2026-06-01T16:40:35.439058+00:00"
+    },
+    {
+      "id": "005a1066-f9ea-471c-8a2b-d53233306d96",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Oharek",
+      "category": "Ovoce a zelenina",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:40:46.432963+00:00",
+      "updated_at": "2026-06-01T16:40:46.432963+00:00"
+    },
+    {
+      "id": "ae1cb3e0-d9c7-4afb-a42b-b8fa3310b39c",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Rajčata",
+      "category": "Ovoce a zelenina",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:40:52.52062+00:00",
+      "updated_at": "2026-06-01T16:40:52.52062+00:00"
+    },
+    {
+      "id": "7ea1ad8d-3f34-426c-8df9-250251d770c9",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Chleba",
+      "category": "Pečivo",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:40:59.339317+00:00",
+      "updated_at": "2026-06-01T16:40:59.339317+00:00"
+    },
+    {
+      "id": "926de8b9-f72e-4708-810d-277aef362cd7",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Toastový chleba",
+      "category": "Pečivo",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:41:13.208786+00:00",
+      "updated_at": "2026-06-01T16:41:13.208786+00:00"
+    },
+    {
+      "id": "1ea8d962-8598-4c41-a91c-9943342d59cd",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Jogurt",
+      "category": "Mléčné a chlazené",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:41:40.100236+00:00",
+      "updated_at": "2026-06-01T16:41:40.100236+00:00"
+    },
+    {
+      "id": "39e1e285-12e6-4d7d-b176-cdbb15fb8cdd",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Tvaroh",
+      "category": "Mléčné a chlazené",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:41:48.332217+00:00",
+      "updated_at": "2026-06-01T16:41:48.332217+00:00"
+    },
+    {
+      "id": "15960501-df55-4217-9d2f-80baaab1e87a",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Cottage",
+      "category": "Mléčné a chlazené",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:41:56.773967+00:00",
+      "updated_at": "2026-06-01T16:41:56.773967+00:00"
+    },
+    {
+      "id": "f43093b6-1780-47d5-83a1-723cc768fe4f",
+      "user_id": "fdbe0758-1654-4e80-b2e5-a92cf2da554b",
+      "name": "Hladká mouka",
+      "category": "Trvanlivé",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-01T16:42:11.357304+00:00",
+      "updated_at": "2026-06-01T16:42:11.357304+00:00"
     }
   ],
   "cart": [
@@ -701,7 +3935,7 @@
         "recipes": [],
         "staples": []
       },
-      "updated_at": "2026-06-01T10:24:33.773815+00:00"
+      "updated_at": "2026-06-02T04:32:21.347037+00:00"
     }
   ]
 }
