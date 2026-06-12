@@ -3931,11 +3931,24 @@
       "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
       "data": {
         "extras": [],
-        "checked": {},
-        "recipes": [],
+        "checked": {
+          "r:f27daf6e-7a85-4c34-8f60-fedbcf7925f4:1df6eqyx": true,
+          "r:f27daf6e-7a85-4c34-8f60-fedbcf7925f4:1lutekji": true,
+          "r:f27daf6e-7a85-4c34-8f60-fedbcf7925f4:6harrj8c": true,
+          "r:f27daf6e-7a85-4c34-8f60-fedbcf7925f4:um83ju32": true
+        },
+        "recipes": [
+          {
+            "id": "1f7b23f9-7c51-4dd0-b5a7-687633b7bca7",
+            "addedBy": "wondervoice9@gmail.com",
+            "excluded": [],
+            "portions": 4,
+            "overrides": {}
+          }
+        ],
         "staples": []
       },
-      "updated_at": "2026-06-03T05:57:37.578536+00:00"
+      "updated_at": "2026-06-11T20:48:30.434999+00:00"
     }
   ]
 }
