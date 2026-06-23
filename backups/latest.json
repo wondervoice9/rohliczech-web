@@ -3912,6 +3912,16 @@
       "unit": "ks",
       "created_at": "2026-06-01T16:42:11.357304+00:00",
       "updated_at": "2026-06-01T16:42:11.357304+00:00"
+    },
+    {
+      "id": "8b0139d9-250c-4dc5-b484-e539d7cd4cde",
+      "user_id": "2d975640-0b05-4b8f-9ce1-f9ee8ae27ada",
+      "name": "Olivový olej",
+      "category": "Trvanlivé",
+      "default_qty": 1,
+      "unit": "ks",
+      "created_at": "2026-06-22T17:32:17.400597+00:00",
+      "updated_at": "2026-06-22T17:32:17.400597+00:00"
     }
   ],
   "cart": [
@@ -3938,9 +3948,15 @@
           "r:f27daf6e-7a85-4c34-8f60-fedbcf7925f4:um83ju32": true
         },
         "recipes": [],
-        "staples": []
+        "staples": [
+          {
+            "id": "8b0139d9-250c-4dc5-b484-e539d7cd4cde",
+            "qty": 1,
+            "addedBy": "wondervoice9@gmail.com"
+          }
+        ]
       },
-      "updated_at": "2026-06-18T13:54:07.3836+00:00"
+      "updated_at": "2026-06-22T17:32:21.261494+00:00"
     }
   ]
 }
